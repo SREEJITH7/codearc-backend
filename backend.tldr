@@ -1,0 +1,5393 @@
+{
+	"tldrawFileFormatVersion": 1,
+	"schema": {
+		"schemaVersion": 2,
+		"sequences": {
+			"com.tldraw.store": 5,
+			"com.tldraw.asset": 1,
+			"com.tldraw.camera": 1,
+			"com.tldraw.document": 2,
+			"com.tldraw.instance": 25,
+			"com.tldraw.instance_page_state": 5,
+			"com.tldraw.page": 1,
+			"com.tldraw.instance_presence": 6,
+			"com.tldraw.pointer": 1,
+			"com.tldraw.shape": 4,
+			"com.tldraw.asset.bookmark": 2,
+			"com.tldraw.asset.image": 5,
+			"com.tldraw.asset.video": 5,
+			"com.tldraw.shape.group": 0,
+			"com.tldraw.shape.text": 3,
+			"com.tldraw.shape.bookmark": 2,
+			"com.tldraw.shape.draw": 2,
+			"com.tldraw.shape.geo": 10,
+			"com.tldraw.shape.note": 9,
+			"com.tldraw.shape.line": 5,
+			"com.tldraw.shape.frame": 1,
+			"com.tldraw.shape.arrow": 7,
+			"com.tldraw.shape.highlight": 1,
+			"com.tldraw.shape.embed": 4,
+			"com.tldraw.shape.image": 5,
+			"com.tldraw.shape.video": 4,
+			"com.tldraw.binding.arrow": 1
+		}
+	},
+	"records": [
+		{
+			"id": "pointer:pointer",
+			"typeName": "pointer",
+			"x": -342.56022683694664,
+			"y": 3798.3184064412217,
+			"lastActivityTimestamp": 1765263022300,
+			"meta": {}
+		},
+		{
+			"x": -1071.410511078768,
+			"y": 2002.5596072289572,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:MjaEjOuV9tKkVicKSujsb",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 10251.899161747226,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 3.9588734843753812,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 3
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "Stateful (Traditional Web Apps):"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							}
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Client → Server: Login with credentials Server → Client: Session ID (in cookie) Client → Server: Subsequent requests with session cookie Server: Looks up session in database/memory"
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 3
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "Stateless REST APIs:"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							}
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Client → Server: Login with credentials Server → Client: Access Token (JWT, Bearer token) Client → Server: Each request includes token in Authorization header Server: Validates token signature (no DB lookup)"
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:15msNPwTsPUuXYVGin89-",
+			"index": "a7nn993V",
+			"typeName": "shape"
+		},
+		{
+			"x": -958.0733056848112,
+			"y": 3723.3114229083244,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:2TwxFiZcuFLEs_lwtZmfk",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "xl",
+				"w": 591.5353816862769,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": false,
+				"scale": 1,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "redis setup in my settings .py"
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:15msNPwTsPUuXYVGin89-",
+			"index": "a9xcOTBV",
+			"typeName": "shape"
+		},
+		{
+			"meta": {},
+			"id": "page:15msNPwTsPUuXYVGin89-",
+			"name": "about the redis storage ",
+			"index": "a2QZbzjl",
+			"typeName": "page"
+		},
+		{
+			"x": 2551.2476014887748,
+			"y": -52.91723575435137,
+			"z": 0.12996744026216958,
+			"meta": {},
+			"id": "camera:page:page",
+			"typeName": "camera"
+		},
+		{
+			"x": -559.8658768466901,
+			"y": -263.7505357259374,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:Ph88aWUgG716mvXal9oKp",
+			"type": "draw",
+			"props": {
+				"segments": [
+					{
+						"type": "free",
+						"points": [
+							{
+								"x": 0,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": 2.05,
+								"y": 2.74,
+								"z": 0.5
+							},
+							{
+								"x": 4.79,
+								"y": 2.74,
+								"z": 0.5
+							},
+							{
+								"x": 10.27,
+								"y": 2.74,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": -2.74,
+								"z": 0.5
+							},
+							{
+								"x": 21.22,
+								"y": -16.43,
+								"z": 0.5
+							},
+							{
+								"x": 23.95,
+								"y": -24.64,
+								"z": 0.5
+							},
+							{
+								"x": 29.43,
+								"y": -35.59,
+								"z": 0.5
+							},
+							{
+								"x": 32.17,
+								"y": -46.54,
+								"z": 0.5
+							},
+							{
+								"x": 37.64,
+								"y": -52.01,
+								"z": 0.5
+							},
+							{
+								"x": 40.38,
+								"y": -62.96,
+								"z": 0.5
+							},
+							{
+								"x": 43.12,
+								"y": -68.44,
+								"z": 0.5
+							},
+							{
+								"x": 43.12,
+								"y": -76.65,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": -87.6,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": -93.08,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": -101.29,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": -106.77,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": -109.5,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": -114.98,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": -120.45,
+								"z": 0.5
+							},
+							{
+								"x": 45.86,
+								"y": -125.93,
+								"z": 0.5
+							},
+							{
+								"x": 40.38,
+								"y": -125.93,
+								"z": 0.5
+							},
+							{
+								"x": 37.64,
+								"y": -125.93,
+								"z": 0.5
+							},
+							{
+								"x": 29.43,
+								"y": -125.93,
+								"z": 0.5
+							},
+							{
+								"x": 26.69,
+								"y": -125.93,
+								"z": 0.5
+							},
+							{
+								"x": 21.22,
+								"y": -125.93,
+								"z": 0.5
+							},
+							{
+								"x": 18.48,
+								"y": -123.19,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": -117.72,
+								"z": 0.5
+							},
+							{
+								"x": 10.27,
+								"y": -112.24,
+								"z": 0.5
+							},
+							{
+								"x": 4.79,
+								"y": -106.77,
+								"z": 0.5
+							},
+							{
+								"x": -0.68,
+								"y": -98.55,
+								"z": 0.5
+							},
+							{
+								"x": -3.42,
+								"y": -90.34,
+								"z": 0.5
+							},
+							{
+								"x": -8.9,
+								"y": -82.13,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": -71.18,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": -60.23,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": -54.75,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": -49.28,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": -38.33,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": -35.59,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": -30.11,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": -27.38,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": -21.9,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": -19.16,
+								"z": 0.5
+							},
+							{
+								"x": -8.9,
+								"y": -16.43,
+								"z": 0.5
+							},
+							{
+								"x": -6.16,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 2.05,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 21.22,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 29.43,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 37.64,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 51.33,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 59.54,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 62.28,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 70.49,
+								"y": -16.43,
+								"z": 0.5
+							},
+							{
+								"x": 75.97,
+								"y": -16.43,
+								"z": 0.5
+							},
+							{
+								"x": 78.71,
+								"y": -16.43,
+								"z": 0.5
+							},
+							{
+								"x": 84.18,
+								"y": -16.43,
+								"z": 0.5
+							},
+							{
+								"x": 86.92,
+								"y": -16.43,
+								"z": 0.5
+							}
+						]
+					}
+				],
+				"color": "black",
+				"fill": "none",
+				"dash": "draw",
+				"size": "m",
+				"isComplete": true,
+				"isClosed": false,
+				"isPen": false,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a5yAl9wV",
+			"typeName": "shape"
+		},
+		{
+			"x": -250.51569162762985,
+			"y": -321.24033585727875,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:K_uDHlwhmkoqdjR2Jlcpn",
+			"type": "draw",
+			"props": {
+				"segments": [
+					{
+						"type": "free",
+						"points": [
+							{
+								"x": 0,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": -2.74,
+								"y": 2.74,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": 5.48,
+								"z": 0.5
+							},
+							{
+								"x": -14.37,
+								"y": 13.69,
+								"z": 0.5
+							},
+							{
+								"x": -17.11,
+								"y": 16.43,
+								"z": 0.5
+							},
+							{
+								"x": -19.85,
+								"y": 19.16,
+								"z": 0.5
+							},
+							{
+								"x": -22.59,
+								"y": 21.9,
+								"z": 0.5
+							},
+							{
+								"x": -17.11,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": 4.79,
+								"y": 16.43,
+								"z": 0.5
+							},
+							{
+								"x": 23.95,
+								"y": 2.74,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": -5.48,
+								"z": 0.5
+							},
+							{
+								"x": 65.02,
+								"y": -19.16,
+								"z": 0.5
+							},
+							{
+								"x": 78.71,
+								"y": -32.85,
+								"z": 0.5
+							},
+							{
+								"x": 86.92,
+								"y": -41.06,
+								"z": 0.5
+							},
+							{
+								"x": 95.13,
+								"y": -49.28,
+								"z": 0.5
+							},
+							{
+								"x": 97.87,
+								"y": -52.01,
+								"z": 0.5
+							},
+							{
+								"x": 100.61,
+								"y": -54.75,
+								"z": 0.5
+							},
+							{
+								"x": 106.08,
+								"y": -57.49,
+								"z": 0.5
+							},
+							{
+								"x": 106.08,
+								"y": -60.23,
+								"z": 0.5
+							}
+						]
+					}
+				],
+				"color": "black",
+				"fill": "none",
+				"dash": "draw",
+				"size": "m",
+				"isComplete": true,
+				"isClosed": false,
+				"isPen": false,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a99VMK8V",
+			"typeName": "shape"
+		},
+		{
+			"x": 737.476262469785,
+			"y": -252.65106358303228,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:lcG-RQF7X4-ifbuCmndk8",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 660.9125366210938,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 2.36302952429951,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "User Request → Django → Disk (Database) → Response\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "               ↑                          ↓\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "            ~10-50ms delay           Back to user\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "# Problems:\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "# 1. Disk I/O every request\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "# 2. Database connection overhead\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "# 3. Table locks, index lookups"
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:15msNPwTsPUuXYVGin89-",
+			"index": "a41XWWoV",
+			"typeName": "shape"
+		},
+		{
+			"x": 836.512104290892,
+			"y": 479.95310871325387,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:Hc2SSpyXiPJY54ZbLWaUw",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 674.3375244140625,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1.703413356281064,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 2
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "Benefits of Using Redis:"
+								}
+							]
+						},
+						{
+							"type": "orderedList",
+							"attrs": {
+								"start": 1,
+								"type": null
+							},
+							"content": [
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Cross-server compatibility"
+												},
+												{
+													"type": "text",
+													"text": ": Multiple app servers can access the same Redis instance"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "TTL (Time-to-Live)"
+												},
+												{
+													"type": "text",
+													"text": ": Automatic expiration - no cleanup needed"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Performance"
+												},
+												{
+													"type": "text",
+													"text": ": Redis is in-memory, very fast"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Scalability"
+												},
+												{
+													"type": "text",
+													"text": ": Can use Redis clusters for high availability"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Persistence"
+												},
+												{
+													"type": "text",
+													"text": ": Optional persistence to disk if needed"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 2
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "Security Considerations:"
+								}
+							]
+						},
+						{
+							"type": "orderedList",
+							"attrs": {
+								"start": 1,
+								"type": null
+							},
+							"content": [
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Use unique key names"
+												},
+												{
+													"type": "text",
+													"text": ": Prefix with your app name ("
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "code"
+														}
+													],
+													"text": "github:state:"
+												},
+												{
+													"type": "text",
+													"text": ")"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Set appropriate TTL"
+												},
+												{
+													"type": "text",
+													"text": ": 5-10 minutes is usually sufficient"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Delete after use"
+												},
+												{
+													"type": "text",
+													"text": ": Remove state token once validated"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Consider adding metadata"
+												},
+												{
+													"type": "text",
+													"text": ": Store IP, user agent for additional validation"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Use Redis password/auth"
+												},
+												{
+													"type": "text",
+													"text": " in production"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "This approach is especially useful if you're building:"
+								}
+							]
+						},
+						{
+							"type": "bulletList",
+							"content": [
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "Microservices architecture"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "Stateless REST APIs"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "High-traffic applications"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "Applications that need to scale horizontally"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:15msNPwTsPUuXYVGin89-",
+			"index": "a6xfiNDV",
+			"typeName": "shape"
+		},
+		{
+			"x": -392.87151151427474,
+			"y": -400.63111168778994,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:dGPYuZ5Ira-86MATjgXAR",
+			"type": "draw",
+			"props": {
+				"segments": [
+					{
+						"type": "free",
+						"points": [
+							{
+								"x": 0,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": -3.42,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": 8.21,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": 10.95,
+								"z": 0.5
+							},
+							{
+								"x": -17.11,
+								"y": 16.43,
+								"z": 0.5
+							},
+							{
+								"x": -22.59,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": -25.32,
+								"y": 30.11,
+								"z": 0.5
+							},
+							{
+								"x": -25.32,
+								"y": 32.85,
+								"z": 0.5
+							},
+							{
+								"x": -28.06,
+								"y": 32.85,
+								"z": 0.5
+							},
+							{
+								"x": -30.8,
+								"y": 35.59,
+								"z": 0.5
+							},
+							{
+								"x": -30.8,
+								"y": 38.33,
+								"z": 0.5
+							},
+							{
+								"x": -33.54,
+								"y": 38.33,
+								"z": 0.5
+							},
+							{
+								"x": -33.54,
+								"y": 41.06,
+								"z": 0.5
+							},
+							{
+								"x": -30.8,
+								"y": 46.54,
+								"z": 0.5
+							},
+							{
+								"x": -22.59,
+								"y": 49.28,
+								"z": 0.5
+							},
+							{
+								"x": -6.16,
+								"y": 54.75,
+								"z": 0.5
+							},
+							{
+								"x": 7.53,
+								"y": 57.49,
+								"z": 0.5
+							},
+							{
+								"x": 18.48,
+								"y": 60.23,
+								"z": 0.5
+							},
+							{
+								"x": 23.95,
+								"y": 60.23,
+								"z": 0.5
+							},
+							{
+								"x": 34.9,
+								"y": 60.23,
+								"z": 0.5
+							},
+							{
+								"x": 37.64,
+								"y": 60.23,
+								"z": 0.5
+							},
+							{
+								"x": 43.12,
+								"y": 60.23,
+								"z": 0.5
+							}
+						]
+					}
+				],
+				"color": "black",
+				"fill": "none",
+				"dash": "draw",
+				"size": "m",
+				"isComplete": true,
+				"isClosed": false,
+				"isPen": false,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a7FtlpwV",
+			"typeName": "shape"
+		},
+		{
+			"editingShapeId": null,
+			"croppingShapeId": null,
+			"selectedShapeIds": [
+				"shape:a2PBqzRUnf9SqRY5vcT67"
+			],
+			"hoveredShapeId": null,
+			"erasingShapeIds": [],
+			"hintingShapeIds": [],
+			"focusedGroupId": null,
+			"meta": {},
+			"id": "instance_page_state:page:page",
+			"pageId": "page:page",
+			"typeName": "instance_page_state"
+		},
+		{
+			"x": -127.32317326196267,
+			"y": -619.6400071188561,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:GzTs-eETEFTc3Fo_Cyh0O",
+			"type": "draw",
+			"props": {
+				"segments": [
+					{
+						"type": "free",
+						"points": [
+							{
+								"x": 0,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": -0.68,
+								"y": -2.74,
+								"z": 0.5
+							},
+							{
+								"x": -8.9,
+								"y": -5.48,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": -5.48,
+								"z": 0.5
+							},
+							{
+								"x": -14.37,
+								"y": -5.48,
+								"z": 0.5
+							},
+							{
+								"x": -19.85,
+								"y": -5.48,
+								"z": 0.5
+							},
+							{
+								"x": -22.59,
+								"y": -5.48,
+								"z": 0.5
+							},
+							{
+								"x": -28.06,
+								"y": -5.48,
+								"z": 0.5
+							},
+							{
+								"x": -33.54,
+								"y": -5.48,
+								"z": 0.5
+							},
+							{
+								"x": -36.27,
+								"y": -5.48,
+								"z": 0.5
+							},
+							{
+								"x": -39.01,
+								"y": -2.74,
+								"z": 0.5
+							},
+							{
+								"x": -41.75,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": -44.49,
+								"y": 5.48,
+								"z": 0.5
+							},
+							{
+								"x": -44.49,
+								"y": 13.69,
+								"z": 0.5
+							},
+							{
+								"x": -44.49,
+								"y": 16.43,
+								"z": 0.5
+							},
+							{
+								"x": -44.49,
+								"y": 21.9,
+								"z": 0.5
+							},
+							{
+								"x": -44.49,
+								"y": 30.11,
+								"z": 0.5
+							},
+							{
+								"x": -44.49,
+								"y": 32.85,
+								"z": 0.5
+							},
+							{
+								"x": -44.49,
+								"y": 41.06,
+								"z": 0.5
+							},
+							{
+								"x": -44.49,
+								"y": 46.54,
+								"z": 0.5
+							},
+							{
+								"x": -39.01,
+								"y": 46.54,
+								"z": 0.5
+							},
+							{
+								"x": -33.54,
+								"y": 49.28,
+								"z": 0.5
+							},
+							{
+								"x": -28.06,
+								"y": 54.75,
+								"z": 0.5
+							},
+							{
+								"x": -22.59,
+								"y": 54.75,
+								"z": 0.5
+							},
+							{
+								"x": -19.85,
+								"y": 54.75,
+								"z": 0.5
+							},
+							{
+								"x": -19.85,
+								"y": 57.49,
+								"z": 0.5
+							},
+							{
+								"x": -17.11,
+								"y": 60.23,
+								"z": 0.5
+							},
+							{
+								"x": -17.11,
+								"y": 62.97,
+								"z": 0.5
+							},
+							{
+								"x": -17.11,
+								"y": 65.7,
+								"z": 0.5
+							},
+							{
+								"x": -17.11,
+								"y": 68.44,
+								"z": 0.5
+							},
+							{
+								"x": -17.11,
+								"y": 71.18,
+								"z": 0.5
+							},
+							{
+								"x": -17.11,
+								"y": 73.92,
+								"z": 0.5
+							},
+							{
+								"x": -17.11,
+								"y": 76.65,
+								"z": 0.5
+							},
+							{
+								"x": -17.11,
+								"y": 82.13,
+								"z": 0.5
+							},
+							{
+								"x": -17.11,
+								"y": 87.6,
+								"z": 0.5
+							},
+							{
+								"x": -22.59,
+								"y": 93.08,
+								"z": 0.5
+							},
+							{
+								"x": -25.32,
+								"y": 93.08,
+								"z": 0.5
+							},
+							{
+								"x": -30.8,
+								"y": 95.82,
+								"z": 0.5
+							},
+							{
+								"x": -33.54,
+								"y": 98.55,
+								"z": 0.5
+							},
+							{
+								"x": -39.01,
+								"y": 98.55,
+								"z": 0.5
+							},
+							{
+								"x": -47.22,
+								"y": 101.29,
+								"z": 0.5
+							},
+							{
+								"x": -49.96,
+								"y": 101.29,
+								"z": 0.5
+							},
+							{
+								"x": -52.7,
+								"y": 101.29,
+								"z": 0.5
+							}
+						]
+					}
+				],
+				"color": "black",
+				"fill": "none",
+				"dash": "draw",
+				"size": "m",
+				"isComplete": true,
+				"isClosed": false,
+				"isPen": false,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aAKxihaV",
+			"typeName": "shape"
+		},
+		{
+			"x": -450.3614160772079,
+			"y": -499.18508460768703,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:-g38w_qB3t_C8_HuiNBOh",
+			"type": "draw",
+			"props": {
+				"segments": [
+					{
+						"type": "free",
+						"points": [
+							{
+								"x": 0,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": -0.68,
+								"y": 2.74,
+								"z": 0.5
+							},
+							{
+								"x": -0.68,
+								"y": 21.9,
+								"z": 0.5
+							},
+							{
+								"x": 2.05,
+								"y": 41.06,
+								"z": 0.5
+							},
+							{
+								"x": 7.53,
+								"y": 68.44,
+								"z": 0.5
+							},
+							{
+								"x": 10.27,
+								"y": 95.82,
+								"z": 0.5
+							},
+							{
+								"x": 21.22,
+								"y": 123.19,
+								"z": 0.5
+							},
+							{
+								"x": 26.69,
+								"y": 156.04,
+								"z": 0.5
+							},
+							{
+								"x": 34.9,
+								"y": 177.94,
+								"z": 0.5
+							},
+							{
+								"x": 34.9,
+								"y": 199.85,
+								"z": 0.5
+							},
+							{
+								"x": 37.64,
+								"y": 213.53,
+								"z": 0.5
+							},
+							{
+								"x": 37.64,
+								"y": 216.27,
+								"z": 0.5
+							},
+							{
+								"x": 40.38,
+								"y": 221.75,
+								"z": 0.5
+							},
+							{
+								"x": 40.38,
+								"y": 224.48,
+								"z": 0.5
+							},
+							{
+								"x": 40.38,
+								"y": 227.22,
+								"z": 0.5
+							},
+							{
+								"x": 43.12,
+								"y": 227.22,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": 227.22,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": 221.75,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": 216.27,
+								"z": 0.5
+							}
+						]
+					}
+				],
+				"color": "black",
+				"fill": "none",
+				"dash": "draw",
+				"size": "m",
+				"isComplete": true,
+				"isClosed": false,
+				"isPen": false,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a6GE0WUl",
+			"typeName": "shape"
+		},
+		{
+			"x": -833.6269765545992,
+			"y": -239.11199028016722,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:5tE3SqyG_hBlEmCSL18kb",
+			"type": "draw",
+			"props": {
+				"segments": [
+					{
+						"type": "free",
+						"points": [
+							{
+								"x": 0,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": -0.68,
+								"y": 2.74,
+								"z": 0.5
+							},
+							{
+								"x": 7.53,
+								"y": 13.69,
+								"z": 0.5
+							},
+							{
+								"x": 10.27,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": 30.11,
+								"z": 0.5
+							},
+							{
+								"x": 15.74,
+								"y": 35.59,
+								"z": 0.5
+							},
+							{
+								"x": 23.95,
+								"y": 49.28,
+								"z": 0.5
+							},
+							{
+								"x": 29.43,
+								"y": 57.49,
+								"z": 0.5
+							},
+							{
+								"x": 37.64,
+								"y": 65.7,
+								"z": 0.5
+							},
+							{
+								"x": 40.38,
+								"y": 68.44,
+								"z": 0.5
+							},
+							{
+								"x": 40.38,
+								"y": 71.18,
+								"z": 0.5
+							},
+							{
+								"x": 43.12,
+								"y": 71.18,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": 71.18,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": 68.44,
+								"z": 0.5
+							},
+							{
+								"x": 51.33,
+								"y": 62.97,
+								"z": 0.5
+							},
+							{
+								"x": 56.81,
+								"y": 54.75,
+								"z": 0.5
+							},
+							{
+								"x": 56.81,
+								"y": 49.28,
+								"z": 0.5
+							},
+							{
+								"x": 62.28,
+								"y": 35.59,
+								"z": 0.5
+							},
+							{
+								"x": 62.28,
+								"y": 32.85,
+								"z": 0.5
+							},
+							{
+								"x": 65.02,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": 70.49,
+								"y": 13.69,
+								"z": 0.5
+							},
+							{
+								"x": 73.23,
+								"y": 5.48,
+								"z": 0.5
+							},
+							{
+								"x": 73.23,
+								"y": -8.21,
+								"z": 0.5
+							},
+							{
+								"x": 75.97,
+								"y": -19.16,
+								"z": 0.5
+							},
+							{
+								"x": 78.71,
+								"y": -30.11,
+								"z": 0.5
+							},
+							{
+								"x": 78.71,
+								"y": -38.33,
+								"z": 0.5
+							},
+							{
+								"x": 84.18,
+								"y": -43.8,
+								"z": 0.5
+							},
+							{
+								"x": 84.18,
+								"y": -46.54,
+								"z": 0.5
+							},
+							{
+								"x": 84.18,
+								"y": -49.28,
+								"z": 0.5
+							},
+							{
+								"x": 84.18,
+								"y": -52.01,
+								"z": 0.5
+							},
+							{
+								"x": 84.18,
+								"y": -43.8,
+								"z": 0.5
+							},
+							{
+								"x": 86.92,
+								"y": -38.33,
+								"z": 0.5
+							},
+							{
+								"x": 89.66,
+								"y": -21.9,
+								"z": 0.5
+							},
+							{
+								"x": 89.66,
+								"y": -16.43,
+								"z": 0.5
+							},
+							{
+								"x": 95.13,
+								"y": -5.48,
+								"z": 0.5
+							},
+							{
+								"x": 97.87,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": 100.61,
+								"y": 8.21,
+								"z": 0.5
+							},
+							{
+								"x": 103.34,
+								"y": 19.16,
+								"z": 0.5
+							},
+							{
+								"x": 108.82,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": 111.56,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": 111.56,
+								"y": 32.85,
+								"z": 0.5
+							},
+							{
+								"x": 117.03,
+								"y": 32.85,
+								"z": 0.5
+							},
+							{
+								"x": 119.77,
+								"y": 32.85,
+								"z": 0.5
+							},
+							{
+								"x": 125.25,
+								"y": 30.11,
+								"z": 0.5
+							},
+							{
+								"x": 133.46,
+								"y": 21.9,
+								"z": 0.5
+							},
+							{
+								"x": 138.93,
+								"y": 8.21,
+								"z": 0.5
+							},
+							{
+								"x": 149.88,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 152.62,
+								"y": -27.38,
+								"z": 0.5
+							},
+							{
+								"x": 155.36,
+								"y": -43.8,
+								"z": 0.5
+							},
+							{
+								"x": 166.31,
+								"y": -62.97,
+								"z": 0.5
+							},
+							{
+								"x": 169.05,
+								"y": -76.65,
+								"z": 0.5
+							},
+							{
+								"x": 169.05,
+								"y": -84.87,
+								"z": 0.5
+							},
+							{
+								"x": 171.79,
+								"y": -90.34,
+								"z": 0.5
+							},
+							{
+								"x": 177.26,
+								"y": -101.29,
+								"z": 0.5
+							}
+						]
+					}
+				],
+				"color": "black",
+				"fill": "none",
+				"dash": "draw",
+				"size": "m",
+				"isComplete": true,
+				"isClosed": false,
+				"isPen": false,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a38n9OQV",
+			"typeName": "shape"
+		},
+		{
+			"x": -105.4223019943845,
+			"y": -532.0364437248501,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:UvaXyHcAccnL1qBG5sned",
+			"type": "draw",
+			"props": {
+				"segments": [
+					{
+						"type": "free",
+						"points": [
+							{
+								"x": 0,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": -3.42,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": -3.42,
+								"y": -2.74,
+								"z": 0.5
+							},
+							{
+								"x": -0.68,
+								"y": -2.74,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": -2.74,
+								"z": 0.5
+							},
+							{
+								"x": 26.69,
+								"y": -2.74,
+								"z": 0.5
+							},
+							{
+								"x": 51.33,
+								"y": -5.48,
+								"z": 0.5
+							},
+							{
+								"x": 67.76,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 73.23,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 81.44,
+								"y": -16.43,
+								"z": 0.5
+							},
+							{
+								"x": 84.18,
+								"y": -16.43,
+								"z": 0.5
+							}
+						]
+					}
+				],
+				"color": "black",
+				"fill": "none",
+				"dash": "draw",
+				"size": "m",
+				"isComplete": true,
+				"isClosed": false,
+				"isPen": false,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aCWSRYHV",
+			"typeName": "shape"
+		},
+		{
+			"x": -782.110235223599,
+			"y": 97.48949538241601,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:a2PBqzRUnf9SqRY5vcT67",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 779.5999755859375,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": false,
+				"scale": 1.138698125218319,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 2
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Production "
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "i was disabled the security middleware for google auth setup working.. needed to check it while working.. "
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "Re-enable it"
+								},
+								{
+									"type": "text",
+									"text": ", but override COOP only for the Google callback route. "
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 3
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Option 1 — Add custom middleware to disable COOP only for OAuth responses:"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "code"
+										}
+									],
+									"text": "class DisableCOOPMiddleware:     def "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										},
+										{
+											"type": "code"
+										}
+									],
+									"text": "init"
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "code"
+										}
+									],
+									"text": "(self, get_response):         self.get_response = get_response      def "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										},
+										{
+											"type": "code"
+										}
+									],
+									"text": "call"
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "code"
+										}
+									],
+									"text": "(self, request):         response = self.get_response(request)          if request.path.startswith(\"/api/auth/google/\"):             response[\"Cross-Origin-Opener-Policy\"] = \"same-origin-allow-popups\"             response[\"Cross-Origin-Embedder-Policy\"] = \"unsafe-none\"          return response "
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Add to middleware:"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "code"
+										}
+									],
+									"text": "MIDDLEWARE.insert(0, \"config.middleware.DisableCOOPMiddleware\") "
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Now production maintains security BUT Google popup works."
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:page",
+			"index": "a1Fz1TfG",
+			"typeName": "shape"
+		},
+		{
+			"x": -318.95597960855616,
+			"y": -534.7740656872462,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:egw7etmuZrcUROioQ3vSQ",
+			"type": "draw",
+			"props": {
+				"segments": [
+					{
+						"type": "free",
+						"points": [
+							{
+								"x": 0,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": 4.79,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": 10.27,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": 18.48,
+								"y": -8.21,
+								"z": 0.5
+							},
+							{
+								"x": 29.43,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 37.64,
+								"y": -21.9,
+								"z": 0.5
+							},
+							{
+								"x": 45.85,
+								"y": -27.38,
+								"z": 0.5
+							},
+							{
+								"x": 54.07,
+								"y": -35.59,
+								"z": 0.5
+							},
+							{
+								"x": 59.54,
+								"y": -41.06,
+								"z": 0.5
+							},
+							{
+								"x": 67.76,
+								"y": -49.28,
+								"z": 0.5
+							},
+							{
+								"x": 70.49,
+								"y": -52.01,
+								"z": 0.5
+							},
+							{
+								"x": 75.97,
+								"y": -57.49,
+								"z": 0.5
+							},
+							{
+								"x": 81.44,
+								"y": -60.23,
+								"z": 0.5
+							},
+							{
+								"x": 81.44,
+								"y": -57.49,
+								"z": 0.5
+							},
+							{
+								"x": 81.44,
+								"y": -49.28,
+								"z": 0.5
+							},
+							{
+								"x": 81.44,
+								"y": -30.11,
+								"z": 0.5
+							},
+							{
+								"x": 81.44,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": 84.18,
+								"y": 16.43,
+								"z": 0.5
+							},
+							{
+								"x": 84.18,
+								"y": 35.59,
+								"z": 0.5
+							},
+							{
+								"x": 89.66,
+								"y": 65.7,
+								"z": 0.5
+							},
+							{
+								"x": 92.39,
+								"y": 90.34,
+								"z": 0.5
+							},
+							{
+								"x": 97.87,
+								"y": 117.72,
+								"z": 0.5
+							},
+							{
+								"x": 97.87,
+								"y": 131.41,
+								"z": 0.5
+							},
+							{
+								"x": 103.34,
+								"y": 150.57,
+								"z": 0.5
+							},
+							{
+								"x": 103.34,
+								"y": 161.52,
+								"z": 0.5
+							},
+							{
+								"x": 103.34,
+								"y": 166.99,
+								"z": 0.5
+							},
+							{
+								"x": 106.08,
+								"y": 177.94,
+								"z": 0.5
+							},
+							{
+								"x": 111.56,
+								"y": 183.42,
+								"z": 0.5
+							},
+							{
+								"x": 114.3,
+								"y": 186.16,
+								"z": 0.5
+							},
+							{
+								"x": 117.03,
+								"y": 188.9,
+								"z": 0.5
+							},
+							{
+								"x": 119.77,
+								"y": 188.9,
+								"z": 0.5
+							},
+							{
+								"x": 122.51,
+								"y": 188.9,
+								"z": 0.5
+							},
+							{
+								"x": 122.51,
+								"y": 186.16,
+								"z": 0.5
+							}
+						]
+					}
+				],
+				"color": "black",
+				"fill": "none",
+				"dash": "draw",
+				"size": "m",
+				"isComplete": true,
+				"isClosed": false,
+				"isPen": false,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a8EUIB3G",
+			"typeName": "shape"
+		},
+		{
+			"editingShapeId": null,
+			"croppingShapeId": null,
+			"selectedShapeIds": [
+				"shape:2TwxFiZcuFLEs_lwtZmfk"
+			],
+			"hoveredShapeId": "shape:2TwxFiZcuFLEs_lwtZmfk",
+			"erasingShapeIds": [],
+			"hintingShapeIds": [],
+			"focusedGroupId": null,
+			"meta": {},
+			"id": "instance_page_state:page:15msNPwTsPUuXYVGin89-",
+			"pageId": "page:15msNPwTsPUuXYVGin89-",
+			"typeName": "instance_page_state"
+		},
+		{
+			"x": -609.1428633066386,
+			"y": 1.7978025263748805,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:0nTuAM_gWWqlq1vsguTBs",
+			"type": "draw",
+			"props": {
+				"segments": [
+					{
+						"type": "free",
+						"points": [
+							{
+								"x": 0,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": 2.05,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": 7.53,
+								"y": -2.74,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": -8.21,
+								"z": 0.5
+							},
+							{
+								"x": 23.95,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": 34.9,
+								"y": -19.16,
+								"z": 0.5
+							},
+							{
+								"x": 51.33,
+								"y": -35.59,
+								"z": 0.5
+							},
+							{
+								"x": 67.76,
+								"y": -43.8,
+								"z": 0.5
+							},
+							{
+								"x": 86.92,
+								"y": -46.54,
+								"z": 0.5
+							},
+							{
+								"x": 100.61,
+								"y": -54.75,
+								"z": 0.5
+							},
+							{
+								"x": 114.3,
+								"y": -60.23,
+								"z": 0.5
+							},
+							{
+								"x": 125.25,
+								"y": -65.7,
+								"z": 0.5
+							},
+							{
+								"x": 136.2,
+								"y": -68.44,
+								"z": 0.5
+							},
+							{
+								"x": 149.88,
+								"y": -73.92,
+								"z": 0.5
+							},
+							{
+								"x": 166.31,
+								"y": -76.65,
+								"z": 0.5
+							},
+							{
+								"x": 174.52,
+								"y": -76.65,
+								"z": 0.5
+							},
+							{
+								"x": 185.47,
+								"y": -79.39,
+								"z": 0.5
+							},
+							{
+								"x": 190.95,
+								"y": -79.39,
+								"z": 0.5
+							},
+							{
+								"x": 199.16,
+								"y": -79.39,
+								"z": 0.5
+							},
+							{
+								"x": 201.9,
+								"y": -79.39,
+								"z": 0.5
+							},
+							{
+								"x": 204.64,
+								"y": -79.39,
+								"z": 0.5
+							},
+							{
+								"x": 207.37,
+								"y": -79.39,
+								"z": 0.5
+							},
+							{
+								"x": 210.11,
+								"y": -76.65,
+								"z": 0.5
+							},
+							{
+								"x": 210.11,
+								"y": -68.44,
+								"z": 0.5
+							},
+							{
+								"x": 210.11,
+								"y": -65.7,
+								"z": 0.5
+							},
+							{
+								"x": 210.11,
+								"y": -62.97,
+								"z": 0.5
+							},
+							{
+								"x": 212.85,
+								"y": -60.23,
+								"z": 0.5
+							},
+							{
+								"x": 212.85,
+								"y": -57.49,
+								"z": 0.5
+							},
+							{
+								"x": 212.85,
+								"y": -54.75,
+								"z": 0.5
+							},
+							{
+								"x": 212.85,
+								"y": -52.01,
+								"z": 0.5
+							},
+							{
+								"x": 212.85,
+								"y": -46.54,
+								"z": 0.5
+							},
+							{
+								"x": 212.85,
+								"y": -43.8,
+								"z": 0.5
+							},
+							{
+								"x": 212.85,
+								"y": -41.06,
+								"z": 0.5
+							},
+							{
+								"x": 212.85,
+								"y": -35.59,
+								"z": 0.5
+							},
+							{
+								"x": 218.32,
+								"y": -35.59,
+								"z": 0.5
+							},
+							{
+								"x": 226.54,
+								"y": -35.59,
+								"z": 0.5
+							},
+							{
+								"x": 234.75,
+								"y": -35.59,
+								"z": 0.5
+							},
+							{
+								"x": 248.44,
+								"y": -35.59,
+								"z": 0.5
+							},
+							{
+								"x": 273.08,
+								"y": -35.59,
+								"z": 0.5
+							},
+							{
+								"x": 292.24,
+								"y": -38.33,
+								"z": 0.5
+							},
+							{
+								"x": 311.4,
+								"y": -43.8,
+								"z": 0.5
+							},
+							{
+								"x": 325.09,
+								"y": -43.8,
+								"z": 0.5
+							},
+							{
+								"x": 336.04,
+								"y": -43.8,
+								"z": 0.5
+							},
+							{
+								"x": 346.99,
+								"y": -49.28,
+								"z": 0.5
+							},
+							{
+								"x": 355.21,
+								"y": -49.28,
+								"z": 0.5
+							},
+							{
+								"x": 357.94,
+								"y": -49.28,
+								"z": 0.5
+							},
+							{
+								"x": 360.68,
+								"y": -49.28,
+								"z": 0.5
+							},
+							{
+								"x": 363.42,
+								"y": -49.28,
+								"z": 0.5
+							},
+							{
+								"x": 371.63,
+								"y": -49.28,
+								"z": 0.5
+							},
+							{
+								"x": 374.37,
+								"y": -46.54,
+								"z": 0.5
+							},
+							{
+								"x": 374.37,
+								"y": -41.06,
+								"z": 0.5
+							},
+							{
+								"x": 374.37,
+								"y": -38.33,
+								"z": 0.5
+							},
+							{
+								"x": 374.37,
+								"y": -30.11,
+								"z": 0.5
+							},
+							{
+								"x": 377.11,
+								"y": -24.64,
+								"z": 0.5
+							},
+							{
+								"x": 377.11,
+								"y": -19.16,
+								"z": 0.5
+							},
+							{
+								"x": 377.11,
+								"y": -16.43,
+								"z": 0.5
+							},
+							{
+								"x": 382.58,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": 385.32,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": 393.53,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": 396.27,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": 407.22,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": 415.43,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": 429.12,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": 448.28,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": 464.71,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": 492.09,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": 522.2,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": 549.58,
+								"y": 5.48,
+								"z": 0.5
+							},
+							{
+								"x": 568.74,
+								"y": 8.21,
+								"z": 0.5
+							},
+							{
+								"x": 585.16,
+								"y": 19.16,
+								"z": 0.5
+							},
+							{
+								"x": 596.11,
+								"y": 27.38,
+								"z": 0.5
+							},
+							{
+								"x": 601.59,
+								"y": 32.85,
+								"z": 0.5
+							},
+							{
+								"x": 604.33,
+								"y": 35.59,
+								"z": 0.5
+							},
+							{
+								"x": 607.07,
+								"y": 43.8,
+								"z": 0.5
+							},
+							{
+								"x": 612.54,
+								"y": 49.28,
+								"z": 0.5
+							},
+							{
+								"x": 612.54,
+								"y": 54.75,
+								"z": 0.5
+							},
+							{
+								"x": 615.28,
+								"y": 65.7,
+								"z": 0.5
+							},
+							{
+								"x": 615.28,
+								"y": 71.18,
+								"z": 0.5
+							},
+							{
+								"x": 615.28,
+								"y": 76.65,
+								"z": 0.5
+							},
+							{
+								"x": 620.75,
+								"y": 79.39,
+								"z": 0.5
+							},
+							{
+								"x": 623.49,
+								"y": 82.13,
+								"z": 0.5
+							},
+							{
+								"x": 623.49,
+								"y": 84.87,
+								"z": 0.5
+							},
+							{
+								"x": 626.23,
+								"y": 84.87,
+								"z": 0.5
+							},
+							{
+								"x": 628.97,
+								"y": 84.87,
+								"z": 0.5
+							},
+							{
+								"x": 650.87,
+								"y": 90.34,
+								"z": 0.5
+							},
+							{
+								"x": 691.93,
+								"y": 101.29,
+								"z": 0.5
+							},
+							{
+								"x": 738.47,
+								"y": 112.24,
+								"z": 0.5
+							},
+							{
+								"x": 798.7,
+								"y": 134.14,
+								"z": 0.5
+							},
+							{
+								"x": 856.19,
+								"y": 150.57,
+								"z": 0.5
+							},
+							{
+								"x": 921.89,
+								"y": 169.73,
+								"z": 0.5
+							},
+							{
+								"x": 982.12,
+								"y": 194.37,
+								"z": 0.5
+							},
+							{
+								"x": 1009.49,
+								"y": 202.58,
+								"z": 0.5
+							},
+							{
+								"x": 1031.4,
+								"y": 221.75,
+								"z": 0.5
+							},
+							{
+								"x": 1042.35,
+								"y": 232.7,
+								"z": 0.5
+							},
+							{
+								"x": 1045.08,
+								"y": 240.91,
+								"z": 0.5
+							},
+							{
+								"x": 1047.82,
+								"y": 246.39,
+								"z": 0.5
+							},
+							{
+								"x": 1050.56,
+								"y": 260.07,
+								"z": 0.5
+							},
+							{
+								"x": 1053.3,
+								"y": 271.02,
+								"z": 0.5
+							},
+							{
+								"x": 1053.3,
+								"y": 281.97,
+								"z": 0.5
+							},
+							{
+								"x": 1053.3,
+								"y": 295.66,
+								"z": 0.5
+							},
+							{
+								"x": 1053.3,
+								"y": 303.87,
+								"z": 0.5
+							},
+							{
+								"x": 1053.3,
+								"y": 312.09,
+								"z": 0.5
+							},
+							{
+								"x": 1053.3,
+								"y": 325.78,
+								"z": 0.5
+							},
+							{
+								"x": 1053.3,
+								"y": 336.73,
+								"z": 0.5
+							},
+							{
+								"x": 1042.35,
+								"y": 355.89,
+								"z": 0.5
+							},
+							{
+								"x": 1034.13,
+								"y": 372.32,
+								"z": 0.5
+							},
+							{
+								"x": 1031.4,
+								"y": 386,
+								"z": 0.5
+							},
+							{
+								"x": 1020.44,
+								"y": 410.64,
+								"z": 0.5
+							},
+							{
+								"x": 1014.97,
+								"y": 427.07,
+								"z": 0.5
+							},
+							{
+								"x": 1009.49,
+								"y": 435.28,
+								"z": 0.5
+							},
+							{
+								"x": 1006.76,
+								"y": 448.97,
+								"z": 0.5
+							},
+							{
+								"x": 1004.02,
+								"y": 462.66,
+								"z": 0.5
+							},
+							{
+								"x": 1001.28,
+								"y": 473.61,
+								"z": 0.5
+							},
+							{
+								"x": 993.07,
+								"y": 498.25,
+								"z": 0.5
+							},
+							{
+								"x": 993.07,
+								"y": 509.2,
+								"z": 0.5
+							},
+							{
+								"x": 993.07,
+								"y": 522.88,
+								"z": 0.5
+							},
+							{
+								"x": 995.81,
+								"y": 536.57,
+								"z": 0.5
+							},
+							{
+								"x": 998.54,
+								"y": 553,
+								"z": 0.5
+							},
+							{
+								"x": 1009.49,
+								"y": 563.95,
+								"z": 0.5
+							},
+							{
+								"x": 1023.18,
+								"y": 585.85,
+								"z": 0.5
+							},
+							{
+								"x": 1028.66,
+								"y": 591.32,
+								"z": 0.5
+							},
+							{
+								"x": 1039.61,
+								"y": 605.01,
+								"z": 0.5
+							},
+							{
+								"x": 1045.08,
+								"y": 610.49,
+								"z": 0.5
+							},
+							{
+								"x": 1053.3,
+								"y": 626.91,
+								"z": 0.5
+							},
+							{
+								"x": 1058.77,
+								"y": 640.6,
+								"z": 0.5
+							},
+							{
+								"x": 1064.25,
+								"y": 657.03,
+								"z": 0.5
+							},
+							{
+								"x": 1072.46,
+								"y": 673.45,
+								"z": 0.5
+							},
+							{
+								"x": 1072.46,
+								"y": 695.35,
+								"z": 0.5
+							},
+							{
+								"x": 1072.46,
+								"y": 709.04,
+								"z": 0.5
+							},
+							{
+								"x": 1072.46,
+								"y": 728.2,
+								"z": 0.5
+							},
+							{
+								"x": 1066.98,
+								"y": 752.84,
+								"z": 0.5
+							},
+							{
+								"x": 1050.56,
+								"y": 777.48,
+								"z": 0.5
+							},
+							{
+								"x": 1028.66,
+								"y": 802.12,
+								"z": 0.5
+							},
+							{
+								"x": 1006.76,
+								"y": 824.02,
+								"z": 0.5
+							},
+							{
+								"x": 984.86,
+								"y": 845.92,
+								"z": 0.5
+							},
+							{
+								"x": 971.17,
+								"y": 865.09,
+								"z": 0.5
+							},
+							{
+								"x": 960.22,
+								"y": 878.77,
+								"z": 0.5
+							},
+							{
+								"x": 954.74,
+								"y": 889.72,
+								"z": 0.5
+							},
+							{
+								"x": 952,
+								"y": 897.94,
+								"z": 0.5
+							},
+							{
+								"x": 946.53,
+								"y": 903.41,
+								"z": 0.5
+							},
+							{
+								"x": 946.53,
+								"y": 908.89,
+								"z": 0.5
+							},
+							{
+								"x": 943.79,
+								"y": 914.36,
+								"z": 0.5
+							},
+							{
+								"x": 943.79,
+								"y": 919.84,
+								"z": 0.5
+							},
+							{
+								"x": 941.05,
+								"y": 919.84,
+								"z": 0.5
+							},
+							{
+								"x": 938.32,
+								"y": 925.31,
+								"z": 0.5
+							},
+							{
+								"x": 938.32,
+								"y": 930.79,
+								"z": 0.5
+							},
+							{
+								"x": 932.84,
+								"y": 933.53,
+								"z": 0.5
+							},
+							{
+								"x": 930.1,
+								"y": 936.26,
+								"z": 0.5
+							},
+							{
+								"x": 927.37,
+								"y": 939,
+								"z": 0.5
+							},
+							{
+								"x": 921.89,
+								"y": 941.74,
+								"z": 0.5
+							},
+							{
+								"x": 919.15,
+								"y": 944.48,
+								"z": 0.5
+							},
+							{
+								"x": 916.42,
+								"y": 949.95,
+								"z": 0.5
+							},
+							{
+								"x": 908.2,
+								"y": 958.16,
+								"z": 0.5
+							},
+							{
+								"x": 897.25,
+								"y": 963.64,
+								"z": 0.5
+							},
+							{
+								"x": 883.56,
+								"y": 971.85,
+								"z": 0.5
+							},
+							{
+								"x": 864.4,
+								"y": 977.33,
+								"z": 0.5
+							},
+							{
+								"x": 834.29,
+								"y": 996.49,
+								"z": 0.5
+							},
+							{
+								"x": 820.6,
+								"y": 1007.44,
+								"z": 0.5
+							},
+							{
+								"x": 798.7,
+								"y": 1021.13,
+								"z": 0.5
+							},
+							{
+								"x": 787.75,
+								"y": 1029.34,
+								"z": 0.5
+							},
+							{
+								"x": 771.32,
+								"y": 1037.55,
+								"z": 0.5
+							},
+							{
+								"x": 765.85,
+								"y": 1040.29,
+								"z": 0.5
+							},
+							{
+								"x": 754.9,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 743.95,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 738.47,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 730.26,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 719.31,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 705.62,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 691.93,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 672.77,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 642.65,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 615.28,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 587.9,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 563.26,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 549.58,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 541.36,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 535.89,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 530.41,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 524.94,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 522.2,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 511.25,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 497.56,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 486.61,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 472.92,
+								"y": 1037.55,
+								"z": 0.5
+							},
+							{
+								"x": 464.71,
+								"y": 1037.55,
+								"z": 0.5
+							},
+							{
+								"x": 456.5,
+								"y": 1037.55,
+								"z": 0.5
+							},
+							{
+								"x": 451.02,
+								"y": 1037.55,
+								"z": 0.5
+							},
+							{
+								"x": 445.55,
+								"y": 1037.55,
+								"z": 0.5
+							},
+							{
+								"x": 437.33,
+								"y": 1037.55,
+								"z": 0.5
+							},
+							{
+								"x": 431.86,
+								"y": 1037.55,
+								"z": 0.5
+							},
+							{
+								"x": 418.17,
+								"y": 1040.29,
+								"z": 0.5
+							},
+							{
+								"x": 409.96,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": 396.27,
+								"y": 1048.51,
+								"z": 0.5
+							},
+							{
+								"x": 377.11,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 360.68,
+								"y": 1053.98,
+								"z": 0.5
+							},
+							{
+								"x": 341.52,
+								"y": 1059.46,
+								"z": 0.5
+							},
+							{
+								"x": 327.83,
+								"y": 1059.46,
+								"z": 0.5
+							},
+							{
+								"x": 314.14,
+								"y": 1059.46,
+								"z": 0.5
+							},
+							{
+								"x": 300.45,
+								"y": 1059.46,
+								"z": 0.5
+							},
+							{
+								"x": 286.76,
+								"y": 1059.46,
+								"z": 0.5
+							},
+							{
+								"x": 278.55,
+								"y": 1059.46,
+								"z": 0.5
+							},
+							{
+								"x": 270.34,
+								"y": 1059.46,
+								"z": 0.5
+							},
+							{
+								"x": 264.86,
+								"y": 1059.46,
+								"z": 0.5
+							},
+							{
+								"x": 259.39,
+								"y": 1059.46,
+								"z": 0.5
+							},
+							{
+								"x": 248.44,
+								"y": 1059.46,
+								"z": 0.5
+							},
+							{
+								"x": 242.96,
+								"y": 1059.46,
+								"z": 0.5
+							},
+							{
+								"x": 234.75,
+								"y": 1059.46,
+								"z": 0.5
+							},
+							{
+								"x": 223.8,
+								"y": 1056.72,
+								"z": 0.5
+							},
+							{
+								"x": 212.85,
+								"y": 1053.98,
+								"z": 0.5
+							},
+							{
+								"x": 210.11,
+								"y": 1053.98,
+								"z": 0.5
+							},
+							{
+								"x": 193.69,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 180,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 166.31,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 152.62,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 138.93,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 130.72,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 119.77,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 117.03,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 108.82,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 100.61,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 86.92,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 73.23,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 51.33,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 32.17,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": 10.27,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": -17.11,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": -44.49,
+								"y": 1051.24,
+								"z": 0.5
+							},
+							{
+								"x": -74.6,
+								"y": 1043.03,
+								"z": 0.5
+							},
+							{
+								"x": -101.98,
+								"y": 1034.82,
+								"z": 0.5
+							},
+							{
+								"x": -115.66,
+								"y": 1032.08,
+								"z": 0.5
+							},
+							{
+								"x": -132.09,
+								"y": 1029.34,
+								"z": 0.5
+							},
+							{
+								"x": -137.56,
+								"y": 1026.6,
+								"z": 0.5
+							},
+							{
+								"x": -140.3,
+								"y": 1026.6,
+								"z": 0.5
+							},
+							{
+								"x": -145.78,
+								"y": 1023.87,
+								"z": 0.5
+							},
+							{
+								"x": -151.25,
+								"y": 1018.39,
+								"z": 0.5
+							},
+							{
+								"x": -156.73,
+								"y": 1015.65,
+								"z": 0.5
+							},
+							{
+								"x": -162.2,
+								"y": 1007.44,
+								"z": 0.5
+							},
+							{
+								"x": -170.42,
+								"y": 1004.7,
+								"z": 0.5
+							},
+							{
+								"x": -175.89,
+								"y": 1001.97,
+								"z": 0.5
+							},
+							{
+								"x": -184.1,
+								"y": 993.75,
+								"z": 0.5
+							},
+							{
+								"x": -184.1,
+								"y": 991.02,
+								"z": 0.5
+							},
+							{
+								"x": -192.32,
+								"y": 982.8,
+								"z": 0.5
+							},
+							{
+								"x": -197.79,
+								"y": 977.33,
+								"z": 0.5
+							},
+							{
+								"x": -208.74,
+								"y": 960.9,
+								"z": 0.5
+							},
+							{
+								"x": -214.22,
+								"y": 949.95,
+								"z": 0.5
+							},
+							{
+								"x": -225.17,
+								"y": 933.53,
+								"z": 0.5
+							},
+							{
+								"x": -230.64,
+								"y": 925.31,
+								"z": 0.5
+							},
+							{
+								"x": -241.59,
+								"y": 908.89,
+								"z": 0.5
+							},
+							{
+								"x": -247.07,
+								"y": 892.46,
+								"z": 0.5
+							},
+							{
+								"x": -255.28,
+								"y": 876.04,
+								"z": 0.5
+							},
+							{
+								"x": -260.76,
+								"y": 862.35,
+								"z": 0.5
+							},
+							{
+								"x": -263.5,
+								"y": 845.92,
+								"z": 0.5
+							},
+							{
+								"x": -274.45,
+								"y": 826.76,
+								"z": 0.5
+							},
+							{
+								"x": -279.92,
+								"y": 802.12,
+								"z": 0.5
+							},
+							{
+								"x": -293.61,
+								"y": 785.69,
+								"z": 0.5
+							},
+							{
+								"x": -307.3,
+								"y": 761.06,
+								"z": 0.5
+							},
+							{
+								"x": -312.77,
+								"y": 750.11,
+								"z": 0.5
+							},
+							{
+								"x": -326.46,
+								"y": 728.2,
+								"z": 0.5
+							},
+							{
+								"x": -334.67,
+								"y": 714.52,
+								"z": 0.5
+							},
+							{
+								"x": -337.41,
+								"y": 706.3,
+								"z": 0.5
+							},
+							{
+								"x": -340.15,
+								"y": 692.62,
+								"z": 0.5
+							},
+							{
+								"x": -345.62,
+								"y": 676.19,
+								"z": 0.5
+							},
+							{
+								"x": -353.84,
+								"y": 657.03,
+								"z": 0.5
+							},
+							{
+								"x": -356.57,
+								"y": 646.08,
+								"z": 0.5
+							},
+							{
+								"x": -359.31,
+								"y": 632.39,
+								"z": 0.5
+							},
+							{
+								"x": -364.79,
+								"y": 621.44,
+								"z": 0.5
+							},
+							{
+								"x": -367.52,
+								"y": 613.22,
+								"z": 0.5
+							},
+							{
+								"x": -370.26,
+								"y": 594.06,
+								"z": 0.5
+							},
+							{
+								"x": -370.26,
+								"y": 580.37,
+								"z": 0.5
+							},
+							{
+								"x": -373,
+								"y": 569.42,
+								"z": 0.5
+							},
+							{
+								"x": -373,
+								"y": 555.74,
+								"z": 0.5
+							},
+							{
+								"x": -373,
+								"y": 544.78,
+								"z": 0.5
+							},
+							{
+								"x": -378.47,
+								"y": 531.1,
+								"z": 0.5
+							},
+							{
+								"x": -378.47,
+								"y": 517.41,
+								"z": 0.5
+							},
+							{
+								"x": -378.47,
+								"y": 498.25,
+								"z": 0.5
+							},
+							{
+								"x": -378.47,
+								"y": 470.87,
+								"z": 0.5
+							},
+							{
+								"x": -378.47,
+								"y": 451.71,
+								"z": 0.5
+							},
+							{
+								"x": -378.47,
+								"y": 435.28,
+								"z": 0.5
+							},
+							{
+								"x": -378.47,
+								"y": 402.43,
+								"z": 0.5
+							},
+							{
+								"x": -378.47,
+								"y": 375.05,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 347.68,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 323.04,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 301.14,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 281.97,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 254.6,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 235.43,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 221.75,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 202.58,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 191.63,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 180.68,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 169.73,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 164.26,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 156.04,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 147.83,
+								"z": 0.5
+							},
+							{
+								"x": -375.74,
+								"y": 145.09,
+								"z": 0.5
+							},
+							{
+								"x": -373,
+								"y": 142.36,
+								"z": 0.5
+							},
+							{
+								"x": -373,
+								"y": 139.62,
+								"z": 0.5
+							},
+							{
+								"x": -373,
+								"y": 131.41,
+								"z": 0.5
+							},
+							{
+								"x": -370.26,
+								"y": 123.19,
+								"z": 0.5
+							},
+							{
+								"x": -364.79,
+								"y": 117.72,
+								"z": 0.5
+							},
+							{
+								"x": -362.05,
+								"y": 112.24,
+								"z": 0.5
+							},
+							{
+								"x": -353.84,
+								"y": 104.03,
+								"z": 0.5
+							},
+							{
+								"x": -345.62,
+								"y": 95.82,
+								"z": 0.5
+							},
+							{
+								"x": -329.2,
+								"y": 82.13,
+								"z": 0.5
+							},
+							{
+								"x": -307.3,
+								"y": 71.18,
+								"z": 0.5
+							},
+							{
+								"x": -293.61,
+								"y": 62.97,
+								"z": 0.5
+							},
+							{
+								"x": -271.71,
+								"y": 54.75,
+								"z": 0.5
+							},
+							{
+								"x": -260.76,
+								"y": 46.54,
+								"z": 0.5
+							},
+							{
+								"x": -247.07,
+								"y": 43.8,
+								"z": 0.5
+							},
+							{
+								"x": -241.59,
+								"y": 41.06,
+								"z": 0.5
+							},
+							{
+								"x": -230.64,
+								"y": 35.59,
+								"z": 0.5
+							},
+							{
+								"x": -222.43,
+								"y": 32.85,
+								"z": 0.5
+							},
+							{
+								"x": -216.96,
+								"y": 30.11,
+								"z": 0.5
+							},
+							{
+								"x": -211.48,
+								"y": 30.11,
+								"z": 0.5
+							},
+							{
+								"x": -206.01,
+								"y": 30.11,
+								"z": 0.5
+							},
+							{
+								"x": -203.27,
+								"y": 30.11,
+								"z": 0.5
+							},
+							{
+								"x": -200.53,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": -197.79,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": -195.05,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": -189.58,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": -186.84,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": -184.1,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": -178.63,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": -175.89,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": -167.68,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": -162.2,
+								"y": 21.9,
+								"z": 0.5
+							},
+							{
+								"x": -156.73,
+								"y": 21.9,
+								"z": 0.5
+							},
+							{
+								"x": -151.25,
+								"y": 21.9,
+								"z": 0.5
+							},
+							{
+								"x": -145.78,
+								"y": 21.9,
+								"z": 0.5
+							},
+							{
+								"x": -140.3,
+								"y": 19.16,
+								"z": 0.5
+							},
+							{
+								"x": -134.83,
+								"y": 19.16,
+								"z": 0.5
+							},
+							{
+								"x": -132.09,
+								"y": 19.16,
+								"z": 0.5
+							},
+							{
+								"x": -126.61,
+								"y": 19.16,
+								"z": 0.5
+							},
+							{
+								"x": -121.14,
+								"y": 19.16,
+								"z": 0.5
+							},
+							{
+								"x": -110.19,
+								"y": 19.16,
+								"z": 0.5
+							},
+							{
+								"x": -101.98,
+								"y": 13.69,
+								"z": 0.5
+							},
+							{
+								"x": -99.24,
+								"y": 13.69,
+								"z": 0.5
+							},
+							{
+								"x": -93.76,
+								"y": 10.95,
+								"z": 0.5
+							},
+							{
+								"x": -85.55,
+								"y": 10.95,
+								"z": 0.5
+							},
+							{
+								"x": -82.81,
+								"y": 8.21,
+								"z": 0.5
+							},
+							{
+								"x": -77.34,
+								"y": 8.21,
+								"z": 0.5
+							},
+							{
+								"x": -74.6,
+								"y": 8.21,
+								"z": 0.5
+							},
+							{
+								"x": -71.86,
+								"y": 8.21,
+								"z": 0.5
+							},
+							{
+								"x": -66.39,
+								"y": 8.21,
+								"z": 0.5
+							},
+							{
+								"x": -63.65,
+								"y": 5.48,
+								"z": 0.5
+							},
+							{
+								"x": -60.91,
+								"y": 5.48,
+								"z": 0.5
+							},
+							{
+								"x": -58.17,
+								"y": 5.48,
+								"z": 0.5
+							},
+							{
+								"x": -55.44,
+								"y": 5.48,
+								"z": 0.5
+							},
+							{
+								"x": -52.7,
+								"y": 5.48,
+								"z": 0.5
+							},
+							{
+								"x": -49.96,
+								"y": 5.48,
+								"z": 0.5
+							},
+							{
+								"x": -47.22,
+								"y": 5.48,
+								"z": 0.5
+							},
+							{
+								"x": -44.49,
+								"y": 5.48,
+								"z": 0.5
+							},
+							{
+								"x": -41.75,
+								"y": 2.74,
+								"z": 0.5
+							},
+							{
+								"x": -39.01,
+								"y": 2.74,
+								"z": 0.5
+							},
+							{
+								"x": -33.54,
+								"y": 2.74,
+								"z": 0.5
+							},
+							{
+								"x": -30.8,
+								"y": 2.74,
+								"z": 0.5
+							},
+							{
+								"x": -25.32,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": -22.59,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": -17.11,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": -14.37,
+								"y": -2.74,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": -5.48,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": -8.21,
+								"z": 0.5
+							},
+							{
+								"x": -8.9,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": -6.16,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": -3.42,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": -0.68,
+								"y": -10.95,
+								"z": 0.5
+							}
+						]
+					}
+				],
+				"color": "black",
+				"fill": "none",
+				"dash": "draw",
+				"size": "m",
+				"isComplete": true,
+				"isClosed": false,
+				"isPen": false,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a2kva4CV",
+			"typeName": "shape"
+		},
+		{
+			"x": -961.9480901675661,
+			"y": 3939.726187839972,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:YZOcmLWD_YCRvDCgoP3hb",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 500.3500061035156,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 3.090102634388575,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "CACHES = {"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "    \"default\": {"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "        'BACKEND': 'django_redis.cache.RedisCache',"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "        'LOCATION' : 'redis://127.0.0.1:6379/1', "
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "        'OPTIONS':{"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "            'CLIENT_CLASS' : 'django_redis.client.DefaultClient',"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "        }"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "    }"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "}"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "hardBreak"
+								},
+								{
+									"type": "hardBreak"
+								},
+								{
+									"type": "hardBreak"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "SESSION_ENGINE = 'django.contrib.sessions.backends.cache'"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "SESSION_CACHE_ALIAS = 'default'"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "hardBreak"
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:15msNPwTsPUuXYVGin89-",
+			"index": "a8d2vHdV",
+			"typeName": "shape"
+		},
+		{
+			"x": -108.15997617257653,
+			"y": -679.8674814283895,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:R68tvH0AvjHyJM404tzOm",
+			"type": "draw",
+			"props": {
+				"segments": [
+					{
+						"type": "free",
+						"points": [
+							{
+								"x": 0,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": 2.05,
+								"y": 2.74,
+								"z": 0.5
+							},
+							{
+								"x": 7.53,
+								"y": 10.95,
+								"z": 0.5
+							},
+							{
+								"x": 10.27,
+								"y": 19.16,
+								"z": 0.5
+							},
+							{
+								"x": 10.27,
+								"y": 38.33,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": 65.7,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": 84.87,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": 112.24,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": 125.93,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": 142.36,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": 158.78,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": 175.21,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": 188.9,
+								"z": 0.5
+							},
+							{
+								"x": 15.74,
+								"y": 194.37,
+								"z": 0.5
+							},
+							{
+								"x": 15.74,
+								"y": 199.85,
+								"z": 0.5
+							},
+							{
+								"x": 15.74,
+								"y": 205.32,
+								"z": 0.5
+							},
+							{
+								"x": 15.74,
+								"y": 208.06,
+								"z": 0.5
+							},
+							{
+								"x": 18.48,
+								"y": 210.8,
+								"z": 0.5
+							},
+							{
+								"x": 18.48,
+								"y": 213.53,
+								"z": 0.5
+							},
+							{
+								"x": 23.95,
+								"y": 213.53,
+								"z": 0.5
+							},
+							{
+								"x": 23.95,
+								"y": 210.8,
+								"z": 0.5
+							},
+							{
+								"x": 23.95,
+								"y": 208.06,
+								"z": 0.5
+							},
+							{
+								"x": 23.95,
+								"y": 205.32,
+								"z": 0.5
+							},
+							{
+								"x": 23.95,
+								"y": 202.58,
+								"z": 0.5
+							},
+							{
+								"x": 23.95,
+								"y": 199.85,
+								"z": 0.5
+							}
+						]
+					}
+				],
+				"color": "black",
+				"fill": "none",
+				"dash": "draw",
+				"size": "m",
+				"isComplete": true,
+				"isClosed": false,
+				"isPen": false,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aBUgLMMl",
+			"typeName": "shape"
+		},
+		{
+			"x": -815.3835248931515,
+			"y": 472.30178058607913,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:z64kHZdYSx9K-eWeAoNRZ",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 867.2000122070312,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1.7044080663201746,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "Redis Server Architecture:\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "┌─────────────────────────────────────────────────┐\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│               Redis Process                      │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│  ┌─────────────────────────────────────────┐    │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│  │   In-Memory Data Store (RAM)            │    │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│  │   • Strings, Lists, Hashes, Sets        │    │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│  │   • All data stays in memory            │    │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│  └─────────────────────────────────────────┘    │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│                   ↑                              │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│    Single-threaded event loop ←─┐               │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│    (processes commands one by one)               │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│                   ↓                              │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│  ┌─────────────────────────────────────────┐    │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│  │   Persistence Layer (Optional)          │    │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│  │   • RDB snapshots                       │    │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│  │   • AOF logs                            │    │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "│  └─────────────────────────────────────────┘    │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "└─────────────────────────────────────────────────┘"
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:15msNPwTsPUuXYVGin89-",
+			"index": "a5zC7ffl",
+			"typeName": "shape"
+		},
+		{
+			"x": 2459.6116065554306,
+			"y": -2426.1554751422045,
+			"z": 0.204057399899971,
+			"meta": {},
+			"id": "camera:page:15msNPwTsPUuXYVGin89-",
+			"typeName": "camera"
+		},
+		{
+			"meta": {},
+			"id": "page:page",
+			"name": "Page 1",
+			"index": "a1",
+			"typeName": "page"
+		},
+		{
+			"gridSize": 10,
+			"name": "",
+			"meta": {},
+			"id": "document:document",
+			"typeName": "document"
+		},
+		{
+			"followingUserId": null,
+			"opacityForNextShape": 1,
+			"stylesForNextShape": {
+				"tldraw:size": "xl"
+			},
+			"brush": null,
+			"scribbles": [],
+			"cursor": {
+				"type": "default",
+				"rotation": 0
+			},
+			"isFocusMode": false,
+			"exportBackground": true,
+			"isDebugMode": false,
+			"isToolLocked": false,
+			"screenBounds": {
+				"x": 0,
+				"y": 0,
+				"w": 730.4000244140625,
+				"h": 440
+			},
+			"insets": [
+				false,
+				false,
+				true,
+				false
+			],
+			"zoomBrush": null,
+			"isGridMode": false,
+			"isPenMode": false,
+			"chatMessage": "",
+			"isChatting": false,
+			"highlightedUserIds": [],
+			"isFocused": true,
+			"devicePixelRatio": 1.25,
+			"isCoarsePointer": false,
+			"isHoveringCanvas": true,
+			"openMenus": [],
+			"isChangingStyle": false,
+			"isReadonly": false,
+			"meta": {},
+			"duplicateProps": null,
+			"id": "instance:instance",
+			"currentPageId": "page:15msNPwTsPUuXYVGin89-",
+			"typeName": "instance"
+		},
+		{
+			"x": -639.2565482456095,
+			"y": -269.225727434934,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:o0fG-SeyoCA0SrMIgzE5Q",
+			"type": "draw",
+			"props": {
+				"segments": [
+					{
+						"type": "free",
+						"points": [
+							{
+								"x": 0,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": 2.05,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": 4.79,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": 7.53,
+								"y": -8.21,
+								"z": 0.5
+							},
+							{
+								"x": 7.53,
+								"y": -10.95,
+								"z": 0.5
+							},
+							{
+								"x": 10.27,
+								"y": -19.16,
+								"z": 0.5
+							},
+							{
+								"x": 15.74,
+								"y": -24.64,
+								"z": 0.5
+							},
+							{
+								"x": 18.48,
+								"y": -32.85,
+								"z": 0.5
+							},
+							{
+								"x": 18.48,
+								"y": -35.59,
+								"z": 0.5
+							},
+							{
+								"x": 21.22,
+								"y": -41.06,
+								"z": 0.5
+							},
+							{
+								"x": 23.95,
+								"y": -46.54,
+								"z": 0.5
+							},
+							{
+								"x": 26.69,
+								"y": -54.75,
+								"z": 0.5
+							},
+							{
+								"x": 29.43,
+								"y": -62.97,
+								"z": 0.5
+							},
+							{
+								"x": 29.43,
+								"y": -65.7,
+								"z": 0.5
+							},
+							{
+								"x": 29.43,
+								"y": -68.44,
+								"z": 0.5
+							},
+							{
+								"x": 29.43,
+								"y": -71.18,
+								"z": 0.5
+							},
+							{
+								"x": 29.43,
+								"y": -73.92,
+								"z": 0.5
+							},
+							{
+								"x": 29.43,
+								"y": -76.65,
+								"z": 0.5
+							},
+							{
+								"x": 29.43,
+								"y": -79.39,
+								"z": 0.5
+							},
+							{
+								"x": 21.22,
+								"y": -79.39,
+								"z": 0.5
+							},
+							{
+								"x": 18.48,
+								"y": -79.39,
+								"z": 0.5
+							},
+							{
+								"x": 15.74,
+								"y": -79.39,
+								"z": 0.5
+							},
+							{
+								"x": 13,
+								"y": -79.39,
+								"z": 0.5
+							},
+							{
+								"x": 7.53,
+								"y": -79.39,
+								"z": 0.5
+							},
+							{
+								"x": 2.05,
+								"y": -76.65,
+								"z": 0.5
+							},
+							{
+								"x": -3.42,
+								"y": -71.18,
+								"z": 0.5
+							},
+							{
+								"x": -3.42,
+								"y": -62.97,
+								"z": 0.5
+							},
+							{
+								"x": -6.16,
+								"y": -60.23,
+								"z": 0.5
+							},
+							{
+								"x": -6.16,
+								"y": -49.28,
+								"z": 0.5
+							},
+							{
+								"x": -8.9,
+								"y": -35.59,
+								"z": 0.5
+							},
+							{
+								"x": -14.37,
+								"y": -24.64,
+								"z": 0.5
+							},
+							{
+								"x": -14.37,
+								"y": -13.69,
+								"z": 0.5
+							},
+							{
+								"x": -14.37,
+								"y": -8.21,
+								"z": 0.5
+							},
+							{
+								"x": -14.37,
+								"y": 0,
+								"z": 0.5
+							},
+							{
+								"x": -14.37,
+								"y": 13.69,
+								"z": 0.5
+							},
+							{
+								"x": -14.37,
+								"y": 24.64,
+								"z": 0.5
+							},
+							{
+								"x": -14.37,
+								"y": 30.11,
+								"z": 0.5
+							},
+							{
+								"x": -14.37,
+								"y": 41.06,
+								"z": 0.5
+							},
+							{
+								"x": -11.63,
+								"y": 43.8,
+								"z": 0.5
+							},
+							{
+								"x": -6.16,
+								"y": 46.54,
+								"z": 0.5
+							},
+							{
+								"x": 4.79,
+								"y": 46.54,
+								"z": 0.5
+							},
+							{
+								"x": 10.27,
+								"y": 46.54,
+								"z": 0.5
+							},
+							{
+								"x": 21.22,
+								"y": 46.54,
+								"z": 0.5
+							},
+							{
+								"x": 32.17,
+								"y": 46.54,
+								"z": 0.5
+							},
+							{
+								"x": 43.12,
+								"y": 46.54,
+								"z": 0.5
+							},
+							{
+								"x": 48.59,
+								"y": 41.06,
+								"z": 0.5
+							},
+							{
+								"x": 56.81,
+								"y": 38.33,
+								"z": 0.5
+							},
+							{
+								"x": 59.54,
+								"y": 35.59,
+								"z": 0.5
+							},
+							{
+								"x": 67.76,
+								"y": 32.85,
+								"z": 0.5
+							},
+							{
+								"x": 70.49,
+								"y": 30.11,
+								"z": 0.5
+							},
+							{
+								"x": 73.23,
+								"y": 21.9,
+								"z": 0.5
+							},
+							{
+								"x": 75.97,
+								"y": 19.16,
+								"z": 0.5
+							},
+							{
+								"x": 75.97,
+								"y": 16.43,
+								"z": 0.5
+							},
+							{
+								"x": 75.97,
+								"y": 13.69,
+								"z": 0.5
+							},
+							{
+								"x": 75.97,
+								"y": 10.95,
+								"z": 0.5
+							},
+							{
+								"x": 75.97,
+								"y": 8.21,
+								"z": 0.5
+							},
+							{
+								"x": 75.97,
+								"y": 5.48,
+								"z": 0.5
+							}
+						]
+					}
+				],
+				"color": "black",
+				"fill": "none",
+				"dash": "draw",
+				"size": "m",
+				"isComplete": true,
+				"isClosed": false,
+				"isPen": false,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a4vLVbrV",
+			"typeName": "shape"
+		},
+		{
+			"x": -340.3495589729167,
+			"y": -239.35129370969003,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:zeaIegYJJrN5Sp6-XAY8I",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 548.9625244140625,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1.7838139688375725,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "USER's Browser\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "    ↓ HTTP Request\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "Web Server (Django/Node.js)\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "    ↓\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "    ├───► RAM (Redis Session) ⚡ FAST\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "    │        Read/Write: 0.1ms\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "    │        Storage: User session, cache\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "    │\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "    └───► DISK (PostgreSQL DB) 🐢 SLOWER\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "             Read/Write: 10-50ms\r"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"content": [
+								{
+									"type": "text",
+									"text": "             Storage: Users, products, orders"
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:15msNPwTsPUuXYVGin89-",
+			"index": "a1WBIzel",
+			"typeName": "shape"
+		}
+	]
+}

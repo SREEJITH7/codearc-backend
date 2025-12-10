@@ -1,0 +1,113 @@
+# ─────────────────────────────────────────────
+# Python
+# ─────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Byte-compiled / optimized files
+*.pyo
+*.pyd
+*.pyd
+*.so
+
+# ─────────────────────────────────────────────
+# Django
+# ─────────────────────────────────────────────
+*.log
+*.pot
+*.pyc
+*~
+db.sqlite3
+db.sqlite3-journal
+
+# Static & Media
+static/
+staticfiles/
+media/
+
+# Local development settings
+local_settings.py
+
+# ─────────────────────────────────────────────
+# Environment Variables (VERY IMPORTANT)
+# ─────────────────────────────────────────────
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+*.env
+
+# Secrets
+secrets.json
+config.json
+
+# ─────────────────────────────────────────────
+# Virtual Environment
+# ─────────────────────────────────────────────
+env/
+venv/
+ENV/
+.venv/
+venv.bak/
+
+# ─────────────────────────────────────────────
+# Migrations (optional ignore)
+# Keep only __init__.py
+# ─────────────────────────────────────────────
+**/migrations/*
+!**/migrations/__init__.py
+
+# ─────────────────────────────────────────────
+# IDE / Editor
+# ─────────────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+*.bak
+
+# ─────────────────────────────────────────────
+# Cache & Temp Files
+# ─────────────────────────────────────────────
+*.cache
+*.tmp
+tmp/
+temp/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ─────────────────────────────────────────────
+# Test & Coverage
+# ─────────────────────────────────────────────
+.coverage
+coverage/
+htmlcov/
+.pytest_cache/
+nosetests.xml
+junit.xml
+
+# ─────────────────────────────────────────────
+# Deployment / Process Files
+# ─────────────────────────────────────────────
+*.pid
+celerybeat-schedule
+celerybeat.pid
+gunicorn.pid
+
+# ─────────────────────────────────────────────
+# Docker / Containers
+# ─────────────────────────────────────────────
+docker-compose.yml
+Dockerfile
+*.tar
+
+# ─────────────────────────────────────────────
+# System Files (Windows/Mac)
+# ─────────────────────────────────────────────
+.DS_Store
+Thumbs.db
