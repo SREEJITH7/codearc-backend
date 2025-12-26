@@ -31,4 +31,3 @@ class SignupSerializer(serializers.ModelSerializer):
 
 
 
-

@@ -3,11 +3,9 @@
 from django.core.mail import send_mail
 from django.conf import settings
 
-def send_otp_email(email ,otp ):
-
+def send_otp_email(email, otp):
     subject = "Your OTP Code"
     message = f"Your OTP code is {otp}. It expires in 5 minutes."
-
 
     send_mail(
         subject,
@@ -16,6 +14,6 @@ def send_otp_email(email ,otp ):
         [email],
     )
 
-    return True
+
 
 

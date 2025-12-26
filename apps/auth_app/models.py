@@ -45,8 +45,11 @@ class UserProfile(models.Model):
     bio = models.TextField(blank=True)
     skills = models.JSONField(default=list, blank=True)  # list of strings
     resume = models.FileField(upload_to="resumes/", blank=True, null=True)
-    avatar = models.ImageField(upload_to="avatars/", blank=True, null=True)
-
+    # avatar = models.ImageField(upload_to="avatars/", blank=True, null=True)
+    profileImage = models.ImageField(upload_to="profile_image", blank= True , null = True)
+    linkedin = models.URLField(blank=True, null= True)
+    github = models.URLField(blank=True, null = True)
+    
     # simple stats example
     total_submissions = models.PositiveIntegerField(default=0)
     problems_solved = models.PositiveIntegerField(default=0)
@@ -61,6 +64,14 @@ class RecruiterProfile(models.Model):
     Contains company info and verification flags.
     """
 
+    STATUS_CHOICES = (
+        ("pending", "Pending"),
+        ("Active", "Active"),
+        ("reject", "Rejected"),
+        ("InActive", "Inactive"),
+    )
+    
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="recruiter_profile")
     company_name = models.CharField(max_length=255, blank=True)
@@ -70,6 +81,20 @@ class RecruiterProfile(models.Model):
     registration_certificate = models.FileField(upload_to="recruiter_docs/", blank=True, null=True)
     is_company_verified = models.BooleanField(default=False)
     contact_person = models.CharField(max_length=150, blank=True)
+
+    profileimage = models.ImageField(
+        upload_to="recruiter/profile/",
+        blank=True,
+        null=True
+    )
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="pending"
+    )
+    location = models.CharField(max_length=255, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.company_name or self.user.email}"

@@ -4,7 +4,8 @@ from django.core.cache import cache
 from datetime import timedelta
 from apps.auth_app.models import OTP
 # from common.email_service import send_email 
-from apps.auth_app.services.email_service import send_otp_email,send_mail
+from apps.auth_app.services.email_service import send_otp_email
+
 
 class OTPService:
 
