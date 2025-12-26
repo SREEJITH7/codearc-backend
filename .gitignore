@@ -111,3 +111,10 @@ Dockerfile
 # ─────────────────────────────────────────────
 .DS_Store
 Thumbs.db
+
+
+# logs/*
+# !logs/.gitkeep
+
+
+.backend.tldr

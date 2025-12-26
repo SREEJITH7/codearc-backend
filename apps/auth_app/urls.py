@@ -19,7 +19,15 @@ from .views.auth_views import (
     UserProfileView,
     UserStatsView,
     VerifyOTPView,
+    # need to change this to another
+    AdminUserListView,
+    ToggleUserStatusView,
+    AdminRecruiterListView,
+    ToggleRecruiterStatusView,
+    
 )
+
+from .views.logout import LogoutView
 
 urlpatterns = [
     path("signup/", SignupView.as_view(), name="signup"),
@@ -37,10 +45,18 @@ urlpatterns = [
     path("google/callback/", GoogleCallbackView.as_view(), name="google-callback"),
 
 
-    # # ⭐ GitHub OAuth
+    
     path("github/login/", GitHubLoginView.as_view(), name="github-login"),
     path("github/callback/", GitHubCallbackView.as_view(), name="github-callback"),
 
     path('user/profile/', UserProfileView.as_view(), name='user-profile'),
     path('user/stats/', UserStatsView.as_view(), name='user-stats'),
+
+    path("userslist", AdminUserListView.as_view(), name="admin-users-list"),
+    path("users/<uuid:user_id>/toggle-status", ToggleUserStatusView.as_view(), name="toggle-user-status"),
+    path("recruiterslist", AdminRecruiterListView.as_view()),
+    path("recruiters/<uuid:recruiter_id>/toggle-status", ToggleRecruiterStatusView.as_view()),
+
+    path("logout/",LogoutView.as_view() , name ="logout"),
 ]   
+

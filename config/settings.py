@@ -2,6 +2,10 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+# from config.logging import LOGGING
+
+
+# LOGGING = LOGGING
 
 load_dotenv()
 
@@ -13,6 +17,13 @@ GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
 
 GITHUB_CLIENT_ID = os.getenv('GITHUB_CLIENT_ID')
 GITHUB_CLIENT_SECRET = os.getenv('GITHUB_CLIENT_SECRET')
+
+SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+SENDGRID_FROM_EMAIL = os.getenv("SENDGRID_FROM_EMAIL")
+
+
+
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-*761tkjr1*u446utbrzc1agu+h)6q!#jwpywz%^5w474rsy08'
@@ -33,8 +44,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',  # MUST be before Django apps/middleware
     'rest_framework',
+
     # Local apps
+    
     'apps.auth_app',
+    "apps.user_app",
+    "apps.recruiter_app",
+
 ]
 
 MIDDLEWARE = [
@@ -250,3 +266,26 @@ CACHES = {
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'default'
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+
+
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# DEFAULT_FROM_EMAIL = "CodeArc <noreply@codearc.local>"
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = "karnjaps4@gmail.com"
+EMAIL_HOST_PASSWORD = "tkgqmezdpsoiahxl"
+
+DEFAULT_FROM_EMAIL = "CodeArc <yourgmail@gmail.com>"
+
+
+
+    

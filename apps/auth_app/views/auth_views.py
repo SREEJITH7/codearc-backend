@@ -28,6 +28,10 @@ import json
 from django.core.cache import cache
 from urllib.parse import quote, unquote
 
+# need to move the seperate admin app later
+from django.core.paginator import Paginator
+from rest_framework.permissions import IsAdminUser
+from django.shortcuts import get_object_or_404
 User = get_user_model()
  
 
@@ -320,7 +324,7 @@ class AdminLoginView(APIView):
                 status=401
             )
 
-        if user.role != "admin":
+        if not (user.is_superuser or user.role == "admin"):
             return Response(
                 {"success": False, "message": "Not an admin account"}, 
                 status=403
@@ -680,6 +684,13 @@ class UserProfileView(APIView):
             "email": user.email,
             "createdAt": user.date_joined.isoformat(),
             "role": user.role,
+            "bio" : profile.bio,
+            "skills" : profile.skills or [],
+            "display_name": profile.display_name,
+            "github": profile.github,
+            "linkedin": profile.linkedin,
+            "profileImage": profile.profileImage.url if profile.profileImage else None,
+            "resume": profile.resume.url if profile.resume else None,
         }
         
         return Response({"success": True, "data": data}, status=status.HTTP_200_OK)
@@ -875,3 +886,144 @@ setTimeout(() => window.close(), 1200);
 </html>
 """
         return HttpResponse(html)
+
+
+
+User = get_user_model()
+
+class AdminUserListView(APIView):
+    permission_classes = [IsAdminUser]
+
+    def get(self, request):
+        page = int(request.GET.get("page", 1))
+        limit = int(request.GET.get("limit", 5))
+        search = request.GET.get("search")
+        status = request.GET.get("status")
+
+        users = User.objects.filter(role="user").order_by("-date_joined")
+
+        if search:
+            users = users.filter(email__icontains=search)
+
+        if status == "active":
+            users = users.filter(is_active=True)
+        elif status == "blocked":
+            users = users.filter(is_active=False)
+
+        paginator = Paginator(users, limit)
+        page_obj = paginator.get_page(page)
+
+        data = []
+        for u in page_obj:
+            data.append({
+                "_id": str(u.id),
+                "username": u.username,
+                "email": u.email,
+                "status": "Active" if u.is_active else "InActive",
+            })
+
+        return Response({
+            "success": True,
+            "data": {
+                "users": data,
+                "pagination": {
+                    "page": page,
+                    "pages": paginator.num_pages,
+                    "total": paginator.count,
+                }
+            }
+        })
+    
+User = get_user_model()
+
+
+class ToggleUserStatusView(APIView):
+    permission_classes = [IsAdminUser]
+
+    def post(self, request, user_id):
+        user = get_object_or_404(User, id=user_id)
+
+        # Prevent admin from blocking self
+        if user.is_superuser:
+            return Response(
+                {"success": False, "message": "Cannot block admin"},
+                status=400,
+            )
+
+        # Toggle active status
+        user.is_active = not user.is_active
+        user.save(update_fields=["is_active"])
+
+        return Response({
+            "success": True,
+            "message": "User status updated successfully",
+            "data": {
+                "_id": str(user.id),
+                "status": "Active" if user.is_active else "InActive",
+            }
+        })
+
+User = get_user_model()
+
+
+class AdminRecruiterListView(APIView):
+    permission_classes = [IsAdminUser]
+
+    def get(self, request):
+        page = int(request.GET.get("page", 1))
+        limit = int(request.GET.get("limit", 5))
+        search = request.GET.get("search")
+        status = request.GET.get("status")
+
+        recruiters = User.objects.filter(role="recruiter").order_by("-date_joined")
+        print(recruiters)
+        if search:
+            recruiters = recruiters.filter(email__icontains=search)
+
+        if status == "active":
+            recruiters = recruiters.filter(is_active=True)
+        elif status == "blocked":
+            recruiters = recruiters.filter(is_active=False)
+
+        paginator = Paginator(recruiters, limit)
+        page_obj = paginator.get_page(page)
+
+        data = [
+            {
+                "_id": str(r.id),
+                "username": r.username,
+                "email": r.email,
+                "status": "Active" if r.is_active else "InActive",
+            }
+            for r in page_obj
+        ]
+
+        return Response({
+            "success": True,
+            "data": {
+                "recruiters": data,
+                "pagination": {
+                    "page": page,
+                    "pages": paginator.num_pages,
+                    "total": paginator.count,
+                },
+            },
+        })
+
+
+class ToggleRecruiterStatusView(APIView):
+    permission_classes = [IsAdminUser]
+
+    def post(self, request, recruiter_id):
+        recruiter = get_object_or_404(User, id=recruiter_id, role="recruiter")
+
+        recruiter.is_active = not recruiter.is_active
+        recruiter.save(update_fields=["is_active"])
+
+        return Response({
+            "success": True,
+            "data": {
+                "_id": str(recruiter.id),
+                "status": "Active" if recruiter.is_active else "InActive",
+            },
+        })

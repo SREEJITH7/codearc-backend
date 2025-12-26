@@ -36,9 +36,9 @@
 		{
 			"id": "pointer:pointer",
 			"typeName": "pointer",
-			"x": -342.56022683694664,
-			"y": 3798.3184064412217,
-			"lastActivityTimestamp": 1765263022300,
+			"x": 24.43193852090741,
+			"y": 85.9346873529494,
+			"lastActivityTimestamp": 1765612583329,
 			"meta": {}
 		},
 		{
@@ -141,6 +141,45 @@
 			"typeName": "shape"
 		},
 		{
+			"x": -196.29186218845848,
+			"y": 75.41250402296242,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:nM_mg29LAoTNg_J_KnaKH",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 550.5625,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "issue while uploading the user progile view "
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:99Wnw1a3Bs6jRqpkgmUxK",
+			"index": "a2bNkUUd",
+			"typeName": "shape"
+		},
+		{
 			"x": -958.0733056848112,
 			"y": 3723.3114229083244,
 			"rotation": 0,
@@ -181,10 +220,241 @@
 		},
 		{
 			"meta": {},
+			"id": "page:lnYoBBsDRH-JlYrOox5iQ",
+			"name": "pending...",
+			"index": "a3vNsnZV",
+			"typeName": "page"
+		},
+		{
+			"meta": {},
 			"id": "page:15msNPwTsPUuXYVGin89-",
 			"name": "about the redis storage ",
 			"index": "a2QZbzjl",
 			"typeName": "page"
+		},
+		{
+			"editingShapeId": null,
+			"croppingShapeId": null,
+			"selectedShapeIds": [
+				"shape:nM_mg29LAoTNg_J_KnaKH"
+			],
+			"hoveredShapeId": "shape:nM_mg29LAoTNg_J_KnaKH",
+			"erasingShapeIds": [],
+			"hintingShapeIds": [],
+			"focusedGroupId": null,
+			"meta": {},
+			"id": "instance_page_state:page:99Wnw1a3Bs6jRqpkgmUxK",
+			"pageId": "page:99Wnw1a3Bs6jRqpkgmUxK",
+			"typeName": "instance_page_state"
+		},
+		{
+			"x": -131.66054833641948,
+			"y": 140.78061304851752,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:8d7ACLy70fN_Tr3PXFm41",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 485.2749938964844,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": false,
+				"scale": 1,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 2
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "❌ Actual Error Meaning (simple)"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "നീ "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "profile image upload"
+								},
+								{
+									"type": "text",
+									"text": " ചെയ്യുന്നു →"
+								},
+								{
+									"type": "hardBreak"
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "code"
+										}
+									],
+									"text": "multipart/form-data"
+								},
+								{
+									"type": "text",
+									"text": " request"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "👉 പക്ഷേ DRF-ക്ക് പറയപ്പെട്ടിട്ടില്ല"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "“ഈ view multipart data accept ചെയ്യണം”"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "അതിനാൽ DRF ഉള്ളിൽ "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "AssertionError"
+								},
+								{
+									"type": "text",
+									"text": " throw ചെയ്യുന്നു."
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "ഇത് സാധാരണയായി വരുന്നത് ഈ situation-ൽ ആണ് 👇"
+								}
+							]
+						},
+						{
+							"type": "bulletList",
+							"content": [
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "APIView"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "file upload (ImageField / FileField)"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "parser_classes specify ചെയ്തിട്ടില്ല"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							}
+						}
+					]
+				}
+			},
+			"parentId": "page:99Wnw1a3Bs6jRqpkgmUxK",
+			"index": "a1RoTeIV",
+			"typeName": "shape"
 		},
 		{
 			"x": 2551.2476014887748,
@@ -742,6 +1012,14 @@
 			"parentId": "page:15msNPwTsPUuXYVGin89-",
 			"index": "a41XWWoV",
 			"typeName": "shape"
+		},
+		{
+			"x": 332.91349726733915,
+			"y": 87.23766816952696,
+			"z": 0.5636003401331191,
+			"meta": {},
+			"id": "camera:page:99Wnw1a3Bs6jRqpkgmUxK",
+			"typeName": "camera"
 		},
 		{
 			"x": 836.512104290892,
@@ -2279,6 +2557,21 @@
 			"typeName": "shape"
 		},
 		{
+			"editingShapeId": null,
+			"croppingShapeId": null,
+			"selectedShapeIds": [
+				"shape:7TytVa3f_q3dTxyAh4DjO"
+			],
+			"hoveredShapeId": null,
+			"erasingShapeIds": [],
+			"hintingShapeIds": [],
+			"focusedGroupId": null,
+			"meta": {},
+			"id": "instance_page_state:page:lnYoBBsDRH-JlYrOox5iQ",
+			"pageId": "page:lnYoBBsDRH-JlYrOox5iQ",
+			"typeName": "instance_page_state"
+		},
+		{
 			"x": -318.95597960855616,
 			"y": -534.7740656872462,
 			"rotation": 0,
@@ -2476,10 +2769,8 @@
 		{
 			"editingShapeId": null,
 			"croppingShapeId": null,
-			"selectedShapeIds": [
-				"shape:2TwxFiZcuFLEs_lwtZmfk"
-			],
-			"hoveredShapeId": "shape:2TwxFiZcuFLEs_lwtZmfk",
+			"selectedShapeIds": [],
+			"hoveredShapeId": null,
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
 			"focusedGroupId": null,
@@ -4349,6 +4640,13 @@
 			"typeName": "shape"
 		},
 		{
+			"meta": {},
+			"id": "page:99Wnw1a3Bs6jRqpkgmUxK",
+			"name": "errors that came in ",
+			"index": "a4p0scoV",
+			"typeName": "page"
+		},
+		{
 			"x": -961.9480901675661,
 			"y": 3939.726187839972,
 			"rotation": 0,
@@ -4534,6 +4832,14 @@
 			"parentId": "page:15msNPwTsPUuXYVGin89-",
 			"index": "a8d2vHdV",
 			"typeName": "shape"
+		},
+		{
+			"x": 392.14751166291865,
+			"y": 110.40818862251041,
+			"z": 0.2814321710574378,
+			"meta": {},
+			"id": "camera:page:lnYoBBsDRH-JlYrOox5iQ",
+			"typeName": "camera"
 		},
 		{
 			"x": -108.15997617257653,
@@ -4880,9 +5186,9 @@
 			"typeName": "shape"
 		},
 		{
-			"x": 2459.6116065554306,
-			"y": -2426.1554751422045,
-			"z": 0.204057399899971,
+			"x": 4212.606319430238,
+			"y": -7456.783154783672,
+			"z": 0.08581014271397323,
 			"meta": {},
 			"id": "camera:page:15msNPwTsPUuXYVGin89-",
 			"typeName": "camera"
@@ -4904,9 +5210,7 @@
 		{
 			"followingUserId": null,
 			"opacityForNextShape": 1,
-			"stylesForNextShape": {
-				"tldraw:size": "xl"
-			},
+			"stylesForNextShape": {},
 			"brush": null,
 			"scribbles": [],
 			"cursor": {
@@ -4920,8 +5224,8 @@
 			"screenBounds": {
 				"x": 0,
 				"y": 0,
-				"w": 730.4000244140625,
-				"h": 440
+				"w": 539.2000122070312,
+				"h": 587.2000122070312
 			},
 			"insets": [
 				false,
@@ -4945,7 +5249,7 @@
 			"meta": {},
 			"duplicateProps": null,
 			"id": "instance:instance",
-			"currentPageId": "page:15msNPwTsPUuXYVGin89-",
+			"currentPageId": "page:99Wnw1a3Bs6jRqpkgmUxK",
 			"typeName": "instance"
 		},
 		{
@@ -5387,6 +5691,57 @@
 			},
 			"parentId": "page:15msNPwTsPUuXYVGin89-",
 			"index": "a1WBIzel",
+			"typeName": "shape"
+		},
+		{
+			"x": 298.3999938964844,
+			"y": 220.60000228881836,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:7TytVa3f_q3dTxyAh4DjO",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 632.9750366210938,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "changed the model userprofile "
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "not migarted needed to change dat from frontend"
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:lnYoBBsDRH-JlYrOox5iQ",
+			"index": "a1XHl42V",
 			"typeName": "shape"
 		}
 	]
