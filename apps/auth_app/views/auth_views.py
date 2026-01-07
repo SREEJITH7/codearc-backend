@@ -34,6 +34,9 @@ from rest_framework.permissions import IsAdminUser
 from django.shortcuts import get_object_or_404
 User = get_user_model()
  
+import logging
+
+logger = logging.getLogger(__name__)
 
 class SignupView(APIView):
     def post(self, request):
@@ -102,93 +105,133 @@ class ResendOTPView(APIView):
 
 
 
-class LoginView(APIView):
-    """
-    Login view that sets JWT tokens as HTTP-only cookies.
-    """
+# class LoginView(APIView):
+#     """
+#     Login view that sets JWT tokens as HTTP-only cookies.
+#     """
     
-    def post(self, request):
-        print(f"=== LOGIN REQUEST ===")
-        print(f"Origin: {request.META.get('HTTP_ORIGIN')}")
-        print(f"Method: {request.method}")
-        print(f"Data: {request.data}")
+#     def post(self, request):
+#         print(f"=== LOGIN REQUEST ===")
+#         print(f"Origin: {request.META.get('HTTP_ORIGIN')}")
+#         print(f"Method: {request.method}")
+#         print(f"Data: {request.data}")
         
+#         email = request.data.get("email")
+#         password = request.data.get("password")
+        
+#         # Authenticate user
+#         user = authenticate(request, username=email, password=password)
+        
+#         if user.role != "user":
+#             return Response(
+#                 {"success": False, "message": "This is not a user account"},
+#                 status=status.HTTP_403_FORBIDDEN
+#             )
+
+#         if user is None:
+#             return Response(
+#                 {"success": False, "message": "Invalid email or password"},
+#                 status=status.HTTP_401_UNAUTHORIZED,
+#             )
+        
+#         # Check if user is verified
+#         if not user.is_verified:
+#             return Response(
+#                 {"success": False, "message": "Please verify your email first"},
+#                 status=status.HTTP_403_FORBIDDEN,
+#             )
+        
+#         # Generate tokens
+#         refresh = RefreshToken.for_user(user)
+#         access_token = str(refresh.access_token)
+#         refresh_token = str(refresh)
+        
+#         # Create response
+#         response = Response(
+#             {
+#                 "success": True,
+#                 "message": "Login successful",
+#                 "user": {
+#                     "id": user.id,
+#                     "email": user.email,
+#                     "role": user.role,
+#                 }
+#             },
+#             status=status.HTTP_200_OK,
+#         )
+        
+#         # Set tokens as HTTP-only cookies
+#         response.set_cookie(
+#             key=settings.ACCESS_COOKIE_NAME,
+#             value=access_token,
+#             httponly=settings.COOKIE_HTTPONLY,
+#             secure=settings.COOKIE_SECURE,
+#             samesite=settings.COOKIE_SAMESITE,
+#             max_age=60 * 15,  # 15 minutes
+#             path="/",
+#             domain="localhost",
+#         )
+        
+#         response.set_cookie(
+#             key=settings.REFRESH_COOKIE_NAME,
+#             value=refresh_token,
+#             httponly=settings.COOKIE_HTTPONLY,
+#             secure=settings.COOKIE_SECURE,
+#             samesite=settings.COOKIE_SAMESITE,
+#             max_age=60 * 60 * 24 * 7,  # 7 days
+#             path="/",
+#             domain="localhost",
+#         )
+#         print(">>> FINAL RESPONSE HEADERS (BEFORE RETURN) <<<")
+#         for k, v in response.items():
+#             print(f"{k} = {v}")
+
+#         print(f"Response headers: {response.items()}")
+        
+#         return response  
+    
+
+class LoginView(APIView):
+    def post(self, request):
+        logger.info(f"Login attempt from IP {request.META.get('REMOTE_ADDR')}")
+
         email = request.data.get("email")
         password = request.data.get("password")
-        
-        # Authenticate user
+
         user = authenticate(request, username=email, password=password)
         
-        if user.role != "user":
-            return Response(
-                {"success": False, "message": "This is not a user account"},
-                status=status.HTTP_403_FORBIDDEN
-            )
-
         if user is None:
-            return Response(
-                {"success": False, "message": "Invalid email or password"},
-                status=status.HTTP_401_UNAUTHORIZED,
-            )
+            logger.warning(f"Invalid login credentials for {email}")
+            return Response({"success": False, "message": "Invalid email or password"}, status=401)
         
-        # Check if user is verified
+        if user.role != "user":
+            logger.warning(f"Non-user role {user.role} tried user login: {email}")
+            return Response({"success": False, "message": "This is not a user account"}, status=403)
+
         if not user.is_verified:
-            return Response(
-                {"success": False, "message": "Please verify your email first"},
-                status=status.HTTP_403_FORBIDDEN,
-            )
+            logger.warning(f"Unverified user login attempt: {email}")
+            return Response({"success": False, "message": "Please verify your email first"}, status=403)
         
-        # Generate tokens
         refresh = RefreshToken.for_user(user)
         access_token = str(refresh.access_token)
         refresh_token = str(refresh)
         
-        # Create response
-        response = Response(
-            {
-                "success": True,
-                "message": "Login successful",
-                "user": {
-                    "id": user.id,
-                    "email": user.email,
-                    "role": user.role,
-                }
-            },
-            status=status.HTTP_200_OK,
-        )
+        response = Response({
+            "success": True,
+            "message": "Login successful",
+            "user": {"id": user.id, "email": user.email, "role": user.role},
+        }, status=200)
         
-        # Set tokens as HTTP-only cookies
-        response.set_cookie(
-            key=settings.ACCESS_COOKIE_NAME,
-            value=access_token,
-            httponly=settings.COOKIE_HTTPONLY,
-            secure=settings.COOKIE_SECURE,
-            samesite=settings.COOKIE_SAMESITE,
-            max_age=60 * 15,  # 15 minutes
-            path="/",
-            domain="localhost",
-        )
+        response.set_cookie(key=settings.ACCESS_COOKIE_NAME, value=access_token,
+                            httponly=True, secure=settings.COOKIE_SECURE,
+                            samesite=settings.COOKIE_SAMESITE, max_age=60*15, path="/")
         
-        response.set_cookie(
-            key=settings.REFRESH_COOKIE_NAME,
-            value=refresh_token,
-            httponly=settings.COOKIE_HTTPONLY,
-            secure=settings.COOKIE_SECURE,
-            samesite=settings.COOKIE_SAMESITE,
-            max_age=60 * 60 * 24 * 7,  # 7 days
-            path="/",
-            domain="localhost",
-        )
-        print(">>> FINAL RESPONSE HEADERS (BEFORE RETURN) <<<")
-        for k, v in response.items():
-            print(f"{k} = {v}")
-
-        print(f"Response headers: {response.items()}")
+        response.set_cookie(key=settings.REFRESH_COOKIE_NAME, value=refresh_token,
+                            httponly=True, secure=settings.COOKIE_SECURE,
+                            samesite=settings.COOKIE_SAMESITE, max_age=60*60*24*7, path="/")
         
-        return response  
-    
-
-
+        logger.info(f"Successful login for user {email}")
+        return response
 
 class RecruiterLoginView(APIView):
 

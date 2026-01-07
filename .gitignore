@@ -112,9 +112,10 @@ Dockerfile
 .DS_Store
 Thumbs.db
 
+# ______________________________________________
 
-# logs/*
-# !logs/.gitkeep
-
+logs/*
+!logs/.gitkeep
+# ______________________________________________
 
 .backend.tldr
