@@ -19,6 +19,8 @@ class UserProfileUpdateView(APIView):
                 {"detail": "Not allowed"},
                 status=status.HTTP_403_FORBIDDEN
             )
+        # response = Response()
+        # response["Allow"] = "GE T, POST, PUT, PATCH, DELETE, OPTIONS"
 
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
 

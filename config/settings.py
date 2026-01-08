@@ -2,10 +2,10 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-# from config.logging import LOGGING
+from config.logging import LOGGING
 
 
-# LOGGING = LOGGING
+LOGGING = LOGGING
 
 load_dotenv()
 
@@ -51,13 +51,15 @@ INSTALLED_APPS = [
     "apps.user_app",
     "apps.recruiter_app",
 
+    "apps.problem_app",
+
 ]
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",  # MUST be at top
     # "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    # "django.middleware.common.CommonMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -127,8 +129,6 @@ REST_FRAMEWORK = {
 # ============================================================================
 # CORS CONFIGURATION (for frontend on localhost:5173)
 # ============================================================================
-# When using credentials, CORS_ALLOW_CREDENTIALS must be True and you must NOT
-# use wildcard origins.
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
@@ -136,6 +136,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
 ]
 
+# Explicitly list all headers to avoid any default misses
 CORS_ALLOW_HEADERS = [
     "accept",
     "accept-encoding",
@@ -146,8 +147,10 @@ CORS_ALLOW_HEADERS = [
     "user-agent",
     "x-csrftoken",
     "x-requested-with",
+    "access-control-allow-origin",
 ]
 
+# Explicitly list all methods including PATCH
 CORS_ALLOW_METHODS = [
     "DELETE",
     "GET",
@@ -162,7 +165,8 @@ CORS_EXPOSE_HEADERS = [
     "X-CSRFToken",
 ]
 
-CORS_PREFLIGHT_MAX_AGE = 86400
+# Disable caching for debugging
+CORS_PREFLIGHT_MAX_AGE = 0
 
 # ============================================================================
 # COOKIE / CSRF / SESSION CONFIGURATION
@@ -192,7 +196,7 @@ CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_HTTPONLY = False         # keep False if frontend reads CSRF token
 # CSRF_COOKIE_SAMESITE = "None"
 CSRF_COOKIE_SAMESITE = "Lax" 
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = True  # Removed duplicate
 # Session cookie
 # SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = False        # Must be False for HTTP localhost
