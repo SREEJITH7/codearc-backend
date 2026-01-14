@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'apps.auth_app',
     "apps.user_app",
     "apps.recruiter_app",
-
     "apps.problem_app",
 
 ]

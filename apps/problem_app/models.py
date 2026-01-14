@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.conf import settings
 # Create your models here.
 
 class Category(models.Model):
@@ -109,4 +109,30 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Submission(models.Model):
+    STATUS_CHOICES = (
+        ("Accepted", "Accepted"),
+        ("Wrong Answer","Wrong Answer"),
+        ("Runtime Error","Runtime Error"),
+        ("Time Limit Exceeded", "Time Limit Exceeded"),
+    )
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
+    language = models.CharField(max_length=20)
+    code = models.TextField()
+
+    status = models.CharField(max_length=30,choices=STATUS_CHOICES)
+    passed_count = models.IntegerField(default=0)
+    total_count = models.IntegerField(default=0)
+
+    runtime = models.FloatField(default=0.0) # in ms
+    memory = models.FloatField(default=0.0)  # in MB
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
 
