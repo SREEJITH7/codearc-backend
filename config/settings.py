@@ -48,14 +48,14 @@ INSTALLED_APPS = [
     # Local apps
     
     'apps.auth_app',
-    "apps.user_app",
-    "apps.recruiter_app",
-    "apps.problem_app",
-
+    'apps.user_app',
+    'apps.recruiter_app',
+    'apps.problem_app',
+    # 'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",  # MUST be at top
+    "corsheaders.middleware.CorsMiddleware",   
     # "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -167,89 +167,57 @@ CORS_EXPOSE_HEADERS = [
 # Disable caching for debugging
 CORS_PREFLIGHT_MAX_AGE = 0
 
-# ============================================================================
-# COOKIE / CSRF / SESSION CONFIGURATION
-# ============================================================================
 
-# Add the exact origins as trusted origins for CSRF.
-# NOTE: include the scheme (http/https).
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "http://localhost:5174",    # 🔥 ADD THIS
-    "http://127.0.0.1:5174",    # 🔥 ADD THIS
+    "http://localhost:5174",    
+    "http://127.0.0.1:5174",    
 ]
 
-# === IMPORTANT SECURITY / cross-site cookie settings ===
-# For cross-site cookies (frontend at different origin) browsers require:
-#    SameSite=None AND Secure=True
-#
-# In production you MUST use HTTPS so Secure=True is appropriate.
-# For local dev you can use mkcert/ngrok or enable HTTPS on the dev server.
-#
-# If you cannot use HTTPS during development, see the note at the end of this file.
 
-# CSRF cookie
-# CSRF_COOKIE_SECURE = True            # requires HTTPS in browsers
 CSRF_COOKIE_SECURE = False
-CSRF_COOKIE_HTTPONLY = False         # keep False if frontend reads CSRF token
-# CSRF_COOKIE_SAMESITE = "None"
+CSRF_COOKIE_HTTPONLY = False         
+
 CSRF_COOKIE_SAMESITE = "Lax" 
-# CORS_ALLOW_CREDENTIALS = True  # Removed duplicate
-# Session cookie
-# SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = False        # Must be False for HTTP localhost
+
+SESSION_COOKIE_SECURE = False       
 
 SESSION_COOKIE_HTTPONLY = True
-# SESSION_COOKIE_SAMESITE = "None"
 SESSION_COOKIE_SAMESITE = "Lax"
 
 # JWT cookie names used by your app
 ACCESS_COOKIE_NAME = "access_token"
 REFRESH_COOKIE_NAME = "refresh_token"
 
-# Custom cookie config for JWT cookies
-# COOKIE_SECURE = True
-# COOKIE_SAMESITE = "None"
 
-# Custom cookie config for JWT cookies (used in your views)
-COOKIE_SECURE = False                # Must be False for HTTP localhost
-COOKIE_SAMESITE = "Lax"              # "Lax" works for localhost
+COOKIE_SECURE = False                
+COOKIE_SAMESITE = "Lax"              
 COOKIE_HTTPONLY = True
 
-# Ensure cookie domain/path are set so browser sends cookies for API routes
 COOKIE_PATH = "/"
-COOKIE_DOMAIN = None  # None lets browser use the current host (localhost / 127.0.0.1)
+COOKIE_DOMAIN = None  
 
-# If you need to expose cookies to JS (not recommended for JWT access token),
-# set COOKIE_HTTPONLY = False — but keep refresh cookie HttpOnly for safety.
 
-# ============================================================================
-# Optional: Other settings you already had
-# ============================================================================
 CSRF_COOKIE_DOMAIN = None
 SESSION_COOKIE_DOMAIN = None
 
 
-# SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
-# ...
 
-# ===============================
-# 🔥 FIX POPUP GOOGLE LOGIN BUG
-# ===============================
 X_FRAME_OPTIONS = "ALLOWALL"  
-# Prevents Django from blocking popup callback page
+
 
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None  
 SECURE_CROSS_ORIGIN_EMBEDDER_POLICY = None  
-# Allows popup → opener communication (postMessage)
+
 
 SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
-# Helps prevent Google redirect being blocked
+
 
 GITHUB_REDIRECT_URI = "http://localhost:8000/api/auth/github/callback/"
 
@@ -260,6 +228,7 @@ CACHES = {
         'LOCATION' : 'redis://127.0.0.1:6379/1', 
         'OPTIONS':{
             'CLIENT_CLASS' : 'django_redis.client.DefaultClient',
+            'IGNORE_EXCEPTIONS': True,
         }
     }
 }

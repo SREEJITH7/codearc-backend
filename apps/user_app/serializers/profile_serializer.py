@@ -19,9 +19,7 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
             "resume": {"required": False},
         }
 
-    # -----------------------------
-    # 1️⃣ CLEAN EMPTY VALUES
-    # -----------------------------
+
     def validate(self, attrs):
         cleaned = {}
         for key, value in attrs.items():
@@ -29,9 +27,7 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
                 cleaned[key] = value
         return cleaned
 
-    # -----------------------------
-    # 2️⃣ VALIDATE SKILLS
-    # -----------------------------
+   
     def validate_skills(self, value):
         if not isinstance(value, list):
             raise serializers.ValidationError("Skills must be a list")
@@ -42,9 +38,7 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
 
         return value
 
-    # -----------------------------
-    # 3️⃣ VALIDATE RESUME FILE
-    # -----------------------------
+    
     def validate_resume(self, file):
         if file.size > 5 * 1024 * 1024:
             raise serializers.ValidationError("Resume must be under 5MB")
@@ -60,9 +54,7 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
 
         return file
 
-    # -----------------------------
-    # 4️⃣ DELETE OLD RESUME ON UPDATE
-    # -----------------------------
+    
     def update(self, instance, validated_data):
         new_resume = validated_data.get("resume")
 

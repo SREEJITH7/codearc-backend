@@ -30,6 +30,6 @@ class AuthService:
 
         otp = OTPService.generate_and_send_otp(email, purpose="REGISTRATION")
         OTPService.save_otp(email, otp)
-        send_otp_email(email, otp)
+        # send_otp_email(email, otp)
 
         return user, "OTP sent"

@@ -13,7 +13,7 @@ class SignupSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'email', 'username', 'password', 'role']
-        read_only_fields = ['id']  # UUID is auto-generated
+        read_only_fields = ['id']  
 
     def validate_email(self, value):
         if AuthService.email_exists(value):
