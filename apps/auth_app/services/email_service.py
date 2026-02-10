@@ -7,6 +7,8 @@ def send_otp_email(email, otp):
     subject = "Your OTP Code"
     message = f"Your OTP code is {otp}. It expires in 5 minutes."
 
+    print(f"The otp is {otp}")
+    
     send_mail(
         subject,
         message,

@@ -14,12 +14,6 @@ ROLE_CHOICES = (
 
 
 class User(AbstractUser):
-
-    """
-    Single central user model. Use email as unique login field.
-    Role controls behavior and which profile exists.
-    """
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default="user")
@@ -33,24 +27,16 @@ class User(AbstractUser):
 
 
 class UserProfile(models.Model):
-    
-    """
-    Profile for 'user' role. OneToOne with User.
-    Keep user-specific fields here (resume, bio, stats).
-    """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")    
     display_name = models.CharField(max_length=150, blank=True)
     bio = models.TextField(blank=True)
-    skills = models.JSONField(default=list, blank=True)  # list of strings
+    skills = models.JSONField(default=list, blank=True)  
     resume = models.FileField(upload_to="resumes/", blank=True, null=True)
-    # avatar = models.ImageField(upload_to="avatars/", blank=True, null=True)
     profileImage = models.ImageField(upload_to="profile_image", blank= True , null = True)
     linkedin = models.URLField(blank=True, null= True)
     github = models.URLField(blank=True, null = True)
-    
-    # simple stats example
     total_submissions = models.PositiveIntegerField(default=0)
     problems_solved = models.PositiveIntegerField(default=0)
 

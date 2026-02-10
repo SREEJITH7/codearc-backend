@@ -40,8 +40,7 @@ logger = logging.getLogger(__name__)
 
 class SignupView(APIView):
     def post(self, request):
-        email = request.data.get("email").lower().strip()  # always normalize
-
+        email = request.data.get("email").lower().strip()  
         try:
             user = User.objects.get(email=email)
             if user.is_verified:
@@ -49,7 +48,7 @@ class SignupView(APIView):
                     {"email": ["User with this email already exists."]},
                     status=status.HTTP_400_BAD_REQUEST
                 )
-            OTPService.delete_otp(email, purpose="REGISTRATION")  # clean old
+            OTPService.delete_otp(email, purpose="REGISTRATION")  
             ok, msg = OTPService.generate_and_send_otp(email, purpose="REGISTRATION")
             if ok:
                 return Response({"message": "OTP resent", "email": email}, status=200)
@@ -104,91 +103,6 @@ class ResendOTPView(APIView):
 
 
 
-
-# class LoginView(APIView):
-#     """
-#     Login view that sets JWT tokens as HTTP-only cookies.
-#     """
-    
-#     def post(self, request):
-#         print(f"=== LOGIN REQUEST ===")
-#         print(f"Origin: {request.META.get('HTTP_ORIGIN')}")
-#         print(f"Method: {request.method}")
-#         print(f"Data: {request.data}")
-        
-#         email = request.data.get("email")
-#         password = request.data.get("password")
-        
-#         # Authenticate user
-#         user = authenticate(request, username=email, password=password)
-        
-#         if user.role != "user":
-#             return Response(
-#                 {"success": False, "message": "This is not a user account"},
-#                 status=status.HTTP_403_FORBIDDEN
-#             )
-
-#         if user is None:
-#             return Response(
-#                 {"success": False, "message": "Invalid email or password"},
-#                 status=status.HTTP_401_UNAUTHORIZED,
-#             )
-        
-#         # Check if user is verified
-#         if not user.is_verified:
-#             return Response(
-#                 {"success": False, "message": "Please verify your email first"},
-#                 status=status.HTTP_403_FORBIDDEN,
-#             )
-        
-#         # Generate tokens
-#         refresh = RefreshToken.for_user(user)
-#         access_token = str(refresh.access_token)
-#         refresh_token = str(refresh)
-        
-#         # Create response
-#         response = Response(
-#             {
-#                 "success": True,
-#                 "message": "Login successful",
-#                 "user": {
-#                     "id": user.id,
-#                     "email": user.email,
-#                     "role": user.role,
-#                 }
-#             },
-#             status=status.HTTP_200_OK,
-#         )
-        
-#         # Set tokens as HTTP-only cookies
-#         response.set_cookie(
-#             key=settings.ACCESS_COOKIE_NAME,
-#             value=access_token,
-#             httponly=settings.COOKIE_HTTPONLY,
-#             secure=settings.COOKIE_SECURE,
-#             samesite=settings.COOKIE_SAMESITE,
-#             max_age=60 * 15,  # 15 minutes
-#             path="/",
-#             domain="localhost",
-#         )
-        
-#         response.set_cookie(
-#             key=settings.REFRESH_COOKIE_NAME,
-#             value=refresh_token,
-#             httponly=settings.COOKIE_HTTPONLY,
-#             secure=settings.COOKIE_SECURE,
-#             samesite=settings.COOKIE_SAMESITE,
-#             max_age=60 * 60 * 24 * 7,  # 7 days
-#             path="/",
-#             domain="localhost",
-#         )
-#         print(">>> FINAL RESPONSE HEADERS (BEFORE RETURN) <<<")
-#         for k, v in response.items():
-#             print(f"{k} = {v}")
-
-#         print(f"Response headers: {response.items()}")
-        
-#         return response  
     
 
 class LoginView(APIView):
@@ -253,7 +167,7 @@ class RecruiterLoginView(APIView):
             return Response({"success": False, "message": "Email not verified"},
                             status=403)
 
-        # generate tokens
+        
         refresh = RefreshToken.for_user(user)
         access_token = str(refresh.access_token)
         refresh_token = str(refresh)
@@ -293,28 +207,18 @@ class RecruiterLoginView(APIView):
 class ForgotPasswordOTPView(APIView):
     def post(self, request):
         email = request.data.get("email")
-
         if not email:
             return Response({"message": "Email required"}, status=400)
-
-        # # check if user exists
-        # if not User.objects.filter(email=email, role="recruiter").exists():
-        #     return Response({"message": "Recruiter not found"}, status=404)
-
         try: 
             user = User.objects.get(email=email)
         except User.DoesNotExist:
             return Response({"message":"User not found"}, status=404)
-
-        # remove old otp
+        
         OTPService.delete_otp(email, purpose="RESET")
 
-        # create new forgot password OTP
         ok, msg = OTPService.generate_and_send_otp(email, purpose="RESET")
-
         if ok:
             return Response({"message": "OTP sent"}, status=200)
-
         return Response({"message": msg}, status=400)
 
 
@@ -329,14 +233,12 @@ class ResetPasswordView(APIView):
 
         if not email or not password:
             return Response({"message": "Email and password required"}, status=400)
-
-        # Find user
+        
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:
             return Response({"message": "User not found"}, status=404)
 
-        # Update password
         user.set_password(password)
         user.save()
 
@@ -391,7 +293,7 @@ class AdminLoginView(APIView):
             }
         })
 
-        # ✅ CRITICAL: Set cookies
+        
         response.set_cookie(
             key=settings.ACCESS_COOKIE_NAME,
             value=access_token,
@@ -399,7 +301,7 @@ class AdminLoginView(APIView):
             secure=settings.COOKIE_SECURE,
             samesite=settings.COOKIE_SAMESITE,
             max_age=60 * 15,
-            path="/",  # ✅ ADD THIS
+            path="/",  
         )
 
         response.set_cookie(
@@ -409,10 +311,10 @@ class AdminLoginView(APIView):
             secure=settings.COOKIE_SECURE,
             samesite=settings.COOKIE_SAMESITE,
             max_age=60 * 60 * 24 * 7,
-            path="/",  # ✅ ADD THIS
+            path="/",  
         )
 
-        print(f"\n🍪 Cookies set:")
+        print(f"\n Cookies set:")
         print(f"  - {settings.ACCESS_COOKIE_NAME}")
         print(f"  - {settings.REFRESH_COOKIE_NAME}")
         print(f"Response headers: {dict(response.items())}")
@@ -424,10 +326,7 @@ from rest_framework_simplejwt.views import TokenRefreshView
 
 
 class CookieTokenRefreshView(TokenRefreshView):
-    """
-    Custom refresh view that reads refresh token from cookie
-    and sets new access token in cookie
-    """
+  
     def post(self, request, *args, **kwargs):
         print("\n" + "="*60)
         print("🔥 REFRESH TOKEN REQUEST RECEIVED")
@@ -455,7 +354,6 @@ class CookieTokenRefreshView(TokenRefreshView):
         mutable_data["refresh"] = refresh_token
         request._data = mutable_data                      
         
-         
         request.data['refresh'] = refresh_token
         
          
@@ -721,6 +619,11 @@ class UserProfileView(APIView):
         user = request.user
         profile, created = UserProfile.objects.get_or_create(user=user)
         
+        display_name = profile.display_name or ""
+        name_parts = display_name.split(' ', 1)
+        firstName = name_parts[0] if len(name_parts) > 0 else ""
+        lastName = name_parts[1] if len(name_parts) > 1 else ""
+
         data = {
             "_id": str(user.id),
             "username": user.username,
@@ -729,7 +632,9 @@ class UserProfileView(APIView):
             "role": user.role,
             "bio" : profile.bio,
             "skills" : profile.skills or [],
-            "display_name": profile.display_name,
+            "display_name": display_name,
+            "firstName": firstName,
+            "lastName": lastName,
             "github": profile.github,
             "linkedin": profile.linkedin,
             "profileImage": profile.profileImage.url if profile.profileImage else None,
@@ -769,10 +674,10 @@ class GitHubLoginView(APIView):
     permission_classes=[AllowAny]
 
     def get(self , request):
-        # generate token
+         
         state = str(uuid.uuid4())
 
-        # store in redis for 10 min
+         
         cache.set(
             f"github_oauth_state:{state}",
             "valid",
@@ -797,7 +702,7 @@ class GitHubCallbackView(APIView):
         code = request.GET.get("code")
         state = request.GET.get("state")
 
-        # 1️⃣ Validate OAuth state from Redis
+         
         cache_key = f"github_oauth_state:{state}"
         stored_state = cache.get(cache_key)
 
@@ -805,14 +710,14 @@ class GitHubCallbackView(APIView):
             print("❌ Invalid or expired state")
             return self._error_response("INVALID_STATE")
 
-        # Delete state → one-time use
+         
         cache.delete(cache_key)
 
         if not code:
             return self._error_response("NO_CODE")
 
         try:
-            # 2️⃣ Exchange code for access token
+             
             token_res = requests.post(
                 "https://github.com/login/oauth/access_token",
                 headers={"Accept": "application/json"},
@@ -829,19 +734,19 @@ class GitHubCallbackView(APIView):
             if not github_access_token:
                 return self._error_response("NO_ACCESS_TOKEN")
 
-            # 3️⃣ Get GitHub user info
+             
             user_res = requests.get(
                 "https://api.github.com/user",
                 headers={"Authorization": f"Bearer {github_access_token}"}
             ).json()
 
-            # 4️⃣ Get email list
+             
             email_res = requests.get(
                 "https://api.github.com/user/emails",
                 headers={"Authorization": f"Bearer {github_access_token}"}
             ).json()
 
-            # Get primary verified email
+             
             email = None
             for e in email_res:
                 if e.get("primary") and e.get("verified"):
@@ -853,7 +758,7 @@ class GitHubCallbackView(APIView):
 
             name = user_res.get("name") or user_res.get("login") or email.split("@")[0]
 
-            # 5️⃣ Create or Get user
+             
             user, created = User.objects.get_or_create(
                 email=email,
                 defaults={
@@ -864,12 +769,12 @@ class GitHubCallbackView(APIView):
                 }
             )
 
-            # 6️⃣ Create JWT tokens
+             
             refresh = RefreshToken.for_user(user)
             access_jwt = str(refresh.access_token)
             refresh_jwt = str(refresh)
 
-            # 7️⃣ Return popup success HTML
+             
             return self._success_response(access_jwt, refresh_jwt, email, name)
 
         except Exception as e:
@@ -881,7 +786,7 @@ class GitHubCallbackView(APIView):
 <html>
 <body style="font-family:Arial; text-align:center; margin-top:60px;">
 
-<h2>🐙 GitHub Login Successful!</h2>
+<h2> GitHub Login Successful!</h2>
 <p>Welcome {name}</p>
 
 <script>
@@ -914,7 +819,7 @@ setTimeout(() => window.close(), 1200);
 <html>
 <body style="font-family:Arial;text-align:center;margin-top:60px;">
 
-<h2>❌ GitHub Login Failed</h2>
+<h2> GitHub Login Failed</h2>
 <p>{error_msg}</p>
 
 <script>
@@ -986,14 +891,11 @@ class ToggleUserStatusView(APIView):
     def post(self, request, user_id):
         user = get_object_or_404(User, id=user_id)
 
-        # Prevent admin from blocking self
         if user.is_superuser:
             return Response(
                 {"success": False, "message": "Cannot block admin"},
                 status=400,
             )
-
-        # Toggle active status
         user.is_active = not user.is_active
         user.save(update_fields=["is_active"])
 
@@ -1070,3 +972,4 @@ class ToggleRecruiterStatusView(APIView):
                 "status": "Active" if recruiter.is_active else "InActive",
             },
         })
+    

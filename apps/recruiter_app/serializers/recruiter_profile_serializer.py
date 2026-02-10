@@ -12,11 +12,11 @@ class RecruiterProfileSerializer(serializers.ModelSerializer):
         fields = [
            "id",
 
-            # user related
+            
             "username",
             "email",
 
-            # recruiter profile fields
+            
             "contact_person",
             "phone",
             "company_name",
@@ -26,7 +26,7 @@ class RecruiterProfileSerializer(serializers.ModelSerializer):
             "profileimage",
             "location",
 
-            # status & meta
+            
             "status",
             "created_at",
         ]

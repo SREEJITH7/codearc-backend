@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 from apps.auth_app.models import RecruiterProfile
-# from recruiter_app.serializers.recruiter_profile_serializer import RecruiterProfileSerializer
 from apps.recruiter_app.serializers.recruiter_profile_serializer import RecruiterProfileSerializer
 
 class RecruiterProfileView(APIView):

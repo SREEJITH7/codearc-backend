@@ -15,6 +15,8 @@ class OTPService:
     def generate_and_send_otp(email, purpose="REGISTRATION"):
         otp = OTP.generate_otp()
 
+        print(f"[OTP DEBUG] Email: {email}, Purpose: {purpose}, OTP: {otp}")
+
         # Save OTP in Redis
         key = f"otp:{purpose}:{email}"
         cache.set(key, otp, timeout=OTPService.OTP_TTL)
