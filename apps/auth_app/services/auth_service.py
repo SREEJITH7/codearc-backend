@@ -28,8 +28,7 @@ class AuthService:
             is_verified=False
         )
 
-        otp = OTPService.generate_and_send_otp(email, purpose="REGISTRATION")
-        OTPService.save_otp(email, otp)
-        # send_otp_email(email, otp)
+        # generate_and_send_otp already saves the OTP to cache and sends the email
+        OTPService.generate_and_send_otp(email, purpose="REGISTRATION")
 
         return user, "OTP sent"

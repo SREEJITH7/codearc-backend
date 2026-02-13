@@ -13,7 +13,8 @@ class VerifyOTPSerializer(serializers.Serializer):
     purpose = serializers.CharField(default="REGISTRATION")
 
     def validate(self, data):
-        ok, msg = OTPService.verify_otp(data["email"], data["otp"], data["purpose"])
+        email = data["email"].lower().strip()
+        ok, msg = OTPService.verify_otp(email, data["otp"], data["purpose"])
         if not ok:
             raise serializers.ValidationError(msg)
         return data
