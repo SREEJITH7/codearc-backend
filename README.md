@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ CodeArc Backend
+#  CodeArc Backend
 
 **Django REST API powering the CodeArc developer platform.**
 
