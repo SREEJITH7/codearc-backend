@@ -1,168 +1,250 @@
-# codearc-backend
-codearc backend
+<div align="center">
 
+# ⚡ CodeArc Backend
 
-🚀 CodeArc Backend — Django REST API
+**Django REST API powering the CodeArc developer platform.**
 
-This is the backend service for CodeArc, built using Django + Django REST Framework.
-It handles user authentication, authorization, profile management, admin modules, and integrations such as Google OAuth and GitHub OAuth.
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org/)
+[![Django](https://img.shields.io/badge/Django-4.x-092E20?style=flat-square&logo=django)](https://djangoproject.com/)
+[![DRF](https://img.shields.io/badge/DRF-REST_Framework-A30000?style=flat-square&logo=django)](https://www.django-rest-framework.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Latest-4169E1?style=flat-square&logo=postgresql&logoColor=white)](https://postgresql.org/)
+[![License](https://img.shields.io/badge/License-Private-red?style=flat-square)](./LICENSE)
 
-📌 Features
+[Getting Started](#-getting-started) · [Architecture](#-architecture) · [Features](#-features) · [Auth Flow](#-authentication-flow) · [Deployment](#-deployment) · [Contributing](#-contributing)
 
-🔐 JWT Authentication (Access + Refresh Tokens)
+</div>
 
-🔑 Google Login (OAuth 2.0)
+---
 
-🐙 GitHub Login (OAuth 2.0)
+## Overview
 
-👤 User registration, login, OTP verification
+CodeArc Backend is the Django REST API service that powers the CodeArc platform. It handles user authentication (JWT + OAuth), profile management, OTP verification, and exposes a structured REST API consumed by the React frontend.
 
-📧 Forgot Password + OTP Reset
+---
 
-🛠 Modular Django app structure
+## Features
 
-🗄 PostgreSQL database
+### Authentication & Authorization
+- JWT access and refresh token lifecycle
+- Google OAuth 2.0 login
+- GitHub OAuth 2.0 login
+- User registration with OTP email verification
+- Forgot password and OTP-based reset flow
 
-📡 REST API with Django REST Framework
+### API & Infrastructure
+- RESTful API built with Django REST Framework
+- PostgreSQL database
+- Modular Django app structure for clean separation of concerns
+- CORS, CSRF, and secret management via environment variables
+- Deployment-ready configuration
 
-🔒 Security best practices (CORS, CSRF, env secrets, etc.)
+---
 
-📂 Project Structure
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Backend Framework | Django 4.x |
+| API Layer | Django REST Framework |
+| Authentication | JWT + OAuth 2.0 (Google / GitHub) |
+| Database | PostgreSQL |
+| Runtime | Python 3.10+ |
+| Deployment | Docker / Gunicorn + Nginx |
+
+---
+
+## Architecture
+
+```
 codearc-backend/
-│── backend/                # Django project
-│── apps/
-│   ├── auth_app/           # Authentication + OAuth + OTP
-│   ├── user_app/           # User profile, settings
-│── venv/                   # Virtual environment (ignored)
-│── manage.py
-│── requirements.txt
-│── .env                    # Environment variables (ignored)
-│── .gitignore
+├── backend/                # Django project settings and root config
+├── apps/
+│   ├── auth_app/           # Authentication, OAuth, OTP, token management
+│   └── user_app/           # User profiles and settings
+├── manage.py
+├── requirements.txt
+├── .env                    # Environment secrets (never committed)
+├── .gitignore
 └── README.md
+```
 
-⚙️ Tech Stack
-Component	Technology
-Backend Framework	Django 4.x
-API Layer	Django REST Framework (DRF)
-Authentication	JWT + OAuth (Google/GitHub)
-Database	PostgreSQL
-Environment	Python 3.10+
-Deployment Ready	Yes
-🔧 Setup Instructions
+---
 
-Follow these steps to run the backend locally.
+## Getting Started
 
-1️⃣ Clone the repository
+### Prerequisites
+
+- Python `>= 3.10`
+- PostgreSQL (running locally or via Docker)
+- pip
+
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/SREEJITH7/codearc-backend.git
 cd codearc-backend
+```
 
-2️⃣ Create and activate virtual environment
+### 2. Create and Activate a Virtual Environment
+
+```bash
 python -m venv venv
-venv\Scripts\activate   # Windows
-# or
-source venv/bin/activate  # Mac/Linux
 
-3️⃣ Install dependencies
+# Windows
+venv\Scripts\activate
+
+# macOS / Linux
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-4️⃣ Create .env file
+### 4. Configure Environment Variables
 
-Create a file named .env inside your project:
+Create a `.env` file in the project root:
 
+```env
+# Database
 DB_NAME=codearc_db
 DB_USER=postgres
-DB_PASSWORD=12345
+DB_PASSWORD=your_db_password
 DB_HOST=localhost
 DB_PORT=5432
 
-GOOGLE_CLIENT_ID="your_google_client_id"
-GOOGLE_CLIENT_SECRET="your_google_client_secret"
+# Google OAuth
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
 
-GITHUB_CLIENT_ID="your_github_client_id"
-GITHUB_CLIENT_SECRET="your_github_client_secret"
+# GitHub OAuth
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
+```
 
+> **Warning:** Never commit `.env` to version control. It is already listed in `.gitignore`.
 
-⚠️ Never upload .env to GitHub
-(It is already ignored via .gitignore)
+### 5. Apply Migrations
 
-5️⃣ Run migrations
+```bash
 python manage.py makemigrations
 python manage.py migrate
+```
 
-6️⃣ Start the development server
+### 6. Start the Development Server
+
+```bash
 python manage.py runserver
+```
 
+The API will be available at **http://127.0.0.1:8000/**
 
-Your backend runs at:
+---
 
-👉 http://127.0.0.1:8000/
+## Authentication Flow
 
-🧪 Testing API Using Postman
+### JWT (Email / Password)
+1. User submits credentials to the login endpoint
+2. Backend validates and returns `access` + `refresh` tokens
+3. Frontend attaches the `access` token to all subsequent requests
+4. When the `access` token expires, the frontend calls the refresh endpoint to obtain a new one silently
 
-You can test:
+### Google OAuth
+1. Frontend redirects or opens a popup to Google's OAuth consent screen
+2. Google redirects back to the backend callback URL with an auth code
+3. Backend exchanges the code for user info and issues JWT tokens
+4. User session is established — no separate login step required
 
-Signup
+### GitHub OAuth
+Identical flow to Google OAuth above.
 
-Login
+---
 
-OTP verification
+## API Reference
 
-Google OAuth
+Key endpoints to verify during setup and testing:
 
-GitHub OAuth
+| Flow | Method | Endpoint |
+|---|---|---|
+| Register | `POST` | `/api/auth/register/` |
+| Login | `POST` | `/api/auth/login/` |
+| OTP Verify | `POST` | `/api/auth/verify-otp/` |
+| Token Refresh | `POST` | `/api/auth/token/refresh/` |
+| Google OAuth | `POST` | `/api/auth/google/` |
+| GitHub OAuth | `POST` | `/api/auth/github/` |
+| Forgot Password | `POST` | `/api/auth/forgot-password/` |
 
-Optional: I can generate a full Postman Collection JSON for your API.
+These can be tested with [Postman](https://postman.com/) or any HTTP client.
 
-🔐 Authentication Flow
-✔ Normal Login
+---
 
-User enters email/password
+## Scripts
 
-Backend returns JWT tokens
+| Command | Description |
+|---|---|
+| `python manage.py runserver` | Start development server |
+| `python manage.py makemigrations` | Generate migration files |
+| `python manage.py migrate` | Apply migrations to the database |
+| `python manage.py createsuperuser` | Create a Django admin superuser |
+| `python manage.py shell` | Open the Django interactive shell |
 
-Frontend stores access token
+---
 
-Refresh token endpoint keeps auth alive
+## Git Workflow
 
-✔ Google OAuth
+```
+main
+├── feature/auth-api
+├── feature/user-api
+└── feature/admin-api
+```
 
-Frontend → Google → Backend callback → tokens issued
+**Process:** `feature branch` → Pull Request → Code Review → Merge to `main`
 
-✔ GitHub OAuth
+Use conventional commit messages:
+```bash
+git commit -m "feat(auth): implement GitHub OAuth callback handler"
+git commit -m "fix(user): resolve profile update 400 error on empty fields"
+```
 
-Same flow as Google.
+---
 
-🏗 Recommended Branch Workflow
-main              → production-ready code
-feature/auth-api  → authentication development
-feature/user-api  → user profile system
-feature/admin-api → admin endpoints
+## Deployment
 
+The backend is ready for production deployment via the following stacks:
 
-Always create PR → get review → merge to main.
+| Platform | Notes |
+|---|---|
+| Docker + Gunicorn + Nginx | Recommended for self-hosted VPS |
+| [Render](https://render.com) | Simple Django deploys with managed PostgreSQL |
+| [Railway](https://railway.app) | One-click deploys with env var management |
+| [AWS EC2](https://aws.amazon.com/ec2/) / [DigitalOcean](https://digitalocean.com) | Full control, requires manual server setup |
 
-🚀 Deployment (Optional)
+Configure all `.env` variables in your hosting provider's environment settings before deploying.
 
-Supports:
+---
 
-Docker
+## Contributing
 
-Nginx + Gunicorn
+1. Fork the repo and create a feature branch from `main`
+2. Follow the existing app structure — new features belong in dedicated apps under `apps/`
+3. Write descriptive commit messages using conventional format
+4. Ensure migrations are included with any model changes
+5. Open a Pull Request with a clear description of what changed and why
 
-AWS / Render / Railway / DigitalOcean
+> This is a private/internal project. Please coordinate with the team before making significant architectural changes.
 
-I can create deployment configs if needed.
+---
 
-🤝 Contributing
+## License
 
-Create a feature branch
+**Private — Internal Use Only.**
+Unauthorized distribution or use outside the CodeArc organization is not permitted.
 
-Commit changes using clear messages
+---
 
-Open Pull Request
-
-Follow code review guidelines
-
-📄 License
-
-This project is private (Internal Use Only).
+<div align="center">
+Built with ❤️ by the CodeArc team
+</div>
