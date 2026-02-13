@@ -9,7 +9,7 @@ from apps.auth_app.services.email_service import send_otp_email
 
 class OTPService:
 
-    OTP_TTL = 300  # 5 minutes
+    OTP_TTL = 60  # 1 minute
 
     @staticmethod
     def generate_and_send_otp(email, purpose="REGISTRATION"):

@@ -58,13 +58,6 @@ class SignupView(APIView):
             serializer = SignupSerializer(data=request.data)
             if serializer.is_valid():
                 user = serializer.save()   
-                OTPService.delete_otp(email, purpose="REGISTRATION")   
-                ok, msg = OTPService.generate_and_send_otp(email, purpose="REGISTRATION")
-                if not ok:
-                    return Response(
-                        {"message": "Account created but failed to send OTP. Please resend."},
-                        status=201
-                    )
                 return Response(
                     {"message": "OTP sent successfully", "email": email},
                     status=status.HTTP_201_CREATED
@@ -75,7 +68,11 @@ class SignupView(APIView):
 class VerifyOTPView(APIView):
 
     def post(self, request):
-        serializer = VerifyOTPSerializer(data=request.data)
+        data = request.data.copy()
+        if 'email' in data:
+            data['email'] = data['email'].lower().strip()
+        
+        serializer = VerifyOTPSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response({"message": "Account verified"}, status=status.HTTP_200_OK)
@@ -85,7 +82,7 @@ class VerifyOTPView(APIView):
 class ResendOTPView(APIView):
 
     def post(self, request):
-        email = request.data.get("email")
+        email = request.data.get("email", "").lower().strip()
 
         if not email:
             return Response({"message": "Email required"}, status=400)
