@@ -21,8 +21,9 @@ GITHUB_CLIENT_SECRET = os.getenv('GITHUB_CLIENT_SECRET')
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 SENDGRID_FROM_EMAIL = os.getenv("SENDGRID_FROM_EMAIL")
 
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',  # MUST be before Django apps/middleware
+    'corsheaders',  
     'rest_framework',
 
     # Local apps
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'apps.recruiter_app',
     'apps.problem_app',
     # 'rest_framework_simplejwt.token_blacklist',
+    'apps.ai_app',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +87,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Database (unchanged)
+# Database 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -97,7 +99,7 @@ DATABASES = {
     }
 }
 
-# Password validation (unchanged)
+# Password validation 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
@@ -122,7 +124,17 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        "user": "1000/day",
+        "anon": "100/day",
+        "ai_chat": "20/day",
+    }
+
 }
 
 # ============================================================================
@@ -257,6 +269,7 @@ EMAIL_HOST_USER = "karnjaps4@gmail.com"
 EMAIL_HOST_PASSWORD = "tkgqmezdpsoiahxl"
 
 DEFAULT_FROM_EMAIL = "CodeArc <yourgmail@gmail.com>"
+
 
 
 

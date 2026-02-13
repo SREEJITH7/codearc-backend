@@ -9,7 +9,7 @@ import os
 from pathlib import Path
 from logging.handlers import RotatingFileHandler
 
-BASE_DIR = Path(__file__).resolve().parent.parent  # project root
+BASE_DIR = Path(__file__).resolve().parent.parent  
 
 # Create logs folder automatically
 LOGS_DIR = os.path.join(BASE_DIR, 'logs')
@@ -34,8 +34,8 @@ LOGGING = {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(LOGS_DIR, 'app.log'),
-            'maxBytes': 10 * 1024 * 1024,  # 10MB per file
-            'backupCount': 7,              # 7 days backup
+            'maxBytes': 10 * 1024 * 1024,  
+            'backupCount': 7,              
             'formatter': 'standard',
             'encoding': 'utf-8',
         },
@@ -50,9 +50,9 @@ LOGGING = {
         },
     },
     'loggers': {
-        '': {  # root logger - everything goes here by default
+        '': {  
             'handlers': ['console', 'file'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),  # dev=DEBUG, prod=INFO
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),  
             'propagate': True,
         },
         'django': {
