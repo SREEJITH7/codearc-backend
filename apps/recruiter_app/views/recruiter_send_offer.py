@@ -11,8 +11,7 @@ class RecruiterSendOfferView(APIView):
 
     def post(self, request, application_id):
         try:
-            # Ensure the application belongs to the recruiter
-            application = Application.objects.select_related('job', 'user').get(
+             application = Application.objects.select_related('job', 'user').get(
                 id=application_id,
                 job__recruiter=request.user
             )
@@ -22,7 +21,7 @@ class RecruiterSendOfferView(APIView):
                 status=status.HTTP_404_NOT_FOUND
             )
 
-        # Business Rule: Must be SHORTLISTED to send offer
+         
         if application.status != "SHORTLISTED":
             return Response(
                 {"success": False, "message": "Only shortlisted applicants can be sent an offer"},
@@ -39,7 +38,7 @@ class RecruiterSendOfferView(APIView):
             )
 
         try:
-            # Send the email
+             
             send_mail(
                 subject,
                 message,
@@ -48,7 +47,7 @@ class RecruiterSendOfferView(APIView):
                 fail_silently=False,
             )
 
-            # Update status to ACCEPTED
+             
             application.status = "ACCEPTED"
             application.save()
 

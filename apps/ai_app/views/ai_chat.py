@@ -1,3 +1,4 @@
+import logging
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -14,8 +15,10 @@ from apps.ai_app.serializers import (
     AiChatSessionListSerializer,
 )
 
+logger = logging.getLogger(__name__)
 
-# Initialize Groq client once
+
+ 
 groq_client = Groq(api_key=settings.GROQ_API_KEY)
 
 
@@ -31,14 +34,15 @@ class AiChatView(APIView):
     def post(self, request):
         message_content = request.data.get("message")
         session_id = request.data.get("session_id")
+        
+        logger.info(f"AI Chat request from user {request.user.id} (Session: {session_id})")
 
         if not message_content:
             return Response(
                 {"success": False, "message": "Message is required"},
                 status=status.HTTP_400_BAD_REQUEST
             )
-
-        # Get or create session
+ 
         if session_id:
             try:
                 session = AiChatSession.objects.get(
@@ -58,15 +62,16 @@ class AiChatView(APIView):
                 user=request.user,
                 title=title
             )
+            logger.info(f"Created new AI chat session {session.id} for user {request.user.id}")
 
-        # Save user message
+         
         AiChatMessage.objects.create(
             session=session,
             role="user",
             content=message_content
         )
 
-        # Build conversation history (chronological)
+         
         history = (
             session.messages
             .all()
@@ -92,7 +97,7 @@ class AiChatView(APIView):
 
             ai_reply = response.choices[0].message.content
 
-            # Save AI reply
+             
             AiChatMessage.objects.create(
                 session=session,
                 role="assistant",
@@ -110,7 +115,10 @@ class AiChatView(APIView):
             )
 
         except Exception as e:
-            print(f"Groq API Error: {str(e)}")
+            logger.error(f"Groq API Error: {str(e)}", exc_info=True, extra={
+                'user_id': request.user.id,
+                'session_id': session.id if 'session' in locals() else None
+            })
             return Response(
                 {
                     "success": False,

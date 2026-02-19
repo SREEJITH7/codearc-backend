@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'apps.user_app',
     'apps.recruiter_app',
     'apps.problem_app',
-    # 'rest_framework_simplejwt.token_blacklist',
+    'rest_framework_simplejwt.token_blacklist',
     'apps.ai_app',
 ]
 
@@ -135,6 +135,17 @@ REST_FRAMEWORK = {
         "ai_chat": "20/day",
     }
 
+}
+
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': False,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
 }
 
 # ============================================================================

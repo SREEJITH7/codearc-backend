@@ -36,16 +36,10 @@ class JobSerializer(serializers.ModelSerializer):
         }
     
     def get_workMode(self, obj):
-        mapping = {
-            'REMOTE': 'remote',
-            'ONSITE': 'on-site',
-            'HYBRID': 'hybrid'
-        }
-        return mapping.get(obj.job_type, 'remote')
+        return obj.job_type
     
     def get_workTime(self, obj):
-        
-        return 'full-time'
+        return obj.work_time
     
     def get_requirements(self, obj):
         

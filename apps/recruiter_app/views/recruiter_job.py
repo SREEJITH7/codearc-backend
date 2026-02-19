@@ -42,19 +42,9 @@ class RecruiterJobViewSet(ModelViewSet):
         
         workmode_filter = request.query_params.get('workmode', None)
         if workmode_filter:
-            workmode_mapping = {
-                'remote': 'REMOTE',
-                'on-site': 'ONSITE',
-                'hybrid': 'HYBRID'
-            }
-            backend_workmode = workmode_mapping.get(workmode_filter.lower(), None)
-            if backend_workmode:
-                queryset = queryset.filter(job_type=backend_workmode)
-        
-        
-        worktime_filter = request.query_params.get('worktime', None)
+            queryset = queryset.filter(job_type=workmode_filter)
+             
 
-        # Pagination
         page = int(request.query_params.get('page', 1))
         limit = int(request.query_params.get('limit', 6))
         
@@ -96,9 +86,9 @@ class RecruiterJobViewSet(ModelViewSet):
 
     @action(detail=False, methods=['get'], url_path='locations')
     def proxy_locations(self, request):
-        """
-        Proxy location search to Nominatim API
-        """
+         
+        # Proxy location search to Nominatim API
+        
         query = request.query_params.get('q')
         if not query:
             return Response({'success': False, 'data': []})
@@ -108,7 +98,14 @@ class RecruiterJobViewSet(ModelViewSet):
             headers = {
                 'User-Agent': 'CodeArc Application'
             }
-            url = f"https://nominatim.openstreetmap.org/search?format=json&q={query}&addressdetails=1&limit=5"
+            url = (
+            f"https://nominatim.openstreetmap.org/search"
+            f"?format=json"
+            f"&q={query}"
+            f"&countrycodes=in"
+            f"&addressdetails=1"
+            f"&limit=5"
+        )
             response = requests.get(url, headers=headers, timeout=5)
             data = response.json()
             return Response({'success': True, 'data': data})
