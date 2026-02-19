@@ -180,6 +180,11 @@ class RecruiterUpdateApplicationStatusView(APIView):
                 {"success": False, "message": "Application not found"},
                 status=status.HTTP_404_NOT_FOUND
             )
+        except Exception as e:
+            return Response(
+                {"success": False, "message": "Database error occurred", "error": str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
         # Allowed transitions at this endpoint
         valid_transitions = {
@@ -199,14 +204,24 @@ class RecruiterUpdateApplicationStatusView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        application.status = new_status
-        application.save()
+        try:
+            application.status = new_status
+            application.save()
 
-        return Response(
-            {
-                "success": True,
-                "message": f"Application {new_status.lower()} successfully"
-            },
-            status=status.HTTP_200_OK
-        )
+            return Response(
+                {
+                    "success": True,
+                    "message": f"Application {new_status.lower()} successfully"
+                },
+                status=status.HTTP_200_OK
+            )
+        except Exception as e:
+            return Response(
+                {
+                    "success": False,
+                    "message": "Failed to update application status",
+                    "error": str(e)
+                },
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
     

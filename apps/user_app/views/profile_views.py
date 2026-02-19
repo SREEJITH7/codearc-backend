@@ -14,30 +14,53 @@ class UserProfileUpdateView(APIView):
     parser_classes = [MultiPartParser, FormParser]
 
     def patch(self, request, user_id):
-        if request.user.id != user_id:
-            return Response(
-                {"detail": "Not allowed"},
-                status=status.HTTP_403_FORBIDDEN
-            )
-        # response = Response()
-        # response["Allow"] = "GE T, POST, PUT, PATCH, DELETE, OPTIONS"
+        try:
+            if request.user.id != user_id:
+                return Response(
+                    {"success": False, "message": "Not allowed"},
+                    status=status.HTTP_403_FORBIDDEN
+                )
 
-        profile, _ = UserProfile.objects.get_or_create(user=request.user)
+            try:
+                profile, _ = UserProfile.objects.get_or_create(user=request.user)
+            except Exception as e:
+                return Response({
+                    "success": False,
+                    "message": "Failed to retrieve or create user profile",
+                    "error": str(e)
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-        serializer = UserProfileUpdateSerializer(
-            profile,
-            data=request.data,
-            partial=True
-        )
-
-        if serializer.is_valid():
-            serializer.save()
-            return Response(
-                {
-                    "success": True,
-                    "profile": serializer.data
-                },
-                status=status.HTTP_200_OK
+            serializer = UserProfileUpdateSerializer(
+                profile,
+                data=request.data,
+                partial=True
             )
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            if serializer.is_valid():
+                try:
+                    serializer.save()
+                    return Response(
+                        {
+                            "success": True,
+                            "profile": serializer.data
+                        },
+                        status=status.HTTP_200_OK
+                    )
+                except Exception as e:
+                    return Response({
+                        "success": False,
+                        "message": "Failed to save profile updates",
+                        "error": str(e)
+                    }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+            return Response({
+                "success": False,
+                "message": "Validation failed",
+                "errors": serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({
+                "success": False,
+                "message": "An unexpected error occurred during profile update",
+                "error": str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
