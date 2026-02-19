@@ -18,101 +18,199 @@ from django.db.models import Count # Added import
 
 class CategoryListView(APIView):
     def get(self, request):
-        # Annotate with problem count
-        queryset = Category.objects.annotate(problem_count=Count('problems')).order_by("name")
-        search = request.query_params.get("search")
+        try:
+            # Annotate with problem count
+            queryset = Category.objects.annotate(problem_count=Count('problems')).order_by("name")
+            search = request.query_params.get("search")
 
-        if search:
-            queryset = queryset.filter(name__icontains=search)
+            if search:
+                queryset = queryset.filter(name__icontains=search)
 
-        paginator = CategoryPagination()
-        page = paginator.paginate_queryset(queryset, request)
+            paginator = CategoryPagination()
+            try:
+                page = paginator.paginate_queryset(queryset, request)
+            except Exception as pag_err:
+                print(f"Pagination error in CategoryListView: {pag_err}")
+                return Response({
+                    "success": False,
+                    "message": "Invalid page number or pagination error"
+                }, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = CategorySerializer(page, many=True)
-        return Response({
-            "success": True, 
-            "data": {
-                "categories": serializer.data,
-                "pagination": {
-                    "count": paginator.page.paginator.count,
-                    "pages": paginator.page.paginator.num_pages,
-                    "current": paginator.page.number,
-                    "next": paginator.get_next_link(),
-                    "previous": paginator.get_previous_link(),
+            serializer = CategorySerializer(page, many=True)
+            return Response({
+                "success": True, 
+                "data": {
+                    "categories": serializer.data,
+                    "pagination": {
+                        "count": paginator.page.paginator.count,
+                        "pages": paginator.page.paginator.num_pages,
+                        "current": paginator.page.number,
+                        "next": paginator.get_next_link(),
+                        "previous": paginator.get_previous_link(),
+                    }
                 }
-            }
-        })
+            })
+        except Exception as e:
+            return Response({
+                "success": False,
+                "message": "An error occurred while fetching categories",
+                "error": str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class CategoryCreateView(APIView):
-    # ... (No changes needed, existing code)
     def post(self, request):
-        name = request.data.get("name")
-        if not name:
-            return Response({"message": "Name required"}, status=400)
+        try:
+            name = request.data.get("name")
+            if not name:
+                return Response({
+                    "success": False,
+                    "message": "Name is required"
+                }, status=status.HTTP_400_BAD_REQUEST)
 
-        if Category.objects.filter(name__iexact=name).exists():
-            return Response({"message": "Category exists"}, status=400)
+            if Category.objects.filter(name__iexact=name).exists():
+                return Response({
+                    "success": False,
+                    "message": "Category with this name already exists"
+                }, status=status.HTTP_400_BAD_REQUEST)
 
-        category = Category.objects.create(
-            name=name,
-            slug=slugify(name),
-            status="Active"
-        )
-        
-        # Manually verify serializer or just return data (serializer expects problem_count which is 0 for new)
-        # To avoid error with read-only field problem_count not being present in instance if not annotated,
-        # we can just return serializer data. Typically new instance won't have it annotated but it's 0.
-        # However, DRF might just ignore it if it's missing or we can add it manually if needed.
-        # Actually, let's simple return serializer data, simple fields will be fine.
-        
-        return Response(CategorySerializer(category).data, status=201)
+            category = Category.objects.create(
+                name=name,
+                slug=slugify(name),
+                status="Active"
+            )
+            
+            return Response({
+                "success": True,
+                "data": CategorySerializer(category).data
+            }, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({
+                "success": False,
+                "message": "Failed to create category",
+                "error": str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class CategoryUpdateView(APIView):
-    # ... (existing code)
     def put(self, request, category_id):
         try:
-            category = Category.objects.get(id=category_id)
-        except Category.DoesNotExist:
-            return Response({"message": "Category not found"}, status=404)
+            try:
+                category = Category.objects.get(id=category_id)
+            except Category.DoesNotExist:
+                return Response({
+                    "success": False,
+                    "message": "Category not found"
+                }, status=status.HTTP_404_NOT_FOUND)
+            except (ValueError, TypeError):
+                 return Response({
+                    "success": False,
+                    "message": "Invalid category ID format"
+                }, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = CategorySerializer(category, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
+            serializer = CategorySerializer(category, data=request.data, partial=True)
+            if serializer.is_valid():
+                try:
+                    serializer.save()
+                    return Response({
+                        "success": True,
+                        "data": serializer.data
+                    }, status=status.HTTP_200_OK)
+                except Exception as save_err:
+                     return Response({
+                        "success": False,
+                        "message": "Failed to update category",
+                        "error": str(save_err)
+                    }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-        return Response(serializer.errors, status=400)
+            return Response({
+                "success": False,
+                "message": "Validation failed",
+                "errors": serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({
+                "success": False,
+                "message": "An error occurred during category update",
+                "error": str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class CategoryToggleView(APIView):
-    # ... (existing code)
     def patch(self, request, category_id):
         try:
-            category = Category.objects.get(id=category_id)
-            category.status = "InActive" if category.status == "Active" else "Active"
-            category.save()
-            return Response(CategorySerializer(category).data)
-        except Category.DoesNotExist:
-            return Response({"message": "Category not found"}, status=404)
+            try:
+                category = Category.objects.get(id=category_id)
+            except Category.DoesNotExist:
+                return Response({
+                    "success": False,
+                    "message": "Category not found"
+                }, status=status.HTTP_404_NOT_FOUND)
+            except (ValueError, TypeError):
+                return Response({
+                    "success": False,
+                    "message": "Invalid category ID format"
+                }, status=status.HTTP_400_BAD_REQUEST)
+
+            try:
+                category.status = "InActive" if category.status == "Active" else "Active"
+                category.save()
+                return Response({
+                    "success": True,
+                    "data": CategorySerializer(category).data
+                }, status=status.HTTP_200_OK)
+            except Exception as save_err:
+                 return Response({
+                    "success": False,
+                    "message": f"Failed to {'deactivate' if category.status == 'Active' else 'activate'} category",
+                    "error": str(save_err)
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        except Exception as e:
+            return Response({
+                "success": False,
+                "message": "An error occurred during category status toggle",
+                "error": str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class CategoryDeleteView(APIView):
     def delete(self, request, category_id):
         try:
-            category = Category.objects.get(id=category_id)
+            try:
+                category = Category.objects.get(id=category_id)
+            except Category.DoesNotExist:
+                return Response({
+                    "success": False,
+                    "message": "Category not found"
+                }, status=status.HTTP_404_NOT_FOUND)
+            except (ValueError, TypeError):
+                return Response({
+                    "success": False,
+                    "message": "Invalid category ID format"
+                }, status=status.HTTP_400_BAD_REQUEST)
             
-            # Cascade delete problems
-            # Note: Verify if this is truly what is wanted. User said "delete all question all will be deleted".
-            # So we delete all problems where category=category.
-            
-            count = category.problems.count()
-            category.problems.all().delete()
-            category.delete()
-            
+            try:
+                # CASCADE manually for clarity and reporting count
+                problems_qs = category.problems.all()
+                count = problems_qs.count()
+                problems_qs.delete()
+                category.delete()
+                
+                return Response({
+                    "success": True,
+                    "message": f"Category and {count} associated problems deleted successfully"
+                }, status=status.HTTP_200_OK)
+            except Exception as del_err:
+                 return Response({
+                    "success": False,
+                    "message": "Failed to delete category and its problems",
+                    "error": str(del_err)
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        except Exception as e:
             return Response({
-                "success": True,
-                "message": f"Category and {count} associated problems deleted successfully"
-            })
-        except Category.DoesNotExist:
-            return Response({"message": "Category not found"}, status=404)
+                "success": False,
+                "message": "An error occurred during category deletion",
+                "error": str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

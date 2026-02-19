@@ -17,96 +17,104 @@ class UserJobListView(APIView):
     permission_classes = []  # Public access or authenticated users
 
     def get(self, request):
-         
-        queryset = Job.objects.filter(status='OPEN').order_by('-created_at')
-        user = request.user if request.user.is_authenticated else None
+        try:
+            queryset = Job.objects.filter(status='OPEN').order_by('-created_at')
+            user = request.user if request.user.is_authenticated else None
 
-        if user:
-            queryset = queryset.annotate(
-            isApplied=Exists(
-            Application.objects.filter(
-                job=OuterRef('pk'),
-                user=user
+            if user:
+                queryset = queryset.annotate(
+                isApplied=Exists(
+                Application.objects.filter(
+                    job=OuterRef('pk'),
+                    user=user
+                )
             )
         )
-    )
-        else:
-            queryset = queryset.annotate(
-            isApplied=Value(False, output_field=BooleanField())
-    )
+            else:
+                queryset = queryset.annotate(
+                isApplied=Value(False, output_field=BooleanField())
+        )
 
-         
-        search = request.query_params.get('search', None)
-        if search:
-            queryset = queryset.filter(Q(title__icontains=search) | Q(description__icontains=search))
-        
-        
-        status_filter = request.query_params.get('status', None)
-        if status_filter:
-            status_mapping = {
-                'active': 'OPEN',
-                'blocked': 'CLOSED',
-                'inactive': 'CLOSED'
-            }
-            backend_status = status_mapping.get(status_filter.lower(), None)
-            if backend_status:
-                queryset = queryset.filter(status=backend_status)
-                # queryset = queryset.filter(status=backend_status)
-         
-        workmode_filter = request.query_params.get('workmode', None)
-        if workmode_filter:
-            workmode_mapping = {
-                'remote': 'REMOTE',
-                'on-site': 'ONSITE',
-                'hybrid': 'HYBRID'
-            }
-            backend_workmode = workmode_mapping.get(workmode_filter.lower(), None)
-            if backend_workmode:
-                queryset = queryset.filter(job_type=backend_workmode)
-        
-         
-        worktime_filter = request.query_params.get('worktime', None)
-        if worktime_filter:
-             queryset = queryset.filter(work_time__iexact=worktime_filter)
-
-        # Location filter
-        location_filter = request.query_params.get('location', None)
-        if location_filter:
-            queryset = queryset.filter(location__icontains=location_filter)
-
-        # Skills filter
-        skills_filter = request.query_params.get('skills', None)
-        if skills_filter:
-            skills_list = [s.strip() for s in skills_filter.split(',') if s.strip()]
-            for skill in skills_list:
-                queryset = queryset.filter(skills__icontains=skill)
-        
-        page = int(request.query_params.get('page', 1))
-        limit = int(request.query_params.get('limit', 6))
-        
-        total = queryset.count()
-        start = (page - 1) * limit
-        end = start + limit
-        
-        paginated_queryset = queryset[start:end]
-        serializer = JobSerializer(paginated_queryset, many=True, context={'request': request})
-        
-
-
-        return Response({
-            'success': True,
-            'data': {
-                'jobs': serializer.data,
-                'pagination': {
-                    'total': total,
-                    'page': page,
-                    'pages': (total + limit - 1) // limit,   
-                    'limit': limit,
-                    'hasNextPage': end < total,
-                    'hasPrevPage': page > 1
+            
+            search = request.query_params.get('search', None)
+            if search:
+                queryset = queryset.filter(Q(title__icontains=search) | Q(description__icontains=search))
+            
+            
+            status_filter = request.query_params.get('status', None)
+            if status_filter:
+                status_mapping = {
+                    'active': 'OPEN',
+                    'blocked': 'CLOSED',
+                    'inactive': 'CLOSED'
                 }
-            }
-        })
+                backend_status = status_mapping.get(status_filter.lower(), None)
+                if backend_status:
+                    queryset = queryset.filter(status=backend_status)
+            
+            workmode_filter = request.query_params.get('workmode', None)
+            if workmode_filter:
+                workmode_mapping = {
+                    'remote': 'REMOTE',
+                    'on-site': 'ONSITE',
+                    'hybrid': 'HYBRID'
+                }
+                backend_workmode = workmode_mapping.get(workmode_filter.lower(), None)
+                if backend_workmode:
+                    queryset = queryset.filter(job_type=backend_workmode)
+            
+            
+            worktime_filter = request.query_params.get('worktime', None)
+            if worktime_filter:
+                queryset = queryset.filter(work_time__iexact=worktime_filter)
+
+            # Location filter
+            location_filter = request.query_params.get('location', None)
+            if location_filter:
+                queryset = queryset.filter(location__icontains=location_filter)
+
+            # Skills filter
+            skills_filter = request.query_params.get('skills', None)
+            if skills_filter:
+                skills_list = [s.strip() for s in skills_filter.split(',') if s.strip()]
+                for skill in skills_list:
+                    queryset = queryset.filter(skills__icontains=skill)
+            
+            try:
+                page = int(request.query_params.get('page', 1))
+                limit = int(request.query_params.get('limit', 6))
+            except (ValueError, TypeError):
+                page = 1
+                limit = 6
+            
+            total = queryset.count()
+            start = (page - 1) * limit
+            end = start + limit
+            
+            paginated_queryset = queryset[start:end]
+            serializer = JobSerializer(paginated_queryset, many=True, context={'request': request})
+            
+
+            return Response({
+                'success': True,
+                'data': {
+                    'jobs': serializer.data,
+                    'pagination': {
+                        'total': total,
+                        'page': page,
+                        'pages': (total + limit - 1) // limit if limit > 0 else 1,   
+                        'limit': limit,
+                        'hasNextPage': end < total,
+                        'hasPrevPage': page > 1
+                    }
+                }
+            }, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({
+                'success': False,
+                'message': 'An error occurred while fetching jobs',
+                'error': str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class SingleJobView(APIView):

@@ -57,12 +57,25 @@ class SignupView(APIView):
         except User.DoesNotExist:
             serializer = SignupSerializer(data=request.data)
             if serializer.is_valid():
-                user = serializer.save()   
-                return Response(
-                    {"message": "OTP sent successfully", "email": email},
-                    status=status.HTTP_201_CREATED
-                )
+                try:
+                    user = serializer.save()   
+                    return Response(
+                        {"message": "OTP sent successfully", "email": email},
+                        status=status.HTTP_201_CREATED
+                    )
+                except Exception as e:
+                    logger.error(f"Error during signup save: {str(e)}")
+                    return Response(
+                        {"success": False, "message": "Failed to create account. Please try again."},
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                    )
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            logger.error(f"Signup lookup error: {str(e)}")
+            return Response(
+                {"success": False, "message": "An error occurred. Please try again."},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 
 class VerifyOTPView(APIView):
@@ -74,8 +87,15 @@ class VerifyOTPView(APIView):
         
         serializer = VerifyOTPSerializer(data=data)
         if serializer.is_valid():
-            serializer.save()
-            return Response({"message": "Account verified"}, status=status.HTTP_200_OK)
+            try:
+                serializer.save()
+                return Response({"message": "Account verified"}, status=status.HTTP_200_OK)
+            except Exception as e:
+                logger.error(f"OTP verification save error: {str(e)}")
+                return Response(
+                    {"success": False, "message": "Failed to verify OTP. Please try again."},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
         print("OTP VERIFY ERRORS:", serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -179,22 +199,25 @@ class RecruiterLoginView(APIView):
             },
         })
 
-        response.set_cookie(key=settings.ACCESS_COOKIE_NAME, value=access_token,
-                            httponly=settings.COOKIE_HTTPONLY,
-                            secure=settings.COOKIE_SECURE,
-                            samesite=settings.COOKIE_SAMESITE,
-                            max_age=60 * 15,
-                            path="/",
-                            domain="localhost",)
-        
+        response.set_cookie(
+            key=settings.ACCESS_COOKIE_NAME,
+            value=access_token,
+            httponly=settings.COOKIE_HTTPONLY,
+            secure=settings.COOKIE_SECURE,
+            samesite=settings.COOKIE_SAMESITE,
+            max_age=60 * 15,
+            path="/",
+        )
 
-        response.set_cookie(key=settings.REFRESH_COOKIE_NAME, value=refresh_token,
-                            httponly=settings.COOKIE_HTTPONLY,
-                            secure=settings.COOKIE_SECURE,
-                            samesite=settings.COOKIE_SAMESITE,
-                            max_age=60 * 60 * 24 * 7,
-                            path="/",
-                            domain="localhost",)
+        response.set_cookie(
+            key=settings.REFRESH_COOKIE_NAME,
+            value=refresh_token,
+            httponly=settings.COOKIE_HTTPONLY,
+            secure=settings.COOKIE_SECURE,
+            samesite=settings.COOKIE_SAMESITE,
+            max_age=60 * 60 * 24 * 7,
+            path="/",
+        )
 
         return response
 
@@ -357,6 +380,7 @@ class CookieTokenRefreshView(TokenRefreshView):
         response = super().post(request, *args, **kwargs)
         
         if response.status_code == 200:
+            # 1. Update Access Token Cookie
             response.set_cookie(
                 key=settings.ACCESS_COOKIE_NAME,
                 value=response.data["access"],
@@ -364,7 +388,20 @@ class CookieTokenRefreshView(TokenRefreshView):
                 secure=settings.COOKIE_SECURE,
                 samesite=settings.COOKIE_SAMESITE,
                 max_age=60 * 15,
+                path="/",
             )
+
+            # 2. Update Refresh Token Cookie (if rotated)
+            if "refresh" in response.data:
+                response.set_cookie(
+                    key=settings.REFRESH_COOKIE_NAME,
+                    value=response.data["refresh"],
+                    httponly=True,
+                    secure=settings.COOKIE_SECURE,
+                    samesite=settings.COOKIE_SAMESITE,
+                    max_age=60 * 60 * 24 * 7,
+                    path="/",
+                )
        
             response.data = {"detail": "Token refreshed successfully"}
         
@@ -613,53 +650,67 @@ class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
     
     def get(self, request):
-        user = request.user
-        profile, created = UserProfile.objects.get_or_create(user=user)
-        
-        display_name = profile.display_name or ""
-        name_parts = display_name.split(' ', 1)
-        firstName = name_parts[0] if len(name_parts) > 0 else ""
-        lastName = name_parts[1] if len(name_parts) > 1 else ""
+        try:
+            user = request.user
+            profile, created = UserProfile.objects.get_or_create(user=user)
+            
+            display_name = profile.display_name or ""
+            name_parts = display_name.split(' ', 1)
+            firstName = name_parts[0] if len(name_parts) > 0 else ""
+            lastName = name_parts[1] if len(name_parts) > 1 else ""
 
-        data = {
-            "_id": str(user.id),
-            "username": user.username,
-            "email": user.email,
-            "createdAt": user.date_joined.isoformat(),
-            "role": user.role,
-            "bio" : profile.bio,
-            "skills" : profile.skills or [],
-            "display_name": display_name,
-            "firstName": firstName,
-            "lastName": lastName,
-            "github": profile.github,
-            "linkedin": profile.linkedin,
-            "profileImage": profile.profileImage.url if profile.profileImage else None,
-            "resume": profile.resume.url if profile.resume else None,
-        }
-        
-        return Response({"success": True, "data": data}, status=status.HTTP_200_OK)
+            data = {
+                "_id": str(user.id),
+                "username": user.username,
+                "email": user.email,
+                "createdAt": user.date_joined.isoformat(),
+                "role": user.role,
+                "bio" : profile.bio,
+                "skills" : profile.skills or [],
+                "display_name": display_name,
+                "firstName": firstName,
+                "lastName": lastName,
+                "github": profile.github,
+                "linkedin": profile.linkedin,
+                "profileImage": profile.profileImage.url if profile.profileImage else None,
+                "resume": profile.resume.url if profile.resume else None,
+            }
+            
+            return Response({"success": True, "data": data}, status=status.HTTP_200_OK)
+        except Exception as e:
+            logger.error(f"Error fetching UserProfile: {str(e)}")
+            return Response(
+                {"success": False, "message": "Failed to fetch profile"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 
 class UserStatsView(APIView):
     permission_classes = [IsAuthenticated]
     
     def get(self, request):
-        user = request.user
-        profile, created = UserProfile.objects.get_or_create(user=user)
-        
-        data = {
-            "totalProblems": 150,
-            "solvedProblems": getattr(profile, 'problems_solved', 0),
-            "easyCount": 0,
-            "mediumCount": 0,
-            "hardCount": 0,
-            "currentStreak": 0,
-            "longestStreak": 0,
-            "recentSubmissions": []
-        }
-        
-        return Response({"success": True, "data": data}, status=status.HTTP_200_OK)
+        try:
+            user = request.user
+            profile, created = UserProfile.objects.get_or_create(user=user)
+            
+            data = {
+                "totalProblems": 150,
+                "solvedProblems": getattr(profile, 'problems_solved', 0),
+                "easyCount": 0,
+                "mediumCount": 0,
+                "hardCount": 0,
+                "currentStreak": 0,
+                "longestStreak": 0,
+                "recentSubmissions": []
+            }
+            
+            return Response({"success": True, "data": data}, status=status.HTTP_200_OK)
+        except Exception as e:
+            logger.error(f"Error fetching UserStats: {str(e)}")
+            return Response(
+                {"success": False, "message": "Failed to fetch user stats"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 
 

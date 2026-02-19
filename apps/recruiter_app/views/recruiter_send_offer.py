@@ -47,18 +47,25 @@ class RecruiterSendOfferView(APIView):
                 fail_silently=False,
             )
 
-             
-            application.status = "ACCEPTED"
-            application.save()
+            try:
+                application.status = "ACCEPTED"
+                application.save()
 
-            return Response({
-                "success": True,
-                "message": "Offer email sent successfully and application accepted"
-            }, status=status.HTTP_200_OK)
+                return Response({
+                    "success": True,
+                    "message": "Offer email sent successfully and application accepted"
+                }, status=status.HTTP_200_OK)
+            except Exception as db_err:
+                return Response({
+                    "success": False,
+                    "message": "Offer email sent but failed to update application status.",
+                    "error": str(db_err)
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         except Exception as e:
             print(f"Error sending offer email: {str(e)}")
             return Response({
                 "success": False,
-                "message": "Something went wrong sending the offer email. Please try again."
+                "message": "Something went wrong sending the offer email. Please try again.",
+                "error": str(e)
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

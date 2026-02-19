@@ -43,88 +43,110 @@ class AiChatView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
  
-        if session_id:
-            try:
-                session = AiChatSession.objects.get(
-                    id=session_id,
-                    user=request.user
-                )
-            except (AiChatSession.DoesNotExist, ValueError):
-                return Response(
-                    {"success": False, "message": "Invalid session ID"},
-                    status=status.HTTP_404_NOT_FOUND
-                )
-        else:
-            title = message_content[:30] + (
-                "..." if len(message_content) > 30 else ""
-            )
-            session = AiChatSession.objects.create(
-                user=request.user,
-                title=title
-            )
-            logger.info(f"Created new AI chat session {session.id} for user {request.user.id}")
-
-         
-        AiChatMessage.objects.create(
-            session=session,
-            role="user",
-            content=message_content
-        )
-
-         
-        history = (
-            session.messages
-            .all()
-            .order_by("created_at")
-        )
-
-        messages = [
-            {"role": "system", "content": AI_TUTOR_SYSTEM_PROMPT}
-        ]
-
-        for msg in history:
-            messages.append(
-                {"role": msg.role, "content": msg.content}
-            )
-
         try:
-            response = groq_client.chat.completions.create(
-                model="llama-3.1-8b-instant",  # Working stable model
-                messages=messages,
-                temperature=0.3,
-                max_tokens=800,
+            if session_id:
+                try:
+                    session = AiChatSession.objects.get(
+                        id=session_id,
+                        user=request.user
+                    )
+                except (AiChatSession.DoesNotExist, ValueError):
+                    return Response(
+                        {"success": False, "message": "Invalid session ID"},
+                        status=status.HTTP_404_NOT_FOUND
+                    )
+            else:
+                title = message_content[:30] + (
+                    "..." if len(message_content) > 30 else ""
+                )
+                try:
+                    session = AiChatSession.objects.create(
+                        user=request.user,
+                        title=title
+                    )
+                    logger.info(f"Created new AI chat session {session.id} for user {request.user.id}")
+                except Exception as e:
+                    logger.error(f"Failed to create AiChatSession: {str(e)}")
+                    return Response(
+                        {"success": False, "message": "Failed to create chat session"},
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                    )
+
+            try:
+                AiChatMessage.objects.create(
+                    session=session,
+                    role="user",
+                    content=message_content
+                )
+            except Exception as e:
+                logger.error(f"Failed to create AiChatMessage (user): {str(e)}")
+                return Response(
+                    {"success": False, "message": "Failed to save message"},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
+
+            history = (
+                session.messages
+                .all()
+                .order_by("created_at")
             )
 
-            ai_reply = response.choices[0].message.content
+            messages = [
+                {"role": "system", "content": AI_TUTOR_SYSTEM_PROMPT}
+            ]
 
-             
-            AiChatMessage.objects.create(
-                session=session,
-                role="assistant",
-                content=ai_reply
-            )
+            for msg in history:
+                messages.append(
+                    {"role": msg.role, "content": msg.content}
+                )
 
-            return Response(
-                {
-                    "success": True,
-                    "reply": ai_reply,
-                    "session_id": session.id,
-                    "session_title": session.title
-                },
-                status=status.HTTP_200_OK
-            )
+            try:
+                response = groq_client.chat.completions.create(
+                    model="llama-3.1-8b-instant",
+                    messages=messages,
+                    temperature=0.3,
+                    max_tokens=800,
+                )
 
+                ai_reply = response.choices[0].message.content
+
+                try:
+                    AiChatMessage.objects.create(
+                        session=session,
+                        role="assistant",
+                        content=ai_reply
+                    )
+                except Exception as e:
+                    logger.error(f"Failed to create AiChatMessage (assistant): {str(e)}")
+                    # We still return the reply since the AI successfully generated it
+                
+                return Response(
+                    {
+                        "success": True,
+                        "reply": ai_reply,
+                        "session_id": session.id,
+                        "session_title": session.title
+                    },
+                    status=status.HTTP_200_OK
+                )
+
+            except Exception as e:
+                logger.error(f"Groq API Error: {str(e)}", exc_info=True, extra={
+                    'user_id': request.user.id,
+                    'session_id': session.id if 'session' in locals() else None
+                })
+                return Response(
+                    {
+                        "success": False,
+                        "message": "Groq API error",
+                        "error": str(e)
+                    },
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
         except Exception as e:
-            logger.error(f"Groq API Error: {str(e)}", exc_info=True, extra={
-                'user_id': request.user.id,
-                'session_id': session.id if 'session' in locals() else None
-            })
+            logger.error(f"Unexpected error in AiChatView: {str(e)}")
             return Response(
-                {
-                    "success": False,
-                    "message": "Groq API error",
-                    "error": str(e)
-                },
+                {"success": False, "message": "An unexpected error occurred"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
@@ -133,9 +155,19 @@ class AiSessionListView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        sessions = AiChatSession.objects.filter(user=request.user)
-        serializer = AiChatSessionListSerializer(sessions, many=True)
-        return Response(serializer.data)
+        try:
+            sessions = AiChatSession.objects.filter(user=request.user).order_by("-created_at")
+            serializer = AiChatSessionListSerializer(sessions, many=True)
+            return Response({
+                "success": True,
+                "data": serializer.data
+            }, status=status.HTTP_200_OK)
+        except Exception as e:
+            logger.error(f"Failed to fetch AI sessions: {str(e)}")
+            return Response({
+                "success": False,
+                "message": "Failed to fetch chat sessions"
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class AiSessionDetailView(APIView):
@@ -148,12 +180,21 @@ class AiSessionDetailView(APIView):
                 user=request.user
             )
             serializer = AiChatSessionSerializer(session)
-            return Response(serializer.data)
+            return Response({
+                "success": True,
+                "data": serializer.data
+            }, status=status.HTTP_200_OK)
         except (AiChatSession.DoesNotExist, ValueError):
             return Response(
-                {"message": "Session not found"},
+                {"success": False, "message": "Session not found"},
                 status=status.HTTP_404_NOT_FOUND
             )
+        except Exception as e:
+            logger.error(f"Failed to fetch AI session detail: {str(e)}")
+            return Response({
+                "success": False,
+                "message": "Failed to fetch session details"
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def delete(self, request, session_id):
         try:
@@ -163,11 +204,17 @@ class AiSessionDetailView(APIView):
             )
             session.delete()
             return Response(
-                {"success": True},
-                status=status.HTTP_204_NO_CONTENT
+                {"success": True, "message": "Session deleted successfully"},
+                status=status.HTTP_200_OK
             )
         except (AiChatSession.DoesNotExist, ValueError):
             return Response(
-                {"message": "Session not found"},
+                {"success": False, "message": "Session not found"},
                 status=status.HTTP_404_NOT_FOUND
             )
+        except Exception as e:
+            logger.error(f"Failed to delete AI session: {str(e)}")
+            return Response({
+                "success": False,
+                "message": "Failed to delete session"
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
