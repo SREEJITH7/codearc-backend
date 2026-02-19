@@ -1,24 +1,3 @@
-# # auth_app/services/email_service.py
-
-# from django.core.mail import send_mail
-# from django.conf import settings
-
-# def send_otp_email(email, otp):
-#     subject = "Your OTP Code"
-#     message = f"Your OTP code is {otp}. It expires in 5 minutes."
-
-#     print(f"The otp is {otp}")
-    
-#     send_mail(
-#         subject,
-#         message,
-#         settings.DEFAULT_FROM_EMAIL,
-#         [email],
-#     )
-
-
-# auth_app/services/email_service.py
-
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 
