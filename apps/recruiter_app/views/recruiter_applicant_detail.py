@@ -63,12 +63,24 @@ class RecruiterApplicationDetailView(APIView):
                         "profileImage": profile_image,
                     },
 
+                    "profile": {
+                        "about": application.aboutYourself,
+                        "skills": application.skills,
+                        "education": application.education,
+                        "experience": application.workExperience,
+                    },
+
                     "codingStats":{
                         **coding_stats,
                         "rank": rank,
                     },
 
                     "resume" : application.resume.url if application.resume else None,
+                    "certificates": {
+                        "plusTwo": application.plusTwoCertificate.url if application.plusTwoCertificate else None,
+                        "degree": application.degreeCertificate.url if application.degreeCertificate else None,
+                        "pg": application.pgCertificate.url if application.pgCertificate else None,
+                    },
                     "links": application.links,
 
 
@@ -76,70 +88,6 @@ class RecruiterApplicationDetailView(APIView):
             }
         }, status= status.HTTP_200_OK) 
     
-
-
-# class RecruiterUpdateApplicationStatusView(APIView):
-#     permission_classes = [IsAuthenticated]
-
-#     def patch(self, request, application_id):
-#         new_status = request.data.get("status")
-
-#         if not new_status:
-#             return Response(
-#                 {"success": False, "message": "Status is required"},
-#                 status=status.HTTP_400_BAD_REQUEST
-#             )
-
-#         new_status = new_status.upper()
-
-#         if new_status not in ["SHORTLISTED", "REJECTED", "ACCEPTED"]:
-#             return Response(
-#                 {"success": False, "message": "Invalid status"},
-#                 status=status.HTTP_400_BAD_REQUEST
-#             )
-
-#         try:
-#             application = Application.objects.get(
-#                 id=application_id,
-#                 job__recruiter=request.user
-#             )
-#         except Application.DoesNotExist:
-#             return Response(
-#                 {"success": False, "message": "Application not found"},
-#                 status=status.HTTP_404_NOT_FOUND
-#             )
-
-#         valid_transitions = {
-#             "PENDING": ["SHORTLISTED", "REJECTED"],
-#             "SHORTLISTED": ["ACCEPTED", "REJECTED"],
-#             "ACCEPTED": [],
-#             "REJECTED": [],
-#         }
-
-#         if (
-#             application.status not in valid_transitions or
-#             new_status not in valid_transitions[application.status]
-#         ):
-#             return Response(
-#                 {
-#                     "success": False,
-#                     "message": f"Invalid status transition from {application.status} to {new_status}"
-#                 },
-#                 status=status.HTTP_400_BAD_REQUEST
-#             )
-
-#         application.status = new_status
-#         application.save()
-
-#         return Response(
-#             {
-#                 "success": True,
-#                 "message": f"Application {new_status.lower()} successfully"
-#             },
-#             status=status.HTTP_200_OK
-#         )
-
-
 
 class RecruiterUpdateApplicationStatusView(APIView):
     permission_classes = [IsAuthenticated]
