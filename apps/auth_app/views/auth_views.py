@@ -342,83 +342,8 @@ class AdminLoginView(APIView):
         return response
 
 
-from rest_framework_simplejwt.views import TokenRefreshView
-
-
-class CookieTokenRefreshView(TokenRefreshView):
-  
-    def post(self, request, *args, **kwargs):
-        print("\n" + "="*60)
-        print("🔥 REFRESH TOKEN REQUEST RECEIVED")
-        print("="*60)
-        print(f"Origin: {request.META.get('HTTP_ORIGIN')}")
-        print(f"All cookies received: {request.COOKIES}")
-        print(f"refresh_token cookie: {request.COOKIES.get('refresh_token')}")
-        print(f"access_token cookie: {request.COOKIES.get('access_token')}")
-        print(f"Full headers: {dict(request.META)}")
-        print("="*60 + "\n")
-
-        refresh_token = request.COOKIES.get(settings.REFRESH_COOKIE_NAME)
-        
-        if not refresh_token:
-            print("❌ REFRESH TOKEN MISSING → RETURNING 401")
-            return Response({"detail": "Refresh token not found in cookie"}, status=401)
-
-        if not refresh_token:
-            return Response(
-                {"detail": "Refresh token not found"}, 
-                status=401
-            )
-            
-        mutable_data = request.data.copy()
-        mutable_data["refresh"] = refresh_token
-        request._data = mutable_data                      
-        
-        request.data['refresh'] = refresh_token
-        
-         
-        response = super().post(request, *args, **kwargs)
-        
-        if response.status_code == 200:
-            # 1. Update Access Token Cookie
-            response.set_cookie(
-                key=settings.ACCESS_COOKIE_NAME,
-                value=response.data["access"],
-                httponly=True,
-                secure=settings.COOKIE_SECURE,
-                samesite=settings.COOKIE_SAMESITE,
-                max_age=60 * 15,
-                path="/",
-            )
-
-            # 2. Update Refresh Token Cookie (if rotated)
-            if "refresh" in response.data:
-                response.set_cookie(
-                    key=settings.REFRESH_COOKIE_NAME,
-                    value=response.data["refresh"],
-                    httponly=True,
-                    secure=settings.COOKIE_SECURE,
-                    samesite=settings.COOKIE_SAMESITE,
-                    max_age=60 * 60 * 24 * 7,
-                    path="/",
-                )
-       
-            response.data = {"detail": "Token refreshed successfully"}
-        
-        return response
-
-
-# -------------------------------------------------------------------
-
-
-
-
-
-
-
  
 
- 
 
 GOOGLE_CLIENT_ID = settings.GOOGLE_CLIENT_ID
 GOOGLE_CLIENT_SECRET = settings.GOOGLE_CLIENT_SECRET
