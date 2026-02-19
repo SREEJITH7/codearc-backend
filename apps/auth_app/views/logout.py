@@ -28,8 +28,8 @@ class LogoutView(APIView):
                 logger.warning("Logout attempted but refresh token cookie was missing")
         except Exception as e:
             logger.error(f"Error blacklisting token during logout: {str(e)}")
-            # Even if blacklisting fails (e.g., token already invalid), 
-            # we continue to clear cookies for the user experience
+
+            
 
         response.delete_cookie(settings.ACCESS_COOKIE_NAME, path="/")
         response.delete_cookie(settings.REFRESH_COOKIE_NAME, path="/")

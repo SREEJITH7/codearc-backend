@@ -5,7 +5,6 @@
 from django.urls import path
 from .views.auth_views import (
     AdminLoginView,
-    CookieTokenRefreshView,
     ForgotPasswordOTPView,
     GoogleCallbackView,
     GoogleLoginView,
@@ -19,6 +18,7 @@ from .views.auth_views import (
     UserProfileView,
     UserStatsView,
     VerifyOTPView,
+    
     # need to change this to another
     AdminUserListView,
     ToggleUserStatusView,
@@ -28,6 +28,7 @@ from .views.auth_views import (
 )
 
 from .views.logout import LogoutView
+from .views.refresh_token import CookieTokenRefreshView
 
 urlpatterns = [
     path("signup/", SignupView.as_view(), name="signup"),
@@ -40,7 +41,7 @@ urlpatterns = [
     path("admin/login", AdminLoginView.as_view(), name="admin-login"),
     path("refresh-token/", CookieTokenRefreshView.as_view(), name="token_refresh"),
 
-    # GOOGLE OAUTH — WITH /api/auth/ prefix
+    
     path("google/login/", GoogleLoginView.as_view(), name="google-login"),
     path("google/callback/", GoogleCallbackView.as_view(), name="google-callback"),
 
