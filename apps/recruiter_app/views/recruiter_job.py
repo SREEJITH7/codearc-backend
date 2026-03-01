@@ -22,12 +22,12 @@ class RecruiterJobViewSet(ModelViewSet):
     def list(self, request, *args, **kwargs):
         try:
             queryset = self.get_queryset()
-            # Search filter
+             
             search = request.query_params.get('search', None)
             if search:
                 queryset = queryset.filter(title__icontains=search)
             
-            # Status filter mapping
+             
             status_filter = request.query_params.get('status', None)
             if status_filter:
                 status_mapping = {
@@ -39,7 +39,7 @@ class RecruiterJobViewSet(ModelViewSet):
                 if backend_status:
                     queryset = queryset.filter(status=backend_status)
             
-            # Work mode filter mapping
+             
             workmode_filter = request.query_params.get('workmode', None)
             if workmode_filter:
                 workmode_mapping = {
@@ -50,11 +50,10 @@ class RecruiterJobViewSet(ModelViewSet):
                 backend_workmode = workmode_mapping.get(workmode_filter.lower(), workmode_filter.upper())
                 queryset = queryset.filter(job_type=backend_workmode)
                  
-            # Work time filter
+             
             worktime_filter = request.query_params.get('worktime', None)
             if worktime_filter:
-                # Frontend sends 'full-time', 'part-time', etc.
-                # Backend model stores them as strings (e.g., 'full-time')
+                
                 queryset = queryset.filter(work_time__icontains=worktime_filter)
 
             try:
@@ -120,7 +119,6 @@ class RecruiterJobViewSet(ModelViewSet):
     @action(detail=False, methods=['get'], url_path='locations')
     def proxy_locations(self, request):
          
-        # Proxy location search to Nominatim API
         
         query = request.query_params.get('q')
         if not query:

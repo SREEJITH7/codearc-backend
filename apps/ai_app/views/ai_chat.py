@@ -1,220 +1,220 @@
-import logging
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from rest_framework import status
-from rest_framework.throttling import UserRateThrottle
-from django.conf import settings
+# import logging
+# from rest_framework.views import APIView
+# from rest_framework.response import Response
+# from rest_framework.permissions import IsAuthenticated
+# from rest_framework import status
+# from rest_framework.throttling import UserRateThrottle
+# from django.conf import settings
 
-from groq import Groq
+# from groq import Groq
 
-from apps.ai_app.utils.prompts import AI_TUTOR_SYSTEM_PROMPT
-from apps.ai_app.models import AiChatSession, AiChatMessage
-from apps.ai_app.serializers import (
-    AiChatSessionSerializer,
-    AiChatSessionListSerializer,
-)
+# from apps.ai_app.utils.prompts import AI_TUTOR_SYSTEM_PROMPT
+# from apps.ai_app.models import AiChatSession, AiChatMessage
+# from apps.ai_app.serializers import (
+#     AiChatSessionSerializer,
+#     AiChatSessionListSerializer,
+# )
 
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
 
  
-groq_client = Groq(api_key=settings.GROQ_API_KEY)
+# groq_client = Groq(api_key=settings.GROQ_API_KEY)
 
 
-class AiChatThrottle(UserRateThrottle):
-    scope = "ai_chat"
-    rate = "20/day"
+# class AiChatThrottle(UserRateThrottle):
+#     scope = "ai_chat"
+#     rate = "20/day"
 
 
-class AiChatView(APIView):
-    permission_classes = [IsAuthenticated]
-    throttle_classes = [AiChatThrottle]
+# class AiChatView(APIView):
+#     permission_classes = [IsAuthenticated]
+#     throttle_classes = [AiChatThrottle]
 
-    def post(self, request):
-        message_content = request.data.get("message")
-        session_id = request.data.get("session_id")
+#     def post(self, request):
+#         message_content = request.data.get("message")
+#         session_id = request.data.get("session_id")
         
-        logger.info(f"AI Chat request from user {request.user.id} (Session: {session_id})")
+#         logger.info(f"AI Chat request from user {request.user.id} (Session: {session_id})")
 
-        if not message_content:
-            return Response(
-                {"success": False, "message": "Message is required"},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+#         if not message_content:
+#             return Response(
+#                 {"success": False, "message": "Message is required"},
+#                 status=status.HTTP_400_BAD_REQUEST
+#             )
  
-        try:
-            if session_id:
-                try:
-                    session = AiChatSession.objects.get(
-                        id=session_id,
-                        user=request.user
-                    )
-                except (AiChatSession.DoesNotExist, ValueError):
-                    return Response(
-                        {"success": False, "message": "Invalid session ID"},
-                        status=status.HTTP_404_NOT_FOUND
-                    )
-            else:
-                title = message_content[:30] + (
-                    "..." if len(message_content) > 30 else ""
-                )
-                try:
-                    session = AiChatSession.objects.create(
-                        user=request.user,
-                        title=title
-                    )
-                    logger.info(f"Created new AI chat session {session.id} for user {request.user.id}")
-                except Exception as e:
-                    logger.error(f"Failed to create AiChatSession: {str(e)}")
-                    return Response(
-                        {"success": False, "message": "Failed to create chat session"},
-                        status=status.HTTP_500_INTERNAL_SERVER_ERROR
-                    )
+#         try:
+#             if session_id:
+#                 try:
+#                     session = AiChatSession.objects.get(
+#                         id=session_id,
+#                         user=request.user
+#                     )
+#                 except (AiChatSession.DoesNotExist, ValueError):
+#                     return Response(
+#                         {"success": False, "message": "Invalid session ID"},
+#                         status=status.HTTP_404_NOT_FOUND
+#                     )
+#             else:
+#                 title = message_content[:30] + (
+#                     "..." if len(message_content) > 30 else ""
+#                 )
+#                 try:
+#                     session = AiChatSession.objects.create(
+#                         user=request.user,
+#                         title=title
+#                     )
+#                     logger.info(f"Created new AI chat session {session.id} for user {request.user.id}")
+#                 except Exception as e:
+#                     logger.error(f"Failed to create AiChatSession: {str(e)}")
+#                     return Response(
+#                         {"success": False, "message": "Failed to create chat session"},
+#                         status=status.HTTP_500_INTERNAL_SERVER_ERROR
+#                     )
 
-            try:
-                AiChatMessage.objects.create(
-                    session=session,
-                    role="user",
-                    content=message_content
-                )
-            except Exception as e:
-                logger.error(f"Failed to create AiChatMessage (user): {str(e)}")
-                return Response(
-                    {"success": False, "message": "Failed to save message"},
-                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
-                )
+#             try:
+#                 AiChatMessage.objects.create(
+#                     session=session,
+#                     role="user",
+#                     content=message_content
+#                 )
+#             except Exception as e:
+#                 logger.error(f"Failed to create AiChatMessage (user): {str(e)}")
+#                 return Response(
+#                     {"success": False, "message": "Failed to save message"},
+#                     status=status.HTTP_500_INTERNAL_SERVER_ERROR
+#                 )
 
-            history = (
-                session.messages
-                .all()
-                .order_by("created_at")
-            )
+#             history = (
+#                 session.messages
+#                 .all()
+#                 .order_by("created_at")
+#             )
 
-            messages = [
-                {"role": "system", "content": AI_TUTOR_SYSTEM_PROMPT}
-            ]
+#             messages = [
+#                 {"role": "system", "content": AI_TUTOR_SYSTEM_PROMPT}
+#             ]
 
-            for msg in history:
-                messages.append(
-                    {"role": msg.role, "content": msg.content}
-                )
+#             for msg in history:
+#                 messages.append(
+#                     {"role": msg.role, "content": msg.content}
+#                 )
 
-            try:
-                response = groq_client.chat.completions.create(
-                    model="llama-3.1-8b-instant",
-                    messages=messages,
-                    temperature=0.3,
-                    max_tokens=800,
-                )
+#             try:
+#                 response = groq_client.chat.completions.create(
+#                     model="llama-3.1-8b-instant",
+#                     messages=messages,
+#                     temperature=0.3,
+#                     max_tokens=800,
+#                 )
 
-                ai_reply = response.choices[0].message.content
+#                 ai_reply = response.choices[0].message.content
 
-                try:
-                    AiChatMessage.objects.create(
-                        session=session,
-                        role="assistant",
-                        content=ai_reply
-                    )
-                except Exception as e:
-                    logger.error(f"Failed to create AiChatMessage (assistant): {str(e)}")
-                    # We still return the reply since the AI successfully generated it
+#                 try:
+#                     AiChatMessage.objects.create(
+#                         session=session,
+#                         role="assistant",
+#                         content=ai_reply
+#                     )
+#                 except Exception as e:
+#                     logger.error(f"Failed to create AiChatMessage (assistant): {str(e)}")
+                     
                 
-                return Response(
-                    {
-                        "success": True,
-                        "reply": ai_reply,
-                        "session_id": session.id,
-                        "session_title": session.title
-                    },
-                    status=status.HTTP_200_OK
-                )
+#                 return Response(
+#                     {
+#                         "success": True,
+#                         "reply": ai_reply,
+#                         "session_id": session.id,
+#                         "session_title": session.title
+#                     },
+#                     status=status.HTTP_200_OK
+#                 )
 
-            except Exception as e:
-                logger.error(f"Groq API Error: {str(e)}", exc_info=True, extra={
-                    'user_id': request.user.id,
-                    'session_id': session.id if 'session' in locals() else None
-                })
-                return Response(
-                    {
-                        "success": False,
-                        "message": "Groq API error",
-                        "error": str(e)
-                    },
-                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
-                )
-        except Exception as e:
-            logger.error(f"Unexpected error in AiChatView: {str(e)}")
-            return Response(
-                {"success": False, "message": "An unexpected error occurred"},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-
-
-class AiSessionListView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        try:
-            sessions = AiChatSession.objects.filter(user=request.user).order_by("-created_at")
-            serializer = AiChatSessionListSerializer(sessions, many=True)
-            return Response({
-                "success": True,
-                "data": serializer.data
-            }, status=status.HTTP_200_OK)
-        except Exception as e:
-            logger.error(f"Failed to fetch AI sessions: {str(e)}")
-            return Response({
-                "success": False,
-                "message": "Failed to fetch chat sessions"
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+#             except Exception as e:
+#                 logger.error(f"Groq API Error: {str(e)}", exc_info=True, extra={
+#                     'user_id': request.user.id,
+#                     'session_id': session.id if 'session' in locals() else None
+#                 })
+#                 return Response(
+#                     {
+#                         "success": False,
+#                         "message": "Groq API error",
+#                         "error": str(e)
+#                     },
+#                     status=status.HTTP_500_INTERNAL_SERVER_ERROR
+#                 )
+#         except Exception as e:
+#             logger.error(f"Unexpected error in AiChatView: {str(e)}")
+#             return Response(
+#                 {"success": False, "message": "An unexpected error occurred"},
+#                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
+#             )
 
 
-class AiSessionDetailView(APIView):
-    permission_classes = [IsAuthenticated]
+# class AiSessionListView(APIView):
+#     permission_classes = [IsAuthenticated]
 
-    def get(self, request, session_id):
-        try:
-            session = AiChatSession.objects.get(
-                id=session_id,
-                user=request.user
-            )
-            serializer = AiChatSessionSerializer(session)
-            return Response({
-                "success": True,
-                "data": serializer.data
-            }, status=status.HTTP_200_OK)
-        except (AiChatSession.DoesNotExist, ValueError):
-            return Response(
-                {"success": False, "message": "Session not found"},
-                status=status.HTTP_404_NOT_FOUND
-            )
-        except Exception as e:
-            logger.error(f"Failed to fetch AI session detail: {str(e)}")
-            return Response({
-                "success": False,
-                "message": "Failed to fetch session details"
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+#     def get(self, request):
+#         try:
+#             sessions = AiChatSession.objects.filter(user=request.user).order_by("-created_at")
+#             serializer = AiChatSessionListSerializer(sessions, many=True)
+#             return Response({
+#                 "success": True,
+#                 "data": serializer.data
+#             }, status=status.HTTP_200_OK)
+#         except Exception as e:
+#             logger.error(f"Failed to fetch AI sessions: {str(e)}")
+#             return Response({
+#                 "success": False,
+#                 "message": "Failed to fetch chat sessions"
+#             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    def delete(self, request, session_id):
-        try:
-            session = AiChatSession.objects.get(
-                id=session_id,
-                user=request.user
-            )
-            session.delete()
-            return Response(
-                {"success": True, "message": "Session deleted successfully"},
-                status=status.HTTP_200_OK
-            )
-        except (AiChatSession.DoesNotExist, ValueError):
-            return Response(
-                {"success": False, "message": "Session not found"},
-                status=status.HTTP_404_NOT_FOUND
-            )
-        except Exception as e:
-            logger.error(f"Failed to delete AI session: {str(e)}")
-            return Response({
-                "success": False,
-                "message": "Failed to delete session"
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# class AiSessionDetailView(APIView):
+#     permission_classes = [IsAuthenticated]
+
+#     def get(self, request, session_id):
+#         try:
+#             session = AiChatSession.objects.get(
+#                 id=session_id,
+#                 user=request.user
+#             )
+#             serializer = AiChatSessionSerializer(session)
+#             return Response({
+#                 "success": True,
+#                 "data": serializer.data
+#             }, status=status.HTTP_200_OK)
+#         except (AiChatSession.DoesNotExist, ValueError):
+#             return Response(
+#                 {"success": False, "message": "Session not found"},
+#                 status=status.HTTP_404_NOT_FOUND
+#             )
+#         except Exception as e:
+#             logger.error(f"Failed to fetch AI session detail: {str(e)}")
+#             return Response({
+#                 "success": False,
+#                 "message": "Failed to fetch session details"
+#             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+#     def delete(self, request, session_id):
+#         try:
+#             session = AiChatSession.objects.get(
+#                 id=session_id,
+#                 user=request.user
+#             )
+#             session.delete()
+#             return Response(
+#                 {"success": True, "message": "Session deleted successfully"},
+#                 status=status.HTTP_200_OK
+#             )
+#         except (AiChatSession.DoesNotExist, ValueError):
+#             return Response(
+#                 {"success": False, "message": "Session not found"},
+#                 status=status.HTTP_404_NOT_FOUND
+#             )
+#         except Exception as e:
+#             logger.error(f"Failed to delete AI session: {str(e)}")
+#             return Response({
+#                 "success": False,
+#                 "message": "Failed to delete session"
+#             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

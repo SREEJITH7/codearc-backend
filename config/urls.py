@@ -27,7 +27,7 @@ urlpatterns = [
     path("api/admin/", include("apps.admin_app.urls")),
     path('api/ai/',include("apps.ai_app.urls")),
     path("api/", include("apps.problem_app.urls")),
-
+    path("api/subscription/", include('apps.subscription_app.urls')),
 
     
 

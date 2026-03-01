@@ -3,51 +3,6 @@ from apps.problem_app.models import Submission
 from django.contrib.auth import get_user_model
 from django.db.models import Count, Q
 
-# def calculate_coding_stats(user):
-#     cache_key = f"user_coding_stats_{user.id}"
-#     cached_stats = cache.get(cache_key)
-#     if cached_stats:
-#         return cached_stats
-
-#     # High-performance database aggregation
-#     stats_data = Submission.objects.filter(user=user).aggregate(
-#         total_attempts=Count('id'),
-#         accepted_count=Count('id', filter=Q(status='Accepted')),
-#         easy=Count('id', filter=Q(status='Accepted', problem__difficulty='EASY')),
-#         medium=Count('id', filter=Q(status='Accepted', problem__difficulty='MEDIUM')),
-#         hard=Count('id', filter=Q(status='Accepted', problem__difficulty='HARD')),
-#         total_solved=Count('problem', distinct=True, filter=Q(status='Accepted'))
-#     )
-
-#     total_attempts = stats_data['total_attempts']
-#     accepted_count = stats_data['accepted_count']
-    
-#     acceptance_rate = (
-#         round((accepted_count / total_attempts) * 100, 2)
-#         if total_attempts > 0
-#         else 0.0
-#     )
-    
-#     easy = stats_data['easy']
-#     medium = stats_data['medium']
-#     hard = stats_data['hard']
-    
-#     coding_score = (easy * 1) + (medium * 3) + (hard * 6)
-
-#     stats = {
-#         "easy": easy,
-#         "medium": medium,
-#         "hard": hard,
-#         "totalSolved": stats_data['total_solved'],
-#         "acceptanceRate": acceptance_rate,
-#         "score": coding_score,
-#     }
-    
-#     # Cache for 10 minutes
-#     cache.set(cache_key, stats, 600)
-#     return stats
-
-
 
 
 def calculate_coding_stats(user):

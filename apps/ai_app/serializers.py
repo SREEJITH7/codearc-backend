@@ -29,7 +29,7 @@ class AiChatSessionSerializer(serializers.ModelSerializer):
         read_only_fields = fields
 
     def get_messages(self, obj):
-        # Always return messages in chronological order
+            
         messages = obj.messages.all().order_by("created_at")
         return AiChatMessageSerializer(messages, many=True).data
 

@@ -4,10 +4,19 @@ from rest_framework import status
 from ..models import Problem, TestCases
 from ..judge.dispatcher import dispatch
 from ..judge.comparison import judge
+import logging
+from apps.subscription_app.services.subscription_services.feature_code import can_run_code
 
+logger = logging.getLogger(__name__)
 
 class RunCodeView(APIView):
     def post(self, request):
+
+        allowed, info = can_run_code(request.user)
+
+        if not allowed:
+            return Response(info, status=403)
+
         try:
             problem_id = request.data.get("problem_id")
             code = request.data.get("code")

@@ -25,6 +25,8 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
+STRIPE_WEBHOOK_SECRET  = os.getenv("STRIPE_WEBHOOK_SECRET")
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-*761tkjr1*u446utbrzc1agu+h)6q!#jwpywz%^5w474rsy08'
@@ -32,10 +34,10 @@ SECRET_KEY = 'django-insecure-*761tkjr1*u446utbrzc1agu+h)6q!#jwpywz%^5w474rsy08'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# IMPORTANT: include hosts you use in dev
+ 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
-# Application definition
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,6 +56,7 @@ INSTALLED_APPS = [
     'apps.problem_app',
     'rest_framework_simplejwt.token_blacklist',
     'apps.ai_app',
+    'apps.subscription_app',
 ]
 
 MIDDLEWARE = [
