@@ -10,11 +10,8 @@ from django.db.models import Exists, OuterRef , Q, Value, BooleanField
 
 
 class UserJobListView(APIView):
-    """
-    View for users to browse all active job postings
-    Includes pagination, search, and filters
-    """
-    permission_classes = []  # Public access or authenticated users
+    
+    permission_classes = []   
 
     def get(self, request):
         try:
@@ -68,12 +65,12 @@ class UserJobListView(APIView):
             if worktime_filter:
                 queryset = queryset.filter(work_time__iexact=worktime_filter)
 
-            # Location filter
+             
             location_filter = request.query_params.get('location', None)
             if location_filter:
                 queryset = queryset.filter(location__icontains=location_filter)
 
-            # Skills filter
+             
             skills_filter = request.query_params.get('skills', None)
             if skills_filter:
                 skills_list = [s.strip() for s in skills_filter.split(',') if s.strip()]
@@ -118,20 +115,26 @@ class UserJobListView(APIView):
 
 
 class SingleJobView(APIView):
-    """
-    View to get a single job by ID
-    """
+  
     permission_classes = []   
 
     def get(self, request, job_id):
         try:
-            # Allow fetching the job even if it is CLOSED (so candidates see the 'closed' message)
+             
             job = Job.objects.get(id=job_id)
             serializer = JobSerializer(job, context={'request': request})
             
+            data = serializer.data
+            
+             
+            if request.user.is_authenticated:
+                application = Application.objects.filter(job=job, user=request.user).first()
+                if application:
+                    data['application'] = ApplicationSerializer(application).data
+            
             return Response({
                 'success': True,
-                'data': serializer.data
+                'data': data
             })
         
         except Job.DoesNotExist:
@@ -142,9 +145,7 @@ class SingleJobView(APIView):
 
 
 class JobApplicationView(APIView):
-    """
-    View to handle job application submissions
-    """
+     
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
@@ -192,14 +193,14 @@ class JobApplicationView(APIView):
                     "message": "Job not found"
                 }, status=status.HTTP_404_NOT_FOUND)
 
-            # Check if user already applied
+             
             if Application.objects.filter(job=job, user=request.user).exists():
                 return Response({
                     'success': False,
                     'message': 'You have already applied to this job'
                 }, status=status.HTTP_400_BAD_REQUEST)
 
-            # Create the application
+             
             serializer = ApplicationSerializer(data=data)
             
             if serializer.is_valid():
