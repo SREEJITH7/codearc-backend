@@ -28,6 +28,7 @@ urlpatterns = [
     path('api/ai/',include("apps.ai_app.urls")),
     path("api/", include("apps.problem_app.urls")),
     path("api/subscription/", include('apps.subscription_app.urls')),
+    path("api/chat/", include("apps.chat_app.urls")),
 
     
 

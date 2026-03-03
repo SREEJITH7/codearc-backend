@@ -39,6 +39,8 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',  
     'rest_framework',
+    
 
     # Local apps
     
@@ -57,6 +60,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'apps.ai_app',
     'apps.subscription_app',
+    'apps.chat_app',
 ]
 
 MIDDLEWARE = [
@@ -286,5 +290,15 @@ DEFAULT_FROM_EMAIL = "CodeArc <yourgmail@gmail.com>"
 
 
 
+ASGI_APPLICATION = "config.asgi.application"
 
-    
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+            "capacity": 5000,
+            "expiry": 60,
+        },
+    },
+}
