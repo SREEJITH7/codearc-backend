@@ -74,8 +74,13 @@ class SubscribeView(APIView):
         # Create/Get Stripe customer
         customer_id = create_stripe_customer(request.user)
 
-        success_url = "http://localhost:5173/user/profile?showSubscriptionSuccess=true"
-        cancel_url = "http://localhost:5173/user/profile"
+        # Build role-based URLs
+        if request.user.role == 'recruiter':
+            success_url = "http://localhost:5173/recruiter/profile?showSubscriptionSuccess=true"
+            cancel_url = "http://localhost:5173/recruiter/profile"
+        else:
+            success_url = "http://localhost:5173/user/profile?showSubscriptionSuccess=true"
+            cancel_url = "http://localhost:5173/user/profile"
 
         try:
             # Create PENDING subscription record BEFORE checkout
@@ -156,13 +161,13 @@ class CurrentSubscriptionView(APIView):
         serializer = SubscriptionSerializer(subscription)
 
         feature_access = {}
-        if request.user.role == 'USER':
+        if request.user.role == 'user':
             allowed, info = can_use_ai_tutor(request.user)
             feature_access['ai_tutor'] = {
                 "allowed": allowed,
                 **info
             }
-        elif request.user.role == 'RECRUITER':
+        elif request.user.role == 'recruiter':
             allowed, message = can_post_job(request.user)
             feature_access['can_post_job'] = allowed
             feature_access['job_limit_message'] = message
@@ -243,9 +248,10 @@ class CreatePortalSessionView(APIView):
             )
 
         try:
+            return_url = "http://localhost:5173/recruiter/subscription" if request.user.role == 'recruiter' else "http://localhost:5173/user/subscription"
             portal_session = create_stripe_portal_session(
                 subscription.stripe_customer_id,
-                "http://localhost:5173/user/subscription"
+                return_url
             )
             return Response({"url": portal_session.url}, status=status.HTTP_200_OK)
         except Exception as e:
