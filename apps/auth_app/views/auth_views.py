@@ -153,11 +153,11 @@ class LoginView(APIView):
             "user": {"id": user.id, "email": user.email, "role": user.role},
         }, status=200)
         
-        response.set_cookie(key=settings.ACCESS_COOKIE_NAME, value=access_token,
+        response.set_cookie(key=settings.USER_ACCESS_COOKIE, value=access_token,
                             httponly=True, secure=settings.COOKIE_SECURE,
                             samesite=settings.COOKIE_SAMESITE, max_age=60*15, path="/")
         
-        response.set_cookie(key=settings.REFRESH_COOKIE_NAME, value=refresh_token,
+        response.set_cookie(key=settings.USER_REFRESH_COOKIE, value=refresh_token,
                             httponly=True, secure=settings.COOKIE_SECURE,
                             samesite=settings.COOKIE_SAMESITE, max_age=60*60*24*7, path="/")
         
@@ -200,7 +200,7 @@ class RecruiterLoginView(APIView):
         })
 
         response.set_cookie(
-            key=settings.ACCESS_COOKIE_NAME,
+            key=settings.RECRUITER_ACCESS_COOKIE,
             value=access_token,
             httponly=settings.COOKIE_HTTPONLY,
             secure=settings.COOKIE_SECURE,
@@ -210,7 +210,7 @@ class RecruiterLoginView(APIView):
         )
 
         response.set_cookie(
-            key=settings.REFRESH_COOKIE_NAME,
+            key=settings.RECRUITER_REFRESH_COOKIE,
             value=refresh_token,
             httponly=settings.COOKIE_HTTPONLY,
             secure=settings.COOKIE_SECURE,
@@ -315,7 +315,7 @@ class AdminLoginView(APIView):
 
         
         response.set_cookie(
-            key=settings.ACCESS_COOKIE_NAME,
+            key=settings.ADMIN_ACCESS_COOKIE,
             value=access_token,
             httponly=True,
             secure=settings.COOKIE_SECURE,
@@ -325,7 +325,7 @@ class AdminLoginView(APIView):
         )
 
         response.set_cookie(
-            key=settings.REFRESH_COOKIE_NAME,
+            key=settings.ADMIN_REFRESH_COOKIE,
             value=refresh_token,
             httponly=True,
             secure=settings.COOKIE_SECURE,

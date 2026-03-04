@@ -16,20 +16,23 @@ class NotificationService:
             description=description,
             link=link
         )
-        print(f"Sending notification to group user_{recipient.id}")
         # Send real-time event
         channel_layer = get_channel_layer()
 
         company_name = getattr(sender.recruiter_profile, 'company_name', None) if sender and hasattr(sender, 'recruiter_profile') else None
 
+        group_name = f"user_{str(recipient.id).replace('-', '')}"
         async_to_sync(channel_layer.group_send)(
-            f"user_{recipient.id}",
+            group_name,
             {
                 "type": "send_notification",
+                "id": notification.id,
                 "title": title,
                 "description": description,
                 "link": link,
                 "sender_company_name": company_name,
+                "is_read": False,
+                "created_at": notification.created_at.isoformat(),
             }
         )
 

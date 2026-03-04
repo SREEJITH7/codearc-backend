@@ -10,11 +10,24 @@ logger = logging.getLogger(__name__)
 
 class CookieTokenRefreshView(TokenRefreshView):
     def post(self, request, *args, **kwargs):
+        role = request.data.get("role", "user")
+        
+        # Determine cookie names based on role
+        if role == "admin":
+            access_cookie = settings.ADMIN_ACCESS_COOKIE
+            refresh_cookie = settings.ADMIN_REFRESH_COOKIE
+        elif role == "recruiter":
+            access_cookie = settings.RECRUITER_ACCESS_COOKIE
+            refresh_cookie = settings.RECRUITER_REFRESH_COOKIE
+        else:
+            access_cookie = settings.USER_ACCESS_COOKIE
+            refresh_cookie = settings.USER_REFRESH_COOKIE
+
         # 1. Get refresh token from cookie
-        refresh_token = request.COOKIES.get(settings.REFRESH_COOKIE_NAME)
+        refresh_token = request.COOKIES.get(refresh_cookie)
         
         if not refresh_token:
-            logger.warning("Token Refresh: Refresh token missing from cookies")
+            logger.warning(f"Token Refresh: {role} Refresh token missing from cookies")
             return Response(
                 {"success": False, "message": "Refresh token not found"},
                 status=status.HTTP_401_UNAUTHORIZED
@@ -26,7 +39,7 @@ class CookieTokenRefreshView(TokenRefreshView):
         try:
             serializer.is_valid(raise_exception=True)
         except (InvalidToken, TokenError) as e:
-            logger.error(f"Token Refresh Failed: {str(e)}")
+            logger.error(f"Token Refresh Failed for {role}: {str(e)}")
             return Response(
                 {"success": False, "message": str(e)}, 
                 status=status.HTTP_401_UNAUTHORIZED
@@ -43,7 +56,7 @@ class CookieTokenRefreshView(TokenRefreshView):
 
         # 4. Set access token cookie
         response.set_cookie(
-            key=settings.ACCESS_COOKIE_NAME,
+            key=access_cookie,
             value=access_token,
             httponly=True,
             secure=settings.COOKIE_SECURE,
@@ -55,7 +68,7 @@ class CookieTokenRefreshView(TokenRefreshView):
         # 5. Set new refresh token cookie if rotation is enabled
         if new_refresh_token:
             response.set_cookie(
-                key=settings.REFRESH_COOKIE_NAME,
+                key=refresh_cookie,
                 value=new_refresh_token,
                 httponly=True,
                 secure=settings.COOKIE_SECURE,
@@ -63,8 +76,8 @@ class CookieTokenRefreshView(TokenRefreshView):
                 max_age=60 * 60 * 24 * 7,
                 path="/",
             )
-            logger.info("Access and Refresh tokens rotated successfully")
+            logger.info(f"Access and Refresh tokens rotated successfully for {role}")
         else:
-            logger.info("Access token renewed successfully")
+            logger.info(f"Access token renewed successfully for {role}")
 
         return response

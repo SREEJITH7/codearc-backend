@@ -91,6 +91,10 @@ class RecruiterApplicationDetailView(APIView):
 
 class RecruiterUpdateApplicationStatusView(APIView):
     permission_classes = [IsAuthenticated]
+    http_method_names = ['patch', 'options']
+
+    def options(self, request, *args, **kwargs):
+        return Response(status=status.HTTP_200_OK)
 
     def patch(self, request, application_id):
         new_status = request.data.get("status")

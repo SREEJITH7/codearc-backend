@@ -34,8 +34,7 @@ SECRET_KEY = 'django-insecure-*761tkjr1*u446utbrzc1agu+h)6q!#jwpywz%^5w474rsy08'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
- 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0", "*"]
 
 
 INSTALLED_APPS = [
@@ -69,10 +68,10 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "common.middleware.jwt_cookie_middleware.JwtCookieToHeaderMiddleware",  # Move before auth
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "common.middleware.jwt_cookie_middleware.JwtCookieToHeaderMiddleware",  # your custom middleware
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -158,12 +157,15 @@ SIMPLE_JWT = {
 # ============================================================================
 # CORS CONFIGURATION (for frontend on localhost:5173)
 # ============================================================================
-CORS_ALLOW_CREDENTIALS = True
-
+CORS_ALLOW_ALL_ORIGINS = False  # MUST be False if using credentials/cookies
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "http://localhost:5174",
+    "http://127.0.0.1:5174",
 ]
+
+CORS_ALLOW_CREDENTIALS = True
 
 # Explicitly list all headers to avoid any default misses
 CORS_ALLOW_HEADERS = [
@@ -176,7 +178,6 @@ CORS_ALLOW_HEADERS = [
     "user-agent",
     "x-csrftoken",
     "x-requested-with",
-    "access-control-allow-origin",
 ]
 
 # Explicitly list all methods including PATCH
@@ -201,8 +202,10 @@ CORS_PREFLIGHT_MAX_AGE = 0
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "http://localhost:5174",    
-    "http://127.0.0.1:5174",    
+    "http://localhost:5174",
+    "http://127.0.0.1:5174",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
 ]
 
 
@@ -216,7 +219,17 @@ SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = "Lax"
 
-# JWT cookie names used by your app
+# JWT role-specific cookie names
+USER_ACCESS_COOKIE = "user_access_token"
+USER_REFRESH_COOKIE = "user_refresh_token"
+
+RECRUITER_ACCESS_COOKIE = "recruiter_access_token"
+RECRUITER_REFRESH_COOKIE = "recruiter_refresh_token"
+
+ADMIN_ACCESS_COOKIE = "admin_access_token"
+ADMIN_REFRESH_COOKIE = "admin_refresh_token"
+
+# Deprecated: use role-specific ones above
 ACCESS_COOKIE_NAME = "access_token"
 REFRESH_COOKIE_NAME = "refresh_token"
 
@@ -234,9 +247,8 @@ SESSION_COOKIE_DOMAIN = None
 
 
 
-DEBUG = True
-
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+# DEBUG = True (Already set above)
+# ALLOWED_HOSTS = ["localhost", "127.0.0.1"] (Already set above)
 
 
 X_FRAME_OPTIONS = "ALLOWALL"  
