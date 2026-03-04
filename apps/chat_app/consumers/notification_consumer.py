@@ -8,12 +8,10 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         user = self.scope.get("user")
         
         if not user or user.is_anonymous:
-            print("Anonymous connection attempt to Notification socket. Closing.")
             await self.close()
             return
 
-        self.group_name = f"user_{user.id}"
-        print(f"🔔 Notification socket connecting for user: {user.id}")
+        self.group_name = f"user_{str(user.id).replace('-', '')}"
 
         await self.channel_layer.group_add(
             self.group_name,
@@ -21,24 +19,22 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         )
 
         await self.accept()
-        print(f"✅ Notification socket connected for user: {user.id}")
 
-    async def disconnect(self, close_code):
         if hasattr(self, 'group_name'):
             await self.channel_layer.group_discard(
                 self.group_name,
                 self.channel_name
             )
-            print(f"❌ Notification socket disconnected for user: {self.scope.get('user').id}")
 
     async def send_notification(self, event):
-        # This matches the structure sent from NotificationService.create_and_send
-        print(f"📢 Sending real-time notification to user {self.scope.get('user').id}: {event.get('title')}")
         await self.send(text_data=json.dumps({
             "type": "notification",
+            "id": event.get("id"),
             "title": event.get("title"),
             "description": event.get("description"),
             "link": event.get("link"),
             "sender_company_name": event.get("sender_company_name"),
+            "is_read": event.get("is_read"),
+            "created_at": event.get("created_at"),
         }))
 

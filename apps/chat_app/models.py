@@ -71,8 +71,9 @@ class Notification(models.Model):
     NOTIFICATION_TYPES = (
         ("MESSAGE", "Message"),
         ("SHORTLIST", "Shortlisted"),
-        ("ACCEPTED", "Accepted"),
-        ("REJECTED", "Rejected"),
+        ("OFFER", "Accepted"),
+        ("REJECTION", "Rejected"),
+        ("TEST", "Test"),
     )
 
     recipient = models.ForeignKey(

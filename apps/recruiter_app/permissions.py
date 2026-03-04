@@ -7,3 +7,4 @@ class Isrecruiter(BasePermission):
             request.user.role == 'recruiter'
         )
 
+

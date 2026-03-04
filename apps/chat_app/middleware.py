@@ -15,24 +15,52 @@ def get_user_from_token(token):
         user_id = access_token["user_id"]
         return User.objects.get(id=user_id)
     except Exception as e:
-        print("JWT ERROR:", e)
+        import traceback
+        print(f"JWT AUTH ERROR: {str(e)}")
+        traceback.print_exc()
         return AnonymousUser()
 
 
 class JWTAuthMiddleware(BaseMiddleware):
     async def __call__(self, scope, receive, send):
+        from django.conf import settings
+        
+        token = None
+        
+        # 1. Try Query String
         query_string = parse_qs(scope["query_string"].decode())
-        token = query_string.get("token")
+        if "token" in query_string:
+            token = query_string["token"][0]
+            
+        # 2. Try Cookies from Headers (Handles HttpOnly)
+        if not token:
+            headers = dict(scope.get("headers", []))
+            if b"cookie" in headers:
+                cookies_str = headers[b"cookie"].decode()
+                cookies = {}
+                for item in cookies_str.split(";"):
+                    if "=" in item:
+                        k, v = item.split("=", 1)
+                        cookies[k.strip()] = v.strip()
+                
+                possible_cookies = [
+                    getattr(settings, "USER_ACCESS_COOKIE", "user_access_token"),
+                    getattr(settings, "RECRUITER_ACCESS_COOKIE", "recruiter_access_token"),
+                    getattr(settings, "ADMIN_ACCESS_COOKIE", "admin_access_token"),
+                    "access_token"
+                ]
+                
+                for cookie_name in possible_cookies:
+                    if cookie_name in cookies:
+                        token = cookies[cookie_name]
+                        break
 
         if token:
-            scope["user"] = await get_user_from_token(token[0])
-            print("Connected user:", scope["user"])
+            scope["user"] = await get_user_from_token(token)
         else:
             scope["user"] = AnonymousUser()
-            print("User is anonymous")
 
         return await super().__call__(scope, receive, send)
-
 
 def JWTAuthMiddlewareStack(inner):
     return JWTAuthMiddleware(inner)
