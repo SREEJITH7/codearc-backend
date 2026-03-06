@@ -13,6 +13,15 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
             "linkedin",
             "github",
             "resume",
+            "phone",
+            "location",
+            "highest_qualification",
+            "specialization",
+            "institution",
+            "graduation_year",
+            "cgpa",
+            "total_experience",
+            "current_company",
         ]
         extra_kwargs = {
             "profileImage": {"required": False},

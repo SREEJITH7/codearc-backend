@@ -18,32 +18,19 @@ class JwtCookieToHeaderMiddleware:
         ]
 
     def __call__(self, request):
-        # 1. Handle Preflight OPTIONS manually to bypass cached '*' wildcard issues
+        # OPTIONS preflight is handled entirely by CorsMiddleware (runs before this middleware).
+        # Do NOT intercept OPTIONS here — returning a new HttpResponse would replace the
+        # carefully set Access-Control-Allow-Origin header that CorsMiddleware already added.
         if request.method == "OPTIONS":
-            from django.http import HttpResponse
-            response = HttpResponse(status=200)
-            
-            # Use the actual origin from the request if it's in our allowed list
-            origin = request.headers.get("Origin")
-            allowed_origins = [
-                "http://localhost:5173", "http://127.0.0.1:5173",
-                "http://localhost:5174", "http://127.0.0.1:5174"
-            ]
-            
-            if origin in allowed_origins:
-                response["Access-Control-Allow-Origin"] = origin
-            else:
-                response["Access-Control-Allow-Origin"] = "http://localhost:5173" # Default
-            
-            response["Access-Control-Allow-Methods"] = "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-            response["Access-Control-Allow-Headers"] = "Content-Type, Authorization, X-Requested-With, X-CSRFToken, accept, origin, dnt, user-agent"
-            response["Access-Control-Allow-Credentials"] = "true"
-            response["Access-Control-Max-Age"] = "0" # Do not cache these preflights
-            return response
+            return self.get_response(request)
 
         is_public = any(pattern.match(request.path) for pattern in self.public_patterns)
 
         if not is_public:
+            # ONLY move cookie to header if Authorization header is NOT already set by frontend
+            if "HTTP_AUTHORIZATION" in request.META:
+                return self.get_response(request)
+
             path = request.path
             access_token = None
 
@@ -52,10 +39,11 @@ class JwtCookieToHeaderMiddleware:
             elif path.startswith('/api/recruiter/'):
                 access_token = request.COOKIES.get(settings.RECRUITER_ACCESS_COOKIE)
             else:
+                # Prioritize Admin > Recruiter > User for generic paths like /api/chat/
                 access_token = (
-                    request.COOKIES.get(settings.USER_ACCESS_COOKIE) or
+                    request.COOKIES.get(settings.ADMIN_ACCESS_COOKIE) or
                     request.COOKIES.get(settings.RECRUITER_ACCESS_COOKIE) or
-                    request.COOKIES.get(settings.ADMIN_ACCESS_COOKIE)
+                    request.COOKIES.get(settings.USER_ACCESS_COOKIE)
                 )
 
             if access_token:

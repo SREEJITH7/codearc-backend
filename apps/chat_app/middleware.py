@@ -44,9 +44,9 @@ class JWTAuthMiddleware(BaseMiddleware):
                         cookies[k.strip()] = v.strip()
                 
                 possible_cookies = [
-                    getattr(settings, "USER_ACCESS_COOKIE", "user_access_token"),
-                    getattr(settings, "RECRUITER_ACCESS_COOKIE", "recruiter_access_token"),
                     getattr(settings, "ADMIN_ACCESS_COOKIE", "admin_access_token"),
+                    getattr(settings, "RECRUITER_ACCESS_COOKIE", "recruiter_access_token"),
+                    getattr(settings, "USER_ACCESS_COOKIE", "user_access_token"),
                     "access_token"
                 ]
                 
@@ -60,7 +60,7 @@ class JWTAuthMiddleware(BaseMiddleware):
         else:
             scope["user"] = AnonymousUser()
 
-        return await super().__call__(scope, receive, send)
+        return await self.inner(scope, receive, send)
 
 def JWTAuthMiddlewareStack(inner):
     return JWTAuthMiddleware(inner)
