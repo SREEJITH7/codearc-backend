@@ -7,7 +7,7 @@
 			"com.tldraw.asset": 1,
 			"com.tldraw.camera": 1,
 			"com.tldraw.document": 2,
-			"com.tldraw.instance": 25,
+			"com.tldraw.instance": 26,
 			"com.tldraw.instance_page_state": 5,
 			"com.tldraw.page": 1,
 			"com.tldraw.instance_presence": 6,
@@ -19,13 +19,13 @@
 			"com.tldraw.shape.group": 0,
 			"com.tldraw.shape.text": 4,
 			"com.tldraw.shape.bookmark": 2,
-			"com.tldraw.shape.draw": 3,
+			"com.tldraw.shape.draw": 4,
 			"com.tldraw.shape.geo": 11,
 			"com.tldraw.shape.note": 10,
 			"com.tldraw.shape.line": 5,
 			"com.tldraw.shape.frame": 1,
 			"com.tldraw.shape.arrow": 8,
-			"com.tldraw.shape.highlight": 2,
+			"com.tldraw.shape.highlight": 3,
 			"com.tldraw.shape.embed": 4,
 			"com.tldraw.shape.image": 5,
 			"com.tldraw.shape.video": 4,
@@ -435,6 +435,912 @@
 			"typeName": "shape"
 		},
 		{
+			"x": -5522.167233883867,
+			"y": 761.875150992501,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:EYMuQ0QZ90RnwjW-53Zp0",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 1591.6548639843634,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": false,
+				"scale": 2.6586667390339507,
+				"richText": {
+					"type": "doc",
+					"attrs": {
+						"dir": "auto"
+					},
+					"content": [
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 1
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "🚀 Journey of Real-time Notification System (Manglish Version)"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Nammude project-il real-time notifications build cheyyan vendi nadanna aah oru 'epic' journey-ude documentation aanu ithu. End-to-end flow connect cheyyan kurachu 'Bottlenecks' undayirunnu, pakshe nammal athu ellam onnonnayi solve cheythu."
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 2
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "🛠️ Main Bottlenecks & Bugs (Karanam & Pariharam)"
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 3
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "1. The HttpOnly Cookie Trap 🛡️"
+								}
+							]
+						},
+						{
+							"type": "bulletList",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Problem"
+												},
+												{
+													"type": "text",
+													"text": ": Backend-il JWT "
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "code"
+														}
+													],
+													"text": "HttpOnly=True"
+												},
+												{
+													"type": "text",
+													"text": " aayirunnu. Athukondu Frontend-il Javascript-inu access_token 'read' cheyyan pattillayirunnu. Nammal aadyam token URL parameter vazhi ayakkan nokki, pakshe JS-inu token edukkan pattathathu kondu connection connect aayilla."
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Fix"
+												},
+												{
+													"type": "text",
+													"text": ": Backend"
+												}
+											]
+										},
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "JWTAuthMiddleware"
+												},
+												{
+													"type": "text",
+													"text": "-il oru change konduvannu. Request headers read cheythittu athil ninnum cookie eduthu user-ine authenticate cheyyan padichu. Ippo Browser thanne token secure aayi ayakkum!"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 3
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "2. "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "link",
+											"attrs": {
+												"href": "http://Localhost",
+												"target": "_blank",
+												"rel": "noopener noreferrer nofollow",
+												"class": null
+											}
+										},
+										{
+											"type": "bold"
+										}
+									],
+									"text": "Localhost"
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": " vs 127.0.0.1 (The Domain Mismatch) 🌐"
+								}
+							]
+						},
+						{
+							"type": "bulletList",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Problem"
+												},
+												{
+													"type": "text",
+													"text": ": Cookies set cheythirunnathu "
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "link",
+															"attrs": {
+																"href": "http://localhost",
+																"target": "_blank",
+																"rel": "noopener noreferrer nofollow",
+																"class": null
+															}
+														},
+														{
+															"type": "code"
+														}
+													],
+													"text": "localhost"
+												},
+												{
+													"type": "text",
+													"text": "-il aayirunnu, pakshe nammal WebSocket connection "
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "code"
+														}
+													],
+													"text": "127.0.0.1"
+												},
+												{
+													"type": "text",
+													"text": "-ilekkaanu try cheythathu. Cookies oru domain-il ninnum vere domain-ilek (polum IP-ilekk) automatic aayi pokilla."
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Fix"
+												},
+												{
+													"type": "text",
+													"text": ": WebSocket URL switch cheythu "
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "code"
+														}
+													],
+													"text": "ws://localhost:8000"
+												},
+												{
+													"type": "text",
+													"text": "-ilek aakki. Ippo domain mismatch illathey aayi."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 3
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "3. Routing Regex Issues 🗺️"
+								}
+							]
+						},
+						{
+							"type": "bulletList",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Problem"
+												},
+												{
+													"type": "text",
+													"text": ":"
+												}
+											]
+										},
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "link",
+															"attrs": {
+																"href": "http://routing.py",
+																"target": "_blank",
+																"rel": "noopener noreferrer nofollow",
+																"class": null
+															}
+														},
+														{
+															"type": "bold"
+														}
+													],
+													"text": "routing.py"
+												},
+												{
+													"type": "text",
+													"text": "-il regex kurachu strict aayirunnu. "
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "code"
+														}
+													],
+													"text": "ws/notifications/"
+												},
+												{
+													"type": "text",
+													"text": " ennu mathrame undayirunnu, pakshe path-il leading slashes varaam or routing handle cheyyumpol mismatch varaam."
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Fix"
+												},
+												{
+													"type": "text",
+													"text": ": Regex robust aakki -> "
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "code"
+														}
+													],
+													"text": "r\"^/?ws/notifications/$\""
+												},
+												{
+													"type": "text",
+													"text": ". Ippo matching simple aayi."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 3
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "4. UUID & Group Name Discrepancies 🧵"
+								}
+							]
+						},
+						{
+							"type": "bulletList",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Problem"
+												},
+												{
+													"type": "text",
+													"text": ": Group naming-il UUID-ude hyphens ( - ) karanam 'Broadcaster'-um 'Listener'-um vere vere room-il aayippoyi."
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Fix"
+												},
+												{
+													"type": "text",
+													"text": ": Ellayidathum"
+												}
+											]
+										},
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "str("
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "link",
+															"attrs": {
+																"href": "http://user.id",
+																"target": "_blank",
+																"rel": "noopener noreferrer nofollow",
+																"class": null
+															}
+														},
+														{
+															"type": "bold"
+														}
+													],
+													"text": "user.id"
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": ").replace('-', '')"
+												},
+												{
+													"type": "text",
+													"text": " use cheythu hex format logic standard aakki. Ippo randuporum ore room-ilaanu."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 2
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "🏗️ Building Blocks summary"
+								}
+							]
+						},
+						{
+							"type": "orderedList",
+							"attrs": {
+								"dir": "auto",
+								"start": 1,
+								"type": null
+							},
+							"content": [
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "NotificationService"
+												},
+												{
+													"type": "text",
+													"text": ": Backend-il notification save cheyyunnathinte koode "
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "code"
+														}
+													],
+													"text": "channel_"
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "link",
+															"attrs": {
+																"href": "http://layer.group",
+																"target": "_blank",
+																"rel": "noopener noreferrer nofollow",
+																"class": null
+															}
+														},
+														{
+															"type": "code"
+														}
+													],
+													"text": "layer.group"
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "code"
+														}
+													],
+													"text": "_send"
+												},
+												{
+													"type": "text",
+													"text": " vazhi broadcast cheyyunnu."
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "NotificationConsumer"
+												},
+												{
+													"type": "text",
+													"text": ": WebSocket connection accept cheyyunnathum, user-ine auto-assign group-ilek add cheyyunnathum ivite aanu."
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "JWTAuthMiddleware"
+												},
+												{
+													"type": "text",
+													"text": ": Path-il token illenkilum headers-ile cookies thappi user-ine identify cheyunnu."
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "useNotificationSocket Hook"
+												},
+												{
+													"type": "text",
+													"text": ": Frontend-il user login aakumbol auto-connect aayi Redux-ine 'Pulse' nalkunnu."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 2
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "✅ Verification"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Nammude diagnostic "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "\"🚀 Test Real-time (Self)\""
+								},
+								{
+									"type": "text",
+									"text": " button vazhi check cheythappol, Refresh cheyyathe thanne Bell Icon-il notification vannu! 🔔"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "Ippo nammude system 'Power' aanu! Happy coding!"
+								},
+								{
+									"type": "text",
+									"text": " 🚀🔥"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "CommentCtrl+Alt+M"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "hardBreak",
+									"attrs": {
+										"dir": "auto"
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:99Wnw1a3Bs6jRqpkgmUxK",
+			"index": "a6cTW6VV",
+			"typeName": "shape"
+		},
+		{
 			"meta": {},
 			"id": "page:lnYoBBsDRH-JlYrOox5iQ",
 			"name": "pending...",
@@ -449,12 +1355,12 @@
 			"typeName": "page"
 		},
 		{
-			"editingShapeId": "shape:ah-d-Uxa77eSmtwSa3FOF",
+			"editingShapeId": "shape:EYMuQ0QZ90RnwjW-53Zp0",
 			"croppingShapeId": null,
 			"selectedShapeIds": [
-				"shape:ah-d-Uxa77eSmtwSa3FOF"
+				"shape:EYMuQ0QZ90RnwjW-53Zp0"
 			],
-			"hoveredShapeId": "shape:ah-d-Uxa77eSmtwSa3FOF",
+			"hoveredShapeId": "shape:EYMuQ0QZ90RnwjW-53Zp0",
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
 			"focusedGroupId": null,
@@ -730,7 +1636,7 @@
 				"segments": [
 					{
 						"type": "free",
-						"points": "AAAAAAA4GkB7QQA4ykR7QQA4I0l7QQA4gEp7wQA4Tk0czAA4/U0pzgA4XE9z0AA4BVDR0QA4tFCA0gA4DFHf0wA4ZFFH1AA4ZFHK1AA4E1J61QA4E1LR1QA4E1JV1gA4E1Ks1gA4E1LY1gA4E1Iw1wA4E1KH1wA4vFHf1wA4DFHf1wA4tFDf1wA4XE/f1wA4rE7f1wA4Tk3f1wA4n0yz1wA4gEpc1wA4I0kE1wA4ykSs1gA4cbkp1gA418Kl1QA4c8gi1QA40clz1AA40cmH0wA40cnY0gA40ckp0gA40cnL0AA40clz0AA40cmHzwA40cnYzgA40cl6zQA40cnKzAA4c8gczAA4KcbYygA4GkDYygA4gErYygA4Tk3YygA4XE/YygA4tFDYygA4E1LYygA4a1LYygA4cVPYygA4yVPYygA4aFQczAA4wFQczAA461QczAA4Q1UczAA4b1UczAA4"
+						"path": "AAAAAAAAAAAAAAA/GkB7QQAAekEAAAAAfEUAAAAAdEF7xQAAHEjZygAAeEEayAAAfEV6yQAAcEF4yQAAeEV4xQAAgEF8yQAAgEF4xQAAAAAYyAAAeEWAyQAAAABwxQAAAAAgyAAAAABwxQAAAACAwQAAAACAxQAAAABwxQAAcMGAxQAAgMUAAAAAgMEAAAAAGMgAAAAAgMEAAAAAeMUAAAAAeMGAQQAAfMVwRQAAdMGARQAAfMWARQAAeMUYSAAAe8EgSAAAesUYSAAAeMF4SQAAAAB8SQAAAAB4RQAAAAB4RQAAAAB4SQAAAACAQQAAAAB8RQAAAAB4QQAAAAB4RQAAAACAQQAAeEFwQQAAekGAQQAAG0gAAAAAekkAAAAAHEgAAAAAHEgAAAAAGEgAAAAAfEkAAAAAgEEAAAAAGEgAAAAAgEEAAAAAHEiAwQAAgEUAAAAAYEEAAAAAgEUAAAAAgEEAAAAA"
 					}
 				],
 				"color": "black",
@@ -761,7 +1667,7 @@
 				"segments": [
 					{
 						"type": "free",
-						"points": "AAAAAAA4e8F7QQA40cl7RQA4L8vYSgA4R8wcTAA49szKTAA4ps16TQA4R8wpTgA4ykQcTAA4/U17QQA4E1J7xQA4EFTKzAA461Qb0AA4b1Ui0QA48lUp0gA4HlaA0gA4SlbY0gA4oVYw0wA4oVaH0wA4"
+						"path": "AAAAAAAAAAAAAAA/e8F7QQAAcsh7QQAAeMEaSAAAfMGAQQAAeMFwQQAAgMGAQQAAfEV4QQAAek0ayAAAykzZygAAKU4cyAAAGkzWygAA2ErYygAAIEgcyAAAGEgcyAAAgEFwwQAAgEGAwQAAcEWAwQAAAABwwQAA"
 					}
 				],
 				"color": "black",
@@ -879,9 +1785,9 @@
 			"typeName": "shape"
 		},
 		{
-			"x": -423.70461264347574,
-			"y": -3980.805962175727,
-			"z": 0.4186829924419556,
+			"x": 10144.213346124086,
+			"y": -242.41786265572188,
+			"z": 0.09957935906745405,
 			"meta": {},
 			"id": "camera:page:99Wnw1a3Bs6jRqpkgmUxK",
 			"typeName": "camera"
@@ -1338,7 +2244,7 @@
 				"segments": [
 					{
 						"type": "free",
-						"points": "AAAAAAA418IAAAA40ckbSAA40cl6SQA4R8wcTAA4ps0pTgA4VM6HTwA4VM4bUAA4BM8bUAA4s89zUAA4s8/LUAA4MdDLUAA4MdAiUQA4s8/RUQA4ps0pUgA4KcbYUgA4iEcwUwA4n0yHUwA4/U2HUwA4XVCHUwA4tFCHUwA4ZFGHUwA4"
+						"path": "AAAAAAAAAAAAAAA/18IAAAAAG8gbSAAAAAB8QQAAesV8RQAAfMUaSAAAcMF4RQAAAAB4QQAAgMEAAAAAeMGAQQAAAACAQQAAeMEAAAAAAABwQQAAeEF4RQAAGkiAQQAAHEx4RQAA2EqAQQAAeklwQQAAeEUAAAAAekkAAAAAcEEAAAAAgEUAAAAA"
 					}
 				],
 				"color": "black",
@@ -1384,7 +2290,7 @@
 				"segments": [
 					{
 						"type": "free",
-						"points": "AAAAAAA4cbl7wQA4c8h7xQA40cl7xQA4L8t7xQA49sx7xQA4ps17xQA4BM97xQA4MdB7xQA4idB7xQA44NB7wQA4ONEAAAA4kNF7RQA4kNHYSgA4kNEcTAA4kNF6TQA4kNGHTwA4kNEbUAA4kNEiUQA4kNHRUQA44NDRUQA4MdApUgA4BM/YUgA4ps3YUgA49szYUgA49swwUwA4R8yHUwA4R8zfUwA4R8wbVAA4R8xHVAA4R8xzVAA4R8yfVAA4R8zKVAA4R8wiVQA4R8x6VQA4ps3RVQA4VM7RVQA4s8/9VQA4MdApVgA44NApVgA459FVVgA4P9JVVgA4ltJVVgA4"
+						"path": "AAAAAAAAAAAAAAA/cbl7wQAAHMh7wQAAeMEAAAAAeMEAAAAAesUAAAAAgMEAAAAAeMUAAAAAeMUAAAAAgMEAAAAAcMF7QQAAgMF7QQAAgMF7RQAAAAAaSAAAAACAQQAAAAB4RQAAAAAaSAAAAAB4QQAAAAAcSAAAAAB4RQAAgEUAAAAAeEWAQQAAeEV4RQAAeEUAAAAAgEEAAAAAAACAQQAAeEFwQQAAAACAQQAAAABwQQAAAACAQQAAAACAQQAAAACAQQAAAABgQQAAAACARQAAAACARQAAfMVwRQAAcMEAAAAAfMWAQQAAeMGAQQAAeMUAAAAAHMiAQQAAgMEAAAAAcMEAAAAA"
 					}
 				],
 				"color": "black",
@@ -1415,7 +2321,7 @@
 				"segments": [
 					{
 						"type": "free",
-						"points": "AAAAAAA4cbl7QQA4cbl6TQA4GkAiUQA4iEdHVAA4I0n9VQA4Tk2zVwA4rE7gWAA4XVCQWQA4XVA/WgA4tFCsWgA4tFDCWgA4DFHuWgA4DFEEWwA4DFEaWwA4ZFEaWwA4E1IaWwA4E1LuWgA4E1LCWgA4"
+						"path": "AAAAAAAAAAAAAAA/cbl7QQAAAADLTAAAdkHKTAAAe0XYTgAAfEHYTgAAeUnYTgAAeEUaUAAAHEiATQAAAAB4TQAAcEHQSgAAAACAQQAAgEGARQAAAACAQQAAAACAQQAAgEEAAAAAeEUAAAAAAACAxQAAAACAxQAA"
 					}
 				],
 				"color": "black",
@@ -1446,7 +2352,7 @@
 				"segments": [
 					{
 						"type": "free",
-						"points": "AAAAAAA4cbl7QQA4iEfYSgA4I0kpTgA4gEqHTwA430tzUAA4/U0pUgA4XE8wUwA4tFAbVAA4DFFHVAA4DFFzVAA4ZFFzVAA4E1JzVAA4E1JHVAA4a1LfUwA4GlPYUgA4GlMpUgA4yVNzUAA4yVMbUAA4EFQpTgA4aFTYSgA4lFR7RQA4lFQbyAA4wFTKzAA461SHzwA461TL0AA4Q1V60QA4Q1XR0QA4Q1Up0gA4Q1WA0gA4Q1V60QA4b1XL0AA4m1V6zQA4m1UczAA48lV7xQA4HlYAAAA4SlYbSAA4dVbKTAA4zVYpTgA4+VYpTgA4+VYbUAA4UFcbUAA4fFcbUAA41FeHTwA4LFh6TQA4V1gbSAA4r1jYygA4xVjYzgA421h60QA4Mlnf0wA4SFnK1AA4SFlO1QA4Xlml1QA4illV1gA4"
+						"path": "AAAAAAAAAAAAAAA/cbl7QQAAG0h5SQAAfEF6SQAAdEF4RQAAfEF8RQAAG0jYSgAAfEUcSAAAGEgYSAAAgEGAQQAAAACAQQAAgEEAAAAAeEUAAAAAAACAwQAAgEF4xQAAeEUcyAAAAAB4xQAAeEXYygAAAACAwQAAcEEayAAAgEV6yQAAgEEayAAAAADYygAAgEF5yQAAYEF6yQAAAAAeyAAAgEV4xQAAAABwwQAAAACAwQAAAABwwQAAAAAYSAAAgEF4RQAAgEEcTAAAAAB4RQAAcEV6SQAAgEF7RQAAgEEbSAAAYEF5SQAAgEV8RQAAgEEAAAAAAAAaSAAAcEUAAAAAgEEAAAAAgEV4wQAAIEgayAAAYEXZygAAgEl6zQAAgEHYygAAgEEczAAAcEnKzAAAgEHUygAAAAAgyAAAgEFwxQAAgEWAyQAA"
 					}
 				],
 				"color": "black",
@@ -1477,7 +2383,7 @@
 				"segments": [
 					{
 						"type": "free",
-						"points": "AAAAAAA418IAAAA418J7wQA4cbl7wQA4gEp7wQA4rE57wQA4a1J7xQA4PFTYygA4lFTYygA4F1UczAA4Q1UczAA4"
+						"path": "AAAAAAAAAAAAAAA/18IAAAAAAAB7wQAAe0EAAAAA10oAAAAA2EoAAAAAKk57wQAAGkwayAAAgEUAAAAAGEiAwQAAgEEAAAAA"
 					}
 				],
 				"color": "black",
@@ -2794,7 +3700,7 @@
 				"segments": [
 					{
 						"type": "free",
-						"points": "AAAAAAA4ykQAAAA4I0kAAAA4n0wbyAA4XE/YygA4tFB6zQA4u1HYzgA4wlJz0AA4cVMi0QA4PFQp0gA4aFSA0gA4wFQw0wA4F1WH0wA4F1Uw0wA4F1Up0gA4F1WHzwA4F1V6yQA4Q1UcTAA4Q1VzUAA4m1UbVAA4xlWlVQA4HlZcVwA4HlYbWAA4dVa1WAA4dVYMWQA4dVY4WQA4oVaQWQA4+Va7WQA4JVfRWQA4UFfnWQA4fFfnWQA4qFfnWQA4qFfRWQA4"
+						"path": "AAAAAAAAAAAAAAA/ykQAAAAAfEUAAAAAG0gbyAAAekl6xQAAGEgcyAAAHEh4xQAAHEgcyAAAeEV4xQAAHEgcyAAAgEFwwQAAgEWAxQAAcEVwwQAAAABwQQAAAAAcSAAAAADLTAAAAADKTAAAgEHZTgAAAADKTAAAgEWGTwAAYEEoTgAAgEXcTgAAAADQSgAAcEXQTAAAAABwSQAAAACARQAAgEGASQAAgEVgRQAAgEGAQQAAYEGAQQAAgEEAAAAAgEEAAAAAAACAwQAA"
 					}
 				],
 				"color": "black",
@@ -2838,7 +3744,7 @@
 				"segments": [
 					{
 						"type": "free",
-						"points": "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"
+						"path": "AAAAAAAAAAAAAAA/GkAAAAAAe0V7wQAAeEV4xQAAekl6xQAAekl4xQAAHEwczAAAGkwcyAAAzExwwQAA2EocyAAA2Ep4xQAAeEl4xQAAgEmAwQAA0EqAxQAAGExgwQAAIEgAAAAAgEmAwQAAgEUAAAAAEEgAAAAAgEEAAAAAgEEAAAAAgEEAAAAAgEGAQQAAAAAYSAAAAACAQQAAAABwQQAAgEGAQQAAAABwQQAAAACAQQAAAACAQQAAAAB4RQAAAABwQQAAAACAQQAAAAB4RQAAgEUAAAAAEEgAAAAAIEgAAAAA4EoAAAAAIE4AAAAA0EyAwQAA0Ex4xQAAwEoAAAAAgEkAAAAAgEl4xQAAIEgAAAAAgEEAAAAAgEEAAAAAgEEAAAAAIEgAAAAAAEGAQQAAAAB4RQAAAABwQQAAAAAeSAAAgEF4RQAAAAB8RQAAAABwQQAAgEV8RQAAgEEAAAAAIEgAAAAAgEEAAAAAgEkAAAAAIEgAAAAAwEoAAAAA0EwAAAAAIEwAAAAA0E4AAAAAgE96SQAA4E57RQAAwEx2QQAAIEx5SQAAgEkcSAAAgEV4RQAAAEKAQQAAAEEcSAAAgEV4RQAAAAB4RQAAAEJ4SQAAAACARQAAAABwRQAAgEWAQQAAAEGAQQAAAACAQQAAAEEAAAAAAEIAAAAAgE1wRQAAIFGASQAA0FF4SQAAgFN4TQAAMFMgTAAAIFTITAAAgFMoTgAA4E4gSAAAYE3ITAAAgEmASQAAAEIQSAAAAEKARQAAAELQSgAAAECASQAAAACASQAAAADgSgAAAAAASAAAAAAgSAAAAADgSgAAAACASQAAgMnQTAAAAMgQTAAAAMLgSgAAQMkwTgAAgMUQTAAAgMUgSAAAAMHgSgAAAMLgSgAAAMFgSQAAQMgwTgAAAACASQAAAADgSgAAAELASgAAAEEgTAAAgEmASQAAwEqATQAAAEaARQAAgEnASgAAAEWARQAAAEggTAAAAEbASgAAAEUgTAAAAEggTAAAAACATQAAAADASgAAAADATAAAAMVATgAAAMwgTgAAgM0gTgAAgM2ATQAAgM2ATQAAAMvATAAAgMkASwAAgMVASQAAAMFASAAAgMWARQAAAACARQAAAMGARQAAAACARQAAAMIAAAAAAMGARQAAAACARQAAgMUAQQAAAMIAQgAAAMEAQQAAgMUAQQAAAMIAQgAAAMGARQAAQMgASAAAQMmARQAAAMtASAAAwMyARQAAgM/ATAAAAMuASQAAgM3ASgAAQMkASAAAIMyASAAAgMUAQAAAgMkAQgAAgMkAAAAAgMUAAAAAAMgAAAAAgMkAAAAAAMsAAAAAwMoAAAAAwMwAAAAAoM8AAAAAwM4AAAAA4M4AAAAAIM4AAAAAAMsAAAAAAMgAAAAAgMUAAAAAgMUAAAAAgMUAAAAAAMIAAAAAYMkAAAAA4MoAAAAAgMkAAAAAwMoAxQAAIMgAAAAAIMgAAAAAgMUAAAAAgMUAAAAAIMgAAAAAgMUAAAAAwMoAQAAAIMgAQgAA4MoARgAA0MwAQAAAEMwAQgAA0MwARQAA4MoAAAAAwMoAAAAA4MoAAAAA4MoAAAAAIMgAAAAAIMgAAAAAgMUAAAAAQMUAAAAAgMkAAAAAgMUAAAAAIMgAAAAAgMkAwAAAcMkAwgAAgMEAAAAAGMwAwgAA4MoAAAAA4MoAAAAA0MoAAAAA4MoAAAAAEMgAAAAAgMkAAAAAgMEAAAAAGMgAAAAAGMgAAAAA2MoAAAAA2MoAAAAAes0AAAAAzMwAAAAAeM0AAAAA2M4AAAAA2c4AAAAAiM8AyAAA2M4AyAAA2MoAwgAAHMwAwgAAYMUAwAAAgMEAAAAAgMUAwgAAgMWAxQAAgMUAwgAAgMUAyAAAEMgAwgAAgMUAwQAAIMgAyAAAAAAAwgAAIMgAyAAAYMWAxQAAgMkgzAAAgMWAyQAAcMkgzAAAgMUAyAAAgMkgzAAAgMUgzAAAEMggzAAAgMXAygAAgMEgzAAAgMnAzAAAgMVAzgAAwMogzAAA4MogzgAAgMWAyQAA4MqAzQAAIMjAygAAgMEAyAAAgMEAywAAQMUgzAAAIMjAzAAAgMGAyQAAgMHAygAAgMWAyQAAgMFAyAAAgMHAzAAAAADAygAAgMGAyQAAAAAAywAAAABAyQAAgMUAywAAAADAygAAAADQzAAAAADgzgAAAADAzAAAAAAgzAAAAAAY0AAAAADgzgAAgEHQzgAAAAAwzgAAAABwzQAAAADQzAAAAADYzgAAAADQzAAAAADQygAAAADIzAAAAACAyQAAAACAyQAAAABwyQAAAACAxQAAAAAgyAAAAAAQyAAAAACAwQAAgEGAwQAAAACAwQAAAAAgyAAAgEEYyAAAgEVwxQAAgEGAxQAAIEggyAAAIEgYyAAAEEzYygAAgE14yQAA4EocyAAAcE0cyAAAgEkcyAAA0EpwwQAAgEWAwQAAgEl4xQAAIEiAwQAAYEV4wQAAgEUAAAAAgEUAAAAAgEEAAAAAgEF4xQAAgEEAAAAAgEEAAAAAYEUAAAAAgEEAAAAAgEEAAAAAgEUAAAAAgEEAAAAAIEgAAAAAYEV4wQAAgEUAAAAAgEUAAAAAgEUAAAAAgEWAwQAAYEUAAAAAgEEAAAAAgEUAAAAAgEUAAAAAeEkAAAAAGEh4xQAAgEEAAAAAgEV4wQAAGEgAAAAAgEF8wQAAgEUAAAAAYEEAAAAAgEEAAAAAgEUAAAAAcEF2wQAAgEEAAAAAgEEAAAAAcEEAAAAAgEEAAAAAcEEAAAAAgEEAAAAAcEEAAAAAgEF7wQAAgEEAAAAAeEUAAAAAeEEAAAAAfEV7wQAAcEEAAAAAfEUAAAAAfEF7wQAAeEF7wQAAAAB2wQAAeEF8wQAAekEAAAAAe0EAAAAAe0EAAAAA"
 					}
 				],
 				"color": "black",
@@ -3071,7 +3977,7 @@
 				"segments": [
 					{
 						"type": "free",
-						"points": "AAAAAAA4GkB7QQA4iEd6SQA4I0nKTAA4I0nLUAA4gEobVAA4gEpOVQA4gEoEVwA4gErfVwA4gEpzWAA4gEr2WAA4gEp6WQA4gErnWQA430sTWgA430s/WgA430trWgA430uAWgA4n0yWWgA4n0ysWgA4/U2sWgA4/U2WWgA4/U2AWgA4/U1rWgA4/U1VWgA4/U0/WgA4"
+						"path": "AAAAAAAAAAAAAAA/GkB7QQAAe0UbSAAAfEEaSAAAAADMTAAAdEHWTgAAAADMTAAAAADYTgAAAADYSgAAAAAcTAAAAAAYTAAAAAAgTAAAAADQSgAAfEGARQAAAACARQAAAACARQAAAABAQQAAfEGAQQAAAACAQQAAeEUAAAAAAACAwQAAAACAwQAAAABAwQAAAACAwQAAAACAwQAA"
 					}
 				],
 				"color": "black",
@@ -3303,10 +4209,7 @@
 		{
 			"followingUserId": null,
 			"opacityForNextShape": 1,
-			"stylesForNextShape": {
-				"tldraw:color": "black",
-				"tldraw:size": "xl"
-			},
+			"stylesForNextShape": {},
 			"brush": null,
 			"scribbles": [],
 			"cursor": {
@@ -3320,8 +4223,8 @@
 			"screenBounds": {
 				"x": 0,
 				"y": 0,
-				"w": 1126.4000244140625,
-				"h": 566.4000244140625
+				"w": 1305.5999755859375,
+				"h": 585.6000366210938
 			},
 			"insets": [
 				false,
@@ -3344,6 +4247,7 @@
 			"isReadonly": false,
 			"meta": {},
 			"duplicateProps": null,
+			"cameraState": "idle",
 			"id": "instance:instance",
 			"currentPageId": "page:99Wnw1a3Bs6jRqpkgmUxK",
 			"typeName": "instance"
@@ -3361,7 +4265,7 @@
 				"segments": [
 					{
 						"type": "free",
-						"points": "AAAAAAA4GkAAAAA4ykQAAAA4iEcbyAA4iEd6yQA4I0nKzAA430spzgA4n0wb0AA4n0xz0AA4Tk0i0QA4/U3R0QA4rE7Y0gA4XE/f0wA4XE8b1AA4XE9H1AA4XE9z1AA4XE+f1AA4XE/K1AA4XE/21AA4Tk321AA4n0z21AA430v21AA4gEr21AA4iEf21AA4GkDK1AA418Jz1AA418Lf0wA4KcaH0wA4KcYp0gA4c8hz0AA4L8spzgA4L8vYygA4L8sbyAA4L8sAAAA4L8vYSgA4L8spTgA4L8uHTwA4L8siUQA40cl6UQA4KcbRUQA4ykTRUQA4I0nRUQA4Tk3RUQA4BVDRUQA4ZFHRUQA4E1IiUQA4GlPLUAA4cVNzUAA4PFQbUAA4aFSHTwA4lFR6TQA4wFTKTAA4wFQcTAA4wFTYSgA4wFR6SQA4wFQbSAA4wFR7RQA4"
+						"path": "AAAAAAAAAAAAAAA/GkAAAAAAekEAAAAAfEEbyAAAAAB8wQAAfEEayAAAeEV8xQAAfEEayAAAAACAwQAAeEF4xQAAeEF4xQAAeEEcyAAAgEEcyAAAAABwwQAAAACAwQAAAACAwQAAAACAwQAAAABgwQAAAACAwQAAHMgAAAAAeMEAAAAAfMEAAAAAfMEAAAAAeMUAAAAAe8WAQQAAeMVwRQAAAAAcSAAAe8GAQQAAAAB4SQAAesHYSgAAeMV6SQAAAAB6SQAAAAB6RQAAAAAbSAAAAADYSgAAAAB6SQAAAAB4RQAAAAB6SQAAeEGAQQAAeUVwQQAAekkAAAAAfEUAAAAAeUkAAAAAeEkAAAAAfEkAAAAAeEV4xQAAHEhwwQAAcEGAwQAAHEiAwQAAgEF4wQAAgEEayAAAgEGAwQAAAABwwQAAAACAwQAAAAB4wQAAAAB8wQAAAAB2wQAA"
 					}
 				],
 				"color": "black",

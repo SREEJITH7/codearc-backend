@@ -599,6 +599,15 @@ class UserProfileView(APIView):
                 "linkedin": profile.linkedin,
                 "profileImage": profile.profileImage.url if profile.profileImage else None,
                 "resume": profile.resume.url if profile.resume else None,
+                "phone": profile.phone,
+                "location": profile.location,
+                "highest_qualification": profile.highest_qualification,
+                "specialization": profile.specialization,
+                "institution": profile.institution,
+                "graduation_year": profile.graduation_year,
+                "cgpa": profile.cgpa,
+                "total_experience": profile.total_experience,
+                "current_company": profile.current_company,
             }
             
             return Response({"success": True, "data": data}, status=status.HTTP_200_OK)

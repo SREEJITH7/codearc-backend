@@ -37,6 +37,18 @@ class UserProfile(models.Model):
     profileImage = models.ImageField(upload_to="profile_image", blank= True , null = True)
     linkedin = models.URLField(blank=True, null= True)
     github = models.URLField(blank=True, null = True)
+    
+    # New fields for job application prefilling
+    phone = models.CharField(max_length=20, blank=True, null=True)
+    location = models.CharField(max_length=255, blank=True, null=True)
+    highest_qualification = models.CharField(max_length=100, blank=True, null=True)
+    specialization = models.CharField(max_length=150, blank=True, null=True)
+    institution = models.CharField(max_length=255, blank=True, null=True)
+    graduation_year = models.CharField(max_length=10, blank=True, null=True)
+    cgpa = models.CharField(max_length=20, blank=True, null=True)
+    total_experience = models.CharField(max_length=50, blank=True, null=True)
+    current_company = models.CharField(max_length=255, blank=True, null=True)
+
     total_submissions = models.PositiveIntegerField(default=0)
     problems_solved = models.PositiveIntegerField(default=0)
 
