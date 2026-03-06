@@ -9,6 +9,8 @@ from apps.recruiter_app.models import Application
 from apps.recruiter_app.utils.coding_stats import calculate_coding_stats
 from .permissions import IsAdmin
 
+
+
 class AdminApplicationListView(APIView):
     permission_classes = [IsAuthenticated, IsAdmin]
 
@@ -89,3 +91,52 @@ class AdminApplicationListView(APIView):
                 "message": "Failed to fetch applications. Please try again.",
                 "error": str(e)
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class AdminDashboardMetricsView(APIView):
+    permission_classes = [IsAuthenticated, IsAdmin]
+
+    def get(self, request):
+        try:
+            from django.contrib.auth import get_user_model
+            from apps.recruiter_app.models import Job, Application
+            from apps.subscription_app.models import Subscription
+            from django.db.models import Sum
+
+            User = get_user_model()
+
+            total_users = User.objects.filter(role="user").count()
+            total_recruiters = User.objects.filter(role="recruiter").count()
+            total_jobs = Job.objects.count()
+            total_applications = Application.objects.count()
+            active_subscriptions = Subscription.objects.filter(status="ACTIVE").count()
+            
+            # Aggregate revenue from active subscriptions
+            total_revenue_data = Subscription.objects.filter(status="ACTIVE").aggregate(
+                total_revenue=Sum("plan__price")
+            )
+            total_revenue = total_revenue_data.get("total_revenue") or 0
+
+            return Response({
+                "total_users": total_users,
+                "total_recruiters": total_recruiters,
+                "total_jobs": total_jobs,
+                "total_applications": total_applications,
+                "active_subscriptions": active_subscriptions,
+                "total_revenue": float(total_revenue)
+            }, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            print(f"Error in AdminDashboardMetricsView: {e}")
+            return Response({
+                "success": False,
+                "message": "Failed to fetch dashboard metrics",
+                "error": str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+
+
+
+
